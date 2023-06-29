@@ -1,6 +1,8 @@
 import Navbar from "./Navbar"
 import "./SignUp.css"
 import google from "../assets/google.svg"
+import { Link } from "react-router-dom";
+
 
 const SignUp = () => {
   return (
@@ -30,7 +32,7 @@ const SignUp = () => {
                     <span className="google_txt">Sign up with Google</span>
                 </div>
                 <div className="login_option">
-                    Already a member?{" "}<a href="Login.jsx" className="special_txt">Log in</a>
+                    Already a member?{" "}<Link to='*' className="special_txt">Log in</Link>
                 </div>
             </div>
         </div>
