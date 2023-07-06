@@ -1,0 +1,74 @@
+.tickets{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow-y: visible;
+}
+.ticket_details{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.received_tickets{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2% 3%;
+    box-sizing: border-box;
+}
+.ticket_detail{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2%;
+}
+.ticket_type, .ticket_name, .ticket_price{
+    color: #495057;
+    font-size: .9rem;
+    font-weight: 900;
+    text-transform: capitalize;
+}
+.ticket_date{
+    font-size: .85rem;
+    color: var(--text-color, #495057);
+}
+
+@media only screen and (max-width: 943px){
+    .ticket_type, .ticket_name, .ticket_price {
+        font-size: .8rem;
+    }
+    .ticket_date{
+        font-size: .75rem;
+    }
+}
+@media only screen and (max-width: 568px){
+    .ticket_type, .ticket_name, .ticket_price {
+        font-size: .7rem;
+    }
+    .ticket_date{
+        font-size: .65rem;
+    }
+    .received_tickets{
+        padding: 2% 0%;
+    }
+    .ticket_details{
+        gap: .5rem;
+    }
+}
+@media only screen and (max-width: 468px){
+    .ticket_type, .ticket_name, .ticket_price {
+        font-size: .6rem;
+    }
+    .ticket_date{
+        font-size: .55rem;
+    }
+    .received_tickets{
+        padding: 2% 0%;
+    }
+    .ticket_details{
+        gap: .5rem;
+    }
+}
