@@ -1,0 +1,201 @@
+.create_event{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow-y: visible;
+    padding: 3% 5%;
+}
+.new_event_section{
+    padding: 4% 5%;
+    background: #CED4DA;
+}
+.upload{
+    width: 5%;
+}
+.upload_picture{
+    width: 100%;
+    height: 15rem;
+    background: #F8F9FA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.event_creation label{
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    color: #495057;
+}
+.event_creation label input{
+    margin: 0;
+    height: 2rem;
+    border-radius: 0.25rem;
+    font-size: .8rem;
+    letter-spacing: .04rem;
+    font-family: 'Questrial', sans-serif;
+    background: #F8F9FA;
+    border-bottom: 0;
+}
+.add_description{
+    border-radius: 0.25rem;
+    background: #495057;
+    color: #FFF;
+    font-size: .9rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    width: 23%;
+    height: 75%;
+    cursor: pointer;
+    padding: 0 .3rem;
+}
+.plus{
+    width: 8%;
+    height: auto;
+}
+.inside_label, .date_detail{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background: #F8F9FA;
+    align-items: center;
+    height: 3rem;
+    justify-content: space-between;
+    padding-right: .8%;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+}
+.name_input{
+    width: 70%;
+    border: none;
+    box-shadow: none;
+    height: 100%!important;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+.date_detail{
+    padding: 2% 4%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin: .3rem 0 0 0;
+}
+.start_date_time{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: .7rem;
+}
+.date_time{
+    width: 49%;
+}
+.pick_date{
+    width: 7%;
+}
+.date_info{
+    display: flex;
+    flex-direction: column;
+    color: #495057;
+
+}
+.date_info1{
+    font-size: .7rem;
+}
+.date_info2{
+    font-size: .9rem;
+    color: #495057;
+}
+.date_button{
+    border-radius: 0.25rem;
+    background: #E9ECEF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    box-sizing: border-box;
+}
+.dropdown_label{
+    padding: 2%;
+    box-sizing: border-box;
+}
+.date_time_text{
+    margin: 2% 0 1% 0;
+}
+.date_time_head{
+    color: #495057;
+    font-size: .9rem;
+    font-weight: 400;
+    padding: 1rem 0;
+}
+.date_time_txt{
+    font-weight: 700;
+}
+.down{
+    width: 80%;
+}
+.end_date_time{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+textarea{
+    border: none;
+    height: 15rem;
+    border-radius: 0.25rem;
+    margin-bottom: 4rem;
+    padding: .5rem;
+    outline: none;   
+    font-size: .8rem;
+    letter-spacing: .04rem;
+    font-family: 'Questrial', sans-serif;
+}
+.publish_event{
+    padding: .5rem 1rem;
+    width: fit-content;
+    font-size: .8rem;
+    text-align: center;
+    background: #F8F9FA;
+    color: #495057;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 943px){
+    .add_description{
+        border-radius: 0.25rem;
+        background: #495057;
+        color: #FFF;
+        font-size: .9rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+        width: 30%;
+        height: 75%;
+        cursor: pointer;
+    }
+    
+    .event_creation label input{
+        font-size: .8rem;
+        letter-spacing: .04rem;
+        padding: 1% 1rem;
+        box-sizing: border-box;
+    }
+    
+    .event-organizer{
+        height: 3rem!important;
+    }
+    .name_input{
+        width: 60%;
+    }
+}
