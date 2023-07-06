@@ -1,0 +1,11 @@
+.dashboard{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    overflow-y: visible;
+}
+.active{
+    display: flex!important;
+}

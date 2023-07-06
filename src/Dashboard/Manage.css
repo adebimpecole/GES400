@@ -1,0 +1,24 @@
+.manage{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    overflow-y: visible;
+}
+.manage_subhead{
+    font-size: .95rem;
+}
+.manage_section2{
+    padding-bottom: 3%;
+}
+@media only screen and (max-width: 568px){
+    .manage_subhead{
+        font-size: .85rem;
+    }
+}
+@media only screen and (max-width: 376px){
+    .manage_subhead{
+        font-size: .75rem;
+    }
+}
