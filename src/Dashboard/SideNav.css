@@ -1,0 +1,117 @@
+.sidenav{
+    border-radius: 0rem .5rem .5rem 0rem;
+    background: #495057;
+    height: 100%;
+    width: 18%;
+    padding: 3% 0;
+    box-sizing: border-box;
+    position: fixed;
+}
+.side_navigation{
+    padding-top: 20%;
+    list-style-type: none;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    margin: 0;
+    padding-left: 0;
+}
+.navigation_icon{
+    width: 9%;
+    height: auto;
+}
+.side_name{
+    text-align: center;
+}
+.navigation_text{
+    color: #FFF;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: normal;
+}
+.navigate{
+    height: 15%;
+    padding-left: 15%;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+.link{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+}
+.active{
+    border-left: 8px solid #343A40;
+    border-radius: 0rem 0.625rem 0.625rem 0rem;
+}
+
+@media only screen and (max-width: 943px){
+    .sidenav{
+        padding: 3.5% 0;
+        width: 20%;
+    }
+    .side_name{
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: .02rem;
+    }
+    .navigation_icon{
+        width: 11%;
+    }
+    .navigation_text{
+        font-size: .9rem;
+    }
+}
+@media only screen and (max-width: 768px){
+    .navigation_text{
+        display: none;
+    }
+    .navigation_icon{
+        width: 25%;
+    }
+    .sidenav{
+        width: 10%;
+    }
+    .link{
+        justify-content: center;
+    }
+    .navigate{
+        padding-left: 0;
+    }
+    .side_name{
+        display: none;
+    }
+    .side_navigation{
+        padding-top: 50%;
+        height: 60%;
+    }
+}
+@media only screen and (max-width: 568px){
+    .active{
+        border-left: 5px solid #343A40;
+        border-radius: 0rem 0.625rem 0.625rem 0rem;
+    }
+}
+@media only screen and (max-width: 468px){
+    .navigation_icon{
+        width: 28%;
+    }
+}
+@media only screen and (max-width: 376px){
+    .navigation_icon{
+        width: 30%;
+    }
+    .active{
+        border-left: 3px solid #343A40;
+    }
+    .sidenav{
+        width: 12%;
+    }
+}
