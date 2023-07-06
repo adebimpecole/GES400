@@ -23,7 +23,7 @@ const SignUp = () => {
                     Password
                     <input type="password" name="password" id="password"  className="password"/>
                 </label>
-                <div className="signup_btn">Sign up</div>
+                <Link to='/dashboard' className="signup_btn">Sign up</Link>
                 <div className="section">
                     <hr/><span className="or_div">Or</span><hr/>
                 </div>

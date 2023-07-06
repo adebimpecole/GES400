@@ -63,6 +63,7 @@ label{
 }
 .signup_btn:hover{
     transform: scale(1.02);
+    text-decoration: none;
 }
 .section{
     display: flex;
