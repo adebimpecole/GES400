@@ -44,12 +44,12 @@ const SideNav = (props) => {
         <h3 className='company_name side_name'>Primavera</h3>
         <ul className='side_navigation'>
             <li className='navigate active our_home' onClick={Active}>
-              <Link path="/cart" className='link  '>
+              <Link to="./" className='link  '>
                 <img src={home} alt='icon' className='navigation_icon'/><span className='navigation_text'>Home</span>
               </Link>
             </li>
             <li className='navigate  our_manage' onClick={Active}>
-              <Link path="/cart" className='link' >
+              <Link to="./manage" className='link' >
                 <img src={list} alt='icon' className='navigation_icon'/><span className='navigation_text'>Manage</span>
               </Link>
             </li>
@@ -64,7 +64,7 @@ const SideNav = (props) => {
               </Link>
             </li>
             <li className='navigate our_new_event' onClick={Active}>
-              <Link path="/cart" className='link'>
+              <Link to="./create" className='link'>
                 <img src={add} alt='icon' className='navigation_icon'/><span className='navigation_text'>Create event</span>
               </Link>
             </li>
