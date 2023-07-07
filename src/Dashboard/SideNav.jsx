@@ -6,6 +6,7 @@ import add from "../assets/new.svg"
 import "./SideNav.css"
 import { Link } from "react-router-dom";
 
+
 /* eslint-disable react/prop-types */
 
 
@@ -67,6 +68,7 @@ const SideNav = (props) => {
                 <img src={add} alt='icon' className='navigation_icon'/><span className='navigation_text'>Create event</span>
               </Link>
             </li>
+
         </ul>
     </div>
   )
