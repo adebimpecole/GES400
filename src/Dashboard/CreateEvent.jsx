@@ -5,83 +5,102 @@ import time from "../assets/time.svg"
 import down from "../assets/down.svg"
 import locate from "../assets/location.svg"
 import upload from "../assets/upload.svg"
+import { useState } from "react"
 
 /* eslint-disable react/prop-types */
+import Map from "../components/Map"
+import {Form} from 'react-router-dom'
 
 
 const CreateEvent = (props) => {
+    const [showEndInput, setShowEndInput] = useState(false)
+
+    function DateAndTime(){
+        return(
+            <div className="start_date_time">
+                    <div className="date_time">
+                        <span className="date_time_head">Date</span>
+                        <input required name="start_date" className="block w-full date_detail" type="date"/>
+                    </div>
+                    <div className="date_time">
+                        <span className="date_time_head">Time</span>
+                        <input required name="start_time" className="block w-full date_detail" type="time"/>
+                    </div>
+                </div>
+        )
+    }
+
+    function EndDateAndTime(){
+        return(
+            <div className="start_date_time">
+                    <div className="date_time">
+                        <span className="date_time_head">{'End Date'}</span>
+                        <input name="stop_date" className="block w-full date_detail" type="date"/>
+                    </div>
+                    <div className="date_time">
+                        <span className="date_time_head">{'End Time'}</span>
+                        <input name="stop_time" className="block w-full date_detail" type="time"/>
+                    </div>
+                </div>
+        )
+    }
+
   return (
     <div style={props.style} className="create_event">
         <div className='home_section new_event_section'>
             <div className='home_section1'>
                 <h3 className='section_head'>Create Event</h3>
             </div>
-            <div className="event_creation">
-                <div className="upload_picture">
-                    <img src={upload} className="upload" alt="icon"/>
+            <Form method="POST" className="event_creation" encType="multipart/form-data">
+                <div className="upload_picture flex flex-col">
+                    <img src={upload} className="upload " alt="icon"/>
+                    <input type="file" name="files"/>
                 </div>
                 <label>
                     Event Name
                     <div className="inside_label">
-                        <input type="text" name="event-name" id="event-name"  className="event-name name_input" placeholder="Enter event name"/>
+                        <input type="text" name="name" id="event-name"  className="event-name name_input" placeholder="Enter event name"/>
                         <div className="add_description"><img src={plus} className="plus" alt="icon"/><span className="button_text">Add Description</span></div>
                     </div>
-                    
                 </label>
                 <label>
                     Organizer
-                    <input type="text" name="event-organizer" id="event-organizer"  className="event-organizer" placeholder="Tell attendees who's organizing the event"/>
+                    <input type="text" name="organizer" id="event-organizer"  className="event-organizer" placeholder="Tell attendees who's organizing the event"/>
                 </label>
-                <div className="start_date_time">
-                    <div className="date_time">
-                        <span className="date_time_head">Date</span>
-                        <div className="date_detail">
-                            <img src={date2} className="pick_date" alt="icon"/>
-                            <div className="date_info">
-                                <span className="date_info1">Start Date</span>
-                                <span className="date_info2">July 1, 2023</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="date_time">
-                        <span className="date_time_head">Time</span>
-                        <div className="date_detail">
-                            <img src={time} className="pick_date" alt="icon"/>
-                            <div className="date_info">
-                                <span className="date_info1">Start Time</span>
-                                <span className="date_info2">12:00pm</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="date_time_head date_time_txt">+ End Date and Time</div>
+                <DateAndTime />
+                {
+                    !showEndInput ?
+                    <button onClick={()=> setShowEndInput(true)} className="px-0 mb-3 mt-1 bg-transparent">+ End Date and Time</button>
+                    :
+                    <>
+                        <EndDateAndTime end={true}/>
+                        <button onClick={()=> setShowEndInput(false)} className="px-0 mb-3 mt-1 bg-transparent">- End Date and Time</button>
+                    </>
+                }
                 <div className="end_date_time">
                     <div className="date_time">
-                        <div className="inside_label dropdown_label">
-                            <span className="date_info2">In-person or Virtual</span>
-                            <span className="date_button"><img src={down} className="down" alt="icon"/></span>
-                        </div>
+                        <select className="dropdown_label inside_label" name="type">
+                            <option value="in-person">in-person</option>
+                            <option value="virtual">virtual</option>
+                        </select>
                     </div>
+                 
                     <div className="date_time">
-                        <div className="inside_label dropdown_label">
-                            <span className="date_info2">Category</span>
-                            <span className="date_button"><img src={down} className="down" alt="icon"/></span>
-                        </div>
+                        <input name="category" placeholder='Category' className='h-full w-full p-2 rounded-md'/>
                     </div>
                 </div>
                 <label>
                     Location
                     <div className="inside_label">
-                        <input type="text" name="event-name" id="event-name"  className="event-name name_input" />
-                        <span className="date_button"><img src={locate} className="down" alt="icon"/></span>
+                        <Map />
                     </div>
                 </label>
                 <label>
                     Description
-                    <textarea type="text" name="event-description" id="event-description"  className="event-description"/>
+                    <textarea type="text" name="description" id="event-description"  className="event-description"/>
                 </label>
-                <div className="publish_event">Publish Event</div>
-            </div>
+                <button type="submit" className="publish_event">Publish Event</button>
+            </Form>
         </div>
     </div>
   )

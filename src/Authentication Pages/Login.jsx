@@ -1,7 +1,7 @@
 import Navbar from "./Navbar"
 import google from "../assets/google.svg"
 import "./Login.css"
-import { Link } from "react-router-dom";
+import { Link, Form } from "react-router-dom";
 
 
 const Login = () => {
@@ -10,16 +10,16 @@ const Login = () => {
         <Navbar/>
         <div className="signup_block">
             <h2 className="signup_header">Log in</h2>
-            <div className="signup_form">
+            <Form method="POST" className="signup_form">
                 <label>
                     Email Address
-                    <input type="email" name="email" id="email"  className="email"/>
+                    <input type="email" name="identifier" id="email"  className="email"/>
                 </label>
                 <label>
                     Password
                     <input type="password" name="password" id="password"  className="password"/>
                 </label>
-                <Link to='/dashboard' className="signup_btn">Log in</Link>
+                <button type="submit" className="signup_btn">Log in</button>
                 <div className="section">
                     <hr/><span className="or_div">Or</span><hr/>
                 </div>
@@ -30,7 +30,7 @@ const Login = () => {
                 <div className="login_option">
                     Not a member?{" "} <Link to='/signup' className="special_txt">Sign up</Link>
                 </div>
-            </div>
+            </Form>
         </div>
     </div>
   )
