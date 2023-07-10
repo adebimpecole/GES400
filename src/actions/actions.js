@@ -60,6 +60,7 @@ export async function logInAction({request}){
         const res = await axios.post('http://localhost:1337/api/auth/local', updates)
         const {jwt, user : {id , username}} = res.data
         setUserToSession({token: jwt, id, username})
+        return redirect('/dashboard')
     } catch (error) {
         console.log(error)
     }
