@@ -14,6 +14,13 @@ import Home from './Dashboard/Home.jsx'
 import Root from './Root.jsx';
 import CreateEvent from './Dashboard/CreateEvent'
 import Manage from './Dashboard/Manage'
+import Profile from './Dashboard/Profile'
+
+//actions
+import {createAction, logInAction, signUpAction} from './actions/actions'
+
+//loaders
+import { dashboardLoader } from './actions/loaders';
 
 
 const router = createBrowserRouter([
@@ -23,15 +30,18 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <Login/>
+    element: <Login/>,
+    action: logInAction
   },
   {
     path: '/signup',
-    element: <SignUp/>
+    element: <SignUp/>,
+    action: signUpAction
   },
   {
     path: '/dashboard',
     element: <Root/>,
+    loader: dashboardLoader,
     children: [
       {
         path : '/dashboard',
@@ -39,12 +49,17 @@ const router = createBrowserRouter([
       },
       {
         path : '/dashboard/create',
-        element : <CreateEvent />
+        element : <CreateEvent />,
+        action: createAction
       },
       {
         path : '/dashboard/manage',
         element : <Manage />
       },
+      {
+        path : '/dashboard/profile',
+        element : <Profile />
+      }
     ]
   },
 ]);

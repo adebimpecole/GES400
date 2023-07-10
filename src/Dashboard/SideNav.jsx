@@ -54,7 +54,7 @@ const SideNav = (props) => {
               </Link>
             </li>
             <li className='navigate our_profile' onClick={Active} >
-              <Link path="/cart" className='link'>
+              <Link to="./profile" className='link'>
                 <img src={prof} alt='icon' className='navigation_icon'/><span className='navigation_text'>Profile</span>
               </Link>
             </li>
