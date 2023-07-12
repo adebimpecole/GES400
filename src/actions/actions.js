@@ -22,9 +22,10 @@ export async function createAction({request}) {
 
     updates.createdby =  { "connect" : [getUserFromSession().id]} //attaching id of user who created event
     updates.start = startDate.toISOString() //setting start date to form acceptable by strapi server
+    updates.createdby.connect = [Number(getUserFromSession()?.id)]
 
     try {
-        const res = await axios.post('http://localhost:1337/api/events?populate=*', {data : updates}, {
+        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/events?populate=*', {data : updates}, {
             headers:{
                 'Authorization' : 'Bearer ' + getUserFromSession().token
             }
@@ -37,18 +38,17 @@ export async function createAction({request}) {
 
         // console.log(formData)
 
-        const img = await axios.post('http://localhost:1337/api/upload', formData, {
+        const img = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/upload', formData, {
             headers:{
                 'Authorization' : 'Bearer ' + getUserFromSession().token
             }
         })
 
-        console.log(img)
-        
+        return redirect('/dashboard/manage')
     } catch (error) {
         console.log(error)
     }
-    console.log(updates)
+
     return null
 }
 
@@ -57,7 +57,7 @@ export async function logInAction({request}){
     const updates = Object.fromEntries(formData);
 
     try {
-        const res = await axios.post('http://localhost:1337/api/auth/local', updates)
+        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/auth/local', updates)
         const {jwt, user : {id , username}} = res.data
         setUserToSession({token: jwt, id, username})
         return redirect('/dashboard')
@@ -73,7 +73,7 @@ export async function signUpAction({request}){
     const updates = Object.fromEntries(formData);
 
     try {
-        const res = await axios.post('http://localhost:1337/api/auth/local/register', updates)
+        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/auth/local/register', updates)
         const {jwt, user : {id , username}} = res.data
         setUserToSession({token: jwt, id, username})
         return redirect('/dashboard')

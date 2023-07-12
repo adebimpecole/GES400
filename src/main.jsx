@@ -20,7 +20,7 @@ import Profile from './Dashboard/Profile'
 import {createAction, logInAction, signUpAction} from './actions/actions'
 
 //loaders
-import { dashboardLoader } from './actions/loaders';
+import { dashboardLoader, manageLoader } from './actions/loaders';
 
 
 const router = createBrowserRouter([
@@ -54,7 +54,8 @@ const router = createBrowserRouter([
       },
       {
         path : '/dashboard/manage',
-        element : <Manage />
+        element : <Manage />,
+        loader : manageLoader
       },
       {
         path : '/dashboard/profile',

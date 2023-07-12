@@ -14,21 +14,8 @@ import {Form} from 'react-router-dom'
 
 const CreateEvent = (props) => {
     const [showEndInput, setShowEndInput] = useState(false)
+    const [imgUrl, setImgUrl] = useState('')
 
-    function DateAndTime(){
-        return(
-            <div className="start_date_time">
-                    <div className="date_time">
-                        <span className="date_time_head">Date</span>
-                        <input required name="start_date" className="block w-full date_detail" type="date"/>
-                    </div>
-                    <div className="date_time">
-                        <span className="date_time_head">Time</span>
-                        <input required name="start_time" className="block w-full date_detail" type="time"/>
-                    </div>
-                </div>
-        )
-    }
 
     function EndDateAndTime(){
         return(
@@ -45,6 +32,10 @@ const CreateEvent = (props) => {
         )
     }
 
+    function showNewImage(e){
+        setImgUrl(URL.createObjectURL(e.target.files[0]))
+    }
+
   return (
     <div style={props.style} className="create_event">
         <div className='home_section new_event_section'>
@@ -52,9 +43,9 @@ const CreateEvent = (props) => {
                 <h3 className='section_head'>Create Event</h3>
             </div>
             <Form method="POST" className="event_creation" encType="multipart/form-data">
-                <div className="upload_picture flex flex-col">
+                <div style={{backgroundImage : `url('${imgUrl}')`}} className="upload_picture bg-contain flex flex-col">
                     <img src={upload} className="upload " alt="icon"/>
-                    <input type="file" name="files"/>
+                    <input type="file" name="files" onChange={showNewImage}/>
                 </div>
                 <label>
                     Event Name
@@ -67,13 +58,22 @@ const CreateEvent = (props) => {
                     Organizer
                     <input type="text" name="organizer" id="event-organizer"  className="event-organizer" placeholder="Tell attendees who's organizing the event"/>
                 </label>
-                <DateAndTime />
+                <div className="start_date_time">
+                    <div className="date_time">
+                        <span className="date_time_head">Date</span>
+                        <input required name="start_date" className="block w-full date_detail" type="date"/>
+                    </div>
+                    <div className="date_time">
+                        <span className="date_time_head">Time</span>
+                        <input required name="start_time" className="block w-full date_detail" type="time"/>
+                    </div>
+                </div>
                 {
                     !showEndInput ?
-                    <button onClick={()=> setShowEndInput(true)} className="px-0 mb-3 mt-1 bg-transparent">+ End Date and Time</button>
+                    <button onClick={(e)=> setShowEndInput(true)} className="px-0 mb-3 mt-1 bg-transparent">+ End Date and Time</button>
                     :
                     <>
-                        <EndDateAndTime end={true}/>
+                        <EndDateAndTime/>
                         <button onClick={()=> setShowEndInput(false)} className="px-0 mb-3 mt-1 bg-transparent">- End Date and Time</button>
                     </>
                 }
