@@ -15,6 +15,7 @@ import Root from './Root.jsx';
 import CreateEvent from './Dashboard/CreateEvent'
 import Manage from './Dashboard/Manage'
 import Profile from './Dashboard/Profile'
+import "./App.css"
 
 //actions
 import {createAction, logInAction, signUpAction} from './actions/actions'
