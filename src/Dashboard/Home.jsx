@@ -3,11 +3,18 @@ import date from "../assets/date.svg"
 import location from "../assets/location.svg"
 import heart from "../assets/heart.svg"
 import bck from "../assets/bckgrnd.png"
+import {useState} from 'react'
+import { useLoaderData } from "react-router";
+import EventCard from "../components/EventCard"
 
 /* eslint-disable react/prop-types */
 
 
 const Home = (props) => {
+    const allData = useLoaderData()
+    console.log(allData)
+
+
   return (
     <div className='home' style={props.style}>
         <div className='home_section'>
@@ -22,87 +29,20 @@ const Home = (props) => {
                 </div>
             </div>
             <div className='home_section2'>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
-                <div className='event'>
-                    <img src={bck} className='event_img' alt='image'/>
-                    <div className='event_info'>
-                        <h5 className='event_name'>Cyprus Photo Exhibition New york 2023</h5>
-                        <span className='event_booking'>In-person</span>
-                        <span className='event_popularity'>3.5k Interested</span>
-                        <span className='each_filter interested_button'><img src={heart} className='heart' alt='icon'/><span className='interested_text'>Interested</span></span>
-                    </div>
-                </div>
+                {
+                    allData?.data?.map(data => 
+                        <EventCard 
+                         key={data.id} 
+                         title={data.attributes.name} 
+                         type={data.attributes.type} 
+                        //  url={import.meta.env.VITE_SERVER_URL + data.attributes.cover.data.attributes.url}
+                         url={data.attributes.cover.data.attributes.url}
+                        />
+                    )
+                }
+                {
+                    !allData && <p className="italic text-gray-300">No Events yet</p>
+                }
             </div>
         </div>
     </div>

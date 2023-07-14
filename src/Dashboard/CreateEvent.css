@@ -20,6 +20,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .event_creation label{
     padding-top: 2%;

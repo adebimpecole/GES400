@@ -33,7 +33,7 @@ const SignUp = () => {
                     <span className="google_txt">Sign up with Google</span>
                 </div>
                 <div className="login_option">
-                    Already a member?{" "}<Link to='/login' className="special_txt">Log in</Link>
+                  Already a member? <Link to='/login' className="special_txt">Log in</Link>
                 </div>
             </Form>
         </div>

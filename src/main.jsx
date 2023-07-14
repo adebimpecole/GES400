@@ -21,7 +21,7 @@ import "./App.css"
 import {createAction, logInAction, signUpAction} from './actions/actions'
 
 //loaders
-import { dashboardLoader } from './actions/loaders';
+import { dashboardLoader, manageLoader, homeLoader } from './actions/loaders';
 
 
 const router = createBrowserRouter([
@@ -46,7 +46,8 @@ const router = createBrowserRouter([
     children: [
       {
         path : '/dashboard',
-        element : <Home />
+        element : <Home />,
+        loader : homeLoader
       },
       {
         path : '/dashboard/create',
@@ -55,7 +56,8 @@ const router = createBrowserRouter([
       },
       {
         path : '/dashboard/manage',
-        element : <Manage />
+        element : <Manage />,
+        loader : manageLoader
       },
       {
         path : '/dashboard/profile',
