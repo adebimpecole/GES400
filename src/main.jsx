@@ -20,7 +20,7 @@ import Profile from './Dashboard/Profile'
 import {createAction, logInAction, signUpAction} from './actions/actions'
 
 //loaders
-import { dashboardLoader, manageLoader } from './actions/loaders';
+import { dashboardLoader, manageLoader, homeLoader } from './actions/loaders';
 
 
 const router = createBrowserRouter([
@@ -45,7 +45,8 @@ const router = createBrowserRouter([
     children: [
       {
         path : '/dashboard',
-        element : <Home />
+        element : <Home />,
+        loader : homeLoader
       },
       {
         path : '/dashboard/create',

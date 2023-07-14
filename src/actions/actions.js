@@ -23,7 +23,7 @@ export async function createAction({request}) {
     updates.createdby =  { "connect" : [getUserFromSession().id]} //attaching id of user who created event
     updates.start = startDate.toISOString() //setting start date to form acceptable by strapi server
     updates.createdby.connect = [Number(getUserFromSession()?.id)]
-
+    
     try {
         const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/events?populate=*', {data : updates}, {
             headers:{
