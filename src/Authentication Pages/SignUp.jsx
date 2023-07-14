@@ -6,22 +6,23 @@ import { Link, Form } from "react-router-dom";
 
 const SignUp = () => {
   return (
-    <div className="signup">
-        <Navbar/>
+    <div className="main">
+      <Navbar />
+      <div className="signup">
         <div className="signup_block">
             <h2 className="signup_header">Create an account</h2>
             <Form method="POST" className="signup_form">
                 <label>
                     Name
-                    <input type="text" name="username" id="name"  className="name"/>
+                    <input type="text" name="username" id="name"  className="name" required/>
                 </label>
                 <label>
                     Email
-                    <input type="email" name="email" id="email"  className="email"/>
+                    <input type="email" name="email" id="email"  className="email" required/>
                 </label>
                 <label>
                     Password
-                    <input type="password" name="password" id="password"  className="password"/>
+                    <input type="password" name="password" id="password"  className="password" required/>
                 </label>
                 <button to='/dashboard' className="signup_btn">Sign up</button>
                 <div className="section">
@@ -32,10 +33,11 @@ const SignUp = () => {
                     <span className="google_txt">Sign up with Google</span>
                 </div>
                 <div className="login_option">
-                    Already a member? <Link to='/login' className="special_txt">Log in</Link>
+                  Already a member? <Link to='/login' className="special_txt">Log in</Link>
                 </div>
             </Form>
         </div>
+      </div>
     </div>
   )
 }
