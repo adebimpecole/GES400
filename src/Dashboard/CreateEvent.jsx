@@ -1,19 +1,24 @@
 import "./CreateEvent.css"
 import upload from "../assets/upload.svg"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 /* eslint-disable react/prop-types */
 import Map from "../components/Map"
-import {Form} from 'react-router-dom'
+import {Form, useActionData, useNavigate} from 'react-router-dom'
+import CreateEventSuccess from "./CreateEventSuccess"
+import Loading from "./Loading"
 
 
 const CreateEvent = (props) => {
-    const LiveEvent = () => {
-        props.Live("live")
-    }
+    const [isloading, setIsLoading] = useState(false)
+    const isCreated  = useActionData()
+    const navigate = useNavigate();
+
     const [showEndInput, setShowEndInput] = useState(false)
     const [imgUrl, setImgUrl] = useState('')
 
+
+    
 
     function EndDateAndTime(){
         return(
@@ -34,8 +39,15 @@ const CreateEvent = (props) => {
         setImgUrl(URL.createObjectURL(e.target.files[0]))
     }
 
+    function afterClosePop(){
+        navigate('/dashboard/manage')
+        setIsLoading(true)
+    }
+
   return (
     <div style={props.style} className="create_event">
+        {isCreated && <CreateEventSuccess isopen afterClose={afterClosePop}/>}
+        {isloading && <Loading isopen/>}
         <div className='home_section new_event_section'>
             <div className='home_section1'>
                 <h3 className='section_head'>Create Event</h3>
@@ -93,8 +105,8 @@ const CreateEvent = (props) => {
                 <label>
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
-                </label>
-                <button type="submit" className="publish_event" onClick={LiveEvent}>Publish Event</button>
+                </label >
+                <button type="submit" className="publish_event" >Publish Event {isCreated && 'holla'}</button>
             </Form>
         </div>
     </div>

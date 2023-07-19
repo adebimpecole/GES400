@@ -44,7 +44,8 @@ export async function createAction({request}) {
             }
         })
 
-        return redirect('/dashboard/manage')
+        // return redirect('/dashboard/manage')
+        return true
     } catch (error) {
         console.log(error)
     }
@@ -82,4 +83,26 @@ export async function signUpAction({request}){
     }
 
     return null
+}
+
+export const fetcher = (url) =>
+    axios
+      .get(url, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
+      .then((res) => res.data);
+
+export async function handleHeartClick(isLiked, eventID){
+    isLiked = !isLiked //note to self: react value for this will be delayed b/c itll only be updated after setState
+    
+    try {
+        if(isLiked)
+            await axios.put(import.meta.env.VITE_SERVER_URL + `/api/events/${eventID}`, 
+            {data : {likedby : {connect : [getUserFromSession()?.id]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
+        else
+        await axios.put(import.meta.env.VITE_SERVER_URL + `/api/events/${eventID}`, 
+        {data : {likedby : {disconnect : [getUserFromSession()?.id]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
+
+        return true
+    } catch (error) {
+        return false
+    }
 }

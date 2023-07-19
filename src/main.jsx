@@ -15,6 +15,8 @@ import Root from './Root.jsx';
 import CreateEvent from './Dashboard/CreateEvent'
 import Manage from './Dashboard/Manage'
 import Profile from './Dashboard/Profile'
+import Tickets from './Dashboard/Tickets'
+import CreateEventSuccess from './Dashboard/CreateEventSuccess';
 import "./App.css"
 
 //actions
@@ -52,7 +54,7 @@ const router = createBrowserRouter([
       {
         path : '/dashboard/create',
         element : <CreateEvent />,
-        action: createAction
+        action: createAction,
       },
       {
         path : '/dashboard/manage',
@@ -62,6 +64,10 @@ const router = createBrowserRouter([
       {
         path : '/dashboard/profile',
         element : <Profile />
+      },
+      {
+        path : '/dashboard/tickets',
+        element: <Tickets />
       }
     ]
   },

@@ -1,19 +1,25 @@
 import "./CreateEventSuccess.css"
-import close from "../assets/icon-close.svg"
+import closeIcon from "../assets/icon-close.svg"
 import illustration from "../assets/illustration.svg"
+import { useState } from "react"
 
 /* eslint-disable react/prop-types */
 
-const CreateEventSuccess = (props) => {
-  const Live = () => {
-    props.Live("close")
+const CreateEventSuccess = ({isopen, afterClose}) => {
+  const [isOpen, setIsOpen] = useState(isopen)
+
+
+  function close(){
+    setIsOpen(false)
+    afterClose()
   }
+
   return (
-    <div className='event_success' style={props.style}>
+    <div className='event_success' style={{visibility: isOpen? 'visible' : 'hidden'}}>
         <div className="overlay">
           <div className="event_success_section">
             <div className="close_image_div">
-              <img src={close} className="close_icon" alt="icon" onClick={Live}/>
+              <img src={closeIcon} className="close_icon" alt="icon" onClick={close}/>
             </div>
             <h3 className="event_success_section_header">Events</h3>
             <img src={illustration} className="event_success_section_illustration" alt="illustration"/>

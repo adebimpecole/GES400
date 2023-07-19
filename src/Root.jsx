@@ -7,7 +7,7 @@ const Root = () => {
   console.log(num)
   return (
     <>
-        <SideNav/>
+        <SideNav item={num}/>
         <Outlet/>
     </>
   )

@@ -5,6 +5,7 @@
     overflow-y: visible;
     padding: 3% 5% 3% 5%;
     height: fit-content;
+    /* background-color: red; */
 }
 .new_event_section{
     padding: 4% 5%;
