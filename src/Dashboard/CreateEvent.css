@@ -1,14 +1,15 @@
 .create_event{
-    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     overflow-y: visible;
     padding: 3% 5% 3% 5%;
+    height: fit-content;
+    /* background-color: red; */
 }
 .new_event_section{
     padding: 4% 5%;
-    background: #CED4DA;
+    background: #035f9822;
 }
 .upload{
     width: 5%;
@@ -29,7 +30,7 @@
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    color: #495057;
+    color: #133c55;
 }
 .event_creation label input{
     margin: 0;
@@ -41,21 +42,17 @@
     background: #F8F9FA;
     border-bottom: 0;
 }
-.add_description{
-    border-radius: 0.25rem;
-    background: #495057;
-    color: #FFF;
-    font-size: .9rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: .5rem;
-    width: 23%;
-    height: 75%;
-    cursor: pointer;
-    padding: 0 .3rem;
-}
+::-webkit-input-placeholder { /* Edge */
+    color: red;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+  }
+  
+  ::placeholder {
+    color: red;
+  }
 .plus{
     width: 8%;
     height: auto;
@@ -72,13 +69,14 @@
     border-radius: 0.25rem;
     box-sizing: border-box;
 }
-.name_input{
-    width: 70%;
+.name_input, .event-organizer{
+    width: 100%;
     border: none;
     box-shadow: none;
     height: 100%!important;
     border-radius: 0;
     box-sizing: border-box;
+    padding: 2%;
 }
 .date_detail{
     padding: 2% 4%;
@@ -88,6 +86,7 @@
     justify-content: flex-start;
     gap: 1rem;
     margin: .3rem 0 0 0;
+    border: none;
 }
 .start_date_time{
     display: flex;
@@ -99,13 +98,19 @@
 .date_time{
     width: 49%;
 }
+.date_time select{
+    border: none;
+    color: #3d5a80;
+    font-size: .8rem;
+}
+
 .pick_date{
     width: 7%;
 }
 .date_info{
     display: flex;
     flex-direction: column;
-    color: #495057;
+    color: #133c55;
 
 }
 .date_info1{
@@ -113,7 +118,7 @@
 }
 .date_info2{
     font-size: .9rem;
-    color: #495057;
+    color: #133c55;
 }
 .date_button{
     border-radius: 0.25rem;
@@ -126,20 +131,26 @@
     box-sizing: border-box;
 }
 .dropdown_label{
-    padding: 2%;
+    padding: 2% 4%;
     box-sizing: border-box;
 }
 .date_time_text{
     margin: 2% 0 1% 0;
 }
-.date_time_head{
-    color: #495057;
+.date_time_head, option{
+    color: #133c55;
     font-size: .9rem;
     font-weight: 400;
     padding: 1rem 0;
 }
 .date_time_txt{
+    font-weight: 600;
+    color: #133c55;
+    border: none;
+}
+.date_time_txt:hover{
     font-weight: 700;
+    border: none;
 }
 .down{
     width: 80%;
@@ -166,9 +177,14 @@ textarea{
     font-size: .8rem;
     text-align: center;
     background: #F8F9FA;
-    color: #495057;
+    color: #133c55;
     font-weight: 700;
     cursor: pointer;
+}
+
+.category{
+    padding: 2% 4%;
+    border: none;
 }
 
 @media only screen and (max-width: 943px){

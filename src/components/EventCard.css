@@ -1,0 +1,26 @@
+.picture_div{
+    display: grid;
+    grid-template-columns: 80% 15%;
+    grid-template-rows: 1rem 10rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    position: relative;
+}
+.event_img{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    height: auto;
+    width: 100%;
+}
+.heart_icon{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: .8rem;
+    color: #f9f5f5;
+    cursor: pointer;
+}

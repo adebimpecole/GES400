@@ -4,102 +4,140 @@
     flex-direction: row;
     justify-content: flex-end;
     overflow-y: visible;
-}
-.home_section{
+  }
+  .home_section{
     width: 80%;
     padding: 3%;
     box-sizing: border-box;
-}
-.section_head{
-    color: #495057;
+  }
+  .section_head{
+    color: #133c55;
     font-size: 1.9rem;
     font-weight: 700;
     margin: 0;
     padding-bottom: .5rem;
-}
-.section_subhead{
-    color: #495057;
+  }
+  .section_subhead{
+    color: #133c55;
     font-size: 1.1rem;
     font-weight: 700;
     text-transform: capitalize;
     margin: 0;
-}
-.each_filter{
-    border-radius: 0.2rem;
-    background: #D9D9D9;
+  }
+  .each_filter{
+    border-radius: 0.3rem;
+    background: inherit;
     display: inline-flex;
     padding: .3rem .9rem;
     align-items: center;
     justify-content: center;
     gap: .7rem;
-    color: #495057;
+    color: #133c55;
+    cursor: pointer;
     font-size: .9rem;
     font-weight: 400;
-}
-.filter_icon{
+  }
+  .each_filter:hover{
+    background: #035f9822;
+  }
+  .filter_icon{
     width: 15%;
     height: auto;
-}
-.filters{
+  }
+  .filters{
     width: 100%;
     display: flex;
     flex-direction: row;
     gap: 1rem;
     padding-top: .4rem;
-}
-.event{
+  }
+  .event{
     width: 100%;
     display: flex;
     flex-direction: column;
-}
-.event_info{
+  }
+  .event_info{
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: .2rem;
     padding-top: .5rem;
-}
-.event_img{
+  }
+  .event_img{
     width: 100%;
-}
-.home_section2{
+  }
+  .home_section2{
     width: 100%;
     display: grid;
     grid-template-columns: 28% 28% 28%;
     justify-content: space-between;
     padding: 1.5% 0;
     gap: 2rem;
-}
-.event_name{
-    color: #495057;
+  }
+  .event_name{
+    color: #133c55;
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0;
     letter-spacing: .04rem;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.event_name:hover{
+    text-decoration: underline;
 }
 .event_booking{
     font-size: 1rem;
     font-weight: 500;
-    color: #495057;
-
-}
-.event_popularity{
+    color: #133c55;
+  
+  }
+  .event_popularity{
     font-size: .9rem;
-    color: #495057;
-
-}
-.interested_button{
+    color: #133c55;
+  
+  }
+  .interested_button{
     font-size: 1.1rem;
     width: 50%;
     font-weight: 500;
     margin-top: .5rem;
-}
-.heart{
+  }
+  .heart{
     width: 10%;
     height: auto;
-}
-
-@media only screen and (max-width: 943px){
+  }
+  .search{
+    background: #F3F2F2;
+    float: right;
+    align-items: flex-end;
+    border: none;
+    margin: 0;
+    height: 100%;
+    width: 80%;
+  }
+  .search::placeholder{
+    font-size: .9rem;
+    color: var(--inside-text, #81868A);
+  }
+  .search_box{
+    padding: .3rem .7rem;
+    width: 30%;
+    background: #F3F2F2;
+    border-radius: .3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 23%;
+  }
+  .search_icon{
+    width: 7%;
+  }
+  .search:focus .search:active{
+    border: none;
+    outline: none;
+  }
+  @media only screen and (max-width: 943px){
     .section_head{
         font-size: 1.6rem;
         font-weight: 700;
@@ -117,8 +155,8 @@
     .interested_button{
         font-size: 1rem;
     }
-}
-@media only screen and (max-width: 768px){
+  }
+  @media only screen and (max-width: 768px){
     .home_section2{
         grid-template-columns: 45% 45%;
         padding:3% 0;
@@ -127,14 +165,14 @@
         width: 80%;
         padding: 3% 5%;
     }
-}
-@media only screen and (max-width: 768px){
+  }
+  @media only screen and (max-width: 768px){
     .home_section{
         width: 90%;
         padding: 3% 5%;
     }
-}
-@media only screen and (max-width: 568px){
+  }
+  @media only screen and (max-width: 568px){
     .section_head{
         font-size: 1.4rem;
     }
@@ -164,8 +202,8 @@
     .interested_button{
         width: 60%;
     }
-}
-@media only screen and (max-width: 376px){
+  }
+  @media only screen and (max-width: 376px){
     .section_head{
         font-size: 1.2rem;
         padding-bottom: .2rem;
@@ -193,4 +231,4 @@
     .home_section{
         width: 88%;
     }
-}
+  }

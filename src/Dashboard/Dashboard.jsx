@@ -6,6 +6,7 @@ import Manage from './Manage'
 import Profile from './Profile'
 import Tickets from './Tickets'
 import CreateEvent from './CreateEvent'
+import CreateEventSuccess from './CreateEventSuccess'
 
 const Dashboard = () => {
 
@@ -15,6 +16,7 @@ const Dashboard = () => {
     const [setDisplayProfile, getDisplayProfile] = useState({display: "none"})
     const [setDisplayTicket, getDisplayTicket] = useState({display: "none"})
     const [setDisplayEvent, getDisplayEvent] = useState({display: "none"})
+    const [setDisplayEventSuccess, getDisplayEventSuccess] = useState({display: "none"})
 
     // Displays the page when its respective button is clicked and closes the other pages
     const Toggle = (event) => {
@@ -53,7 +55,16 @@ const Dashboard = () => {
             getDisplayTicket({...setDisplayTicket, display: "none"})
             getDisplayEvent({...setDisplayEvent, display: "flex"})
         }
-        
+    }
+
+    // closes or opens the event success overlay
+    const LiveEvent = (event) => {
+        if(event=="close"){
+            getDisplayEventSuccess({...setDisplayEventSuccess, display: "none"})
+        }
+        else{
+            getDisplayEventSuccess({...setDisplayEventSuccess, display: "flex"})
+        }
     }
 
   return (
@@ -63,7 +74,8 @@ const Dashboard = () => {
         <Manage style={setDisplayManage}/>
         <Profile style={setDisplayProfile}/>
         <Tickets style={setDisplayTicket}/>
-        <CreateEvent style={setDisplayEvent}/>
+        <CreateEvent style={setDisplayEvent} Live={LiveEvent}/>
+        <CreateEventSuccess style={setDisplayEventSuccess} Live={LiveEvent}/>
     </div>
   )
 }

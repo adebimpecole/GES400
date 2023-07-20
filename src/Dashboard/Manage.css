@@ -10,7 +10,31 @@
     font-size: .95rem;
 }
 .manage_section2{
-    padding-bottom: 3%;
+    padding: 1.5% 0 2% 0;
+    margin-bottom: 3rem;
+    width: 100%;
+    overflow-x: scroll;
+}
+.manage_section2::-webkit-scrollbar {
+    height: .5rem;               /* width of the entire scrollbar */
+}
+  
+.manage_section2::-webkit-scrollbar-thumb {
+    background-color: #084e7a7a;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: none;
+}
+.scroll_div{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.manage_event{
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
 }
 @media only screen and (max-width: 568px){
     .manage_subhead{

@@ -1,6 +1,6 @@
 .sidenav{
     border-radius: 0rem .5rem .5rem 0rem;
-    background: #495057;
+    background: #133c55;
     height: 100%;
     width: 18%;
     padding: 3% 0;
@@ -10,7 +10,7 @@
 .side_navigation{
     padding-top: 20%;
     list-style-type: none;
-    height: 50%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     gap: 5%;
@@ -37,6 +37,10 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    transition: all;
+}
+.navigate:hover{
+    transform: scale(1.02);
 }
 .link{
     width: 100%;
@@ -47,8 +51,11 @@
     align-items: center;
     text-decoration: none;
 }
+.link:hover{
+    text-decoration: none;
+}
 .active{
-    border-left: 8px solid #343A40;
+    border-left: 8px solid #0f2f42;
     border-radius: 0rem 0.625rem 0.625rem 0rem;
 }
 
