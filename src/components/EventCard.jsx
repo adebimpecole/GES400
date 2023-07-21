@@ -1,4 +1,3 @@
-import React from 'react'
 import heart from "../assets/heart.svg"
 import "./EventCard.css"
 import { useState } from 'react'
