@@ -1,23 +1,104 @@
 import "./Home.css"
-import date from "../assets/date.svg"
-import search from "../assets/search.svg"
-import location from "../assets/location.svg"
+
 import EventCard from "../components/EventCard"
 import useSWR from "swr";
+import useSWRInfinite from 'swr/infinite'
 import { fetcher, handleHeartClick } from "../actions/actions"
 import Loading from "./Loading"
 import { getUserFromSession } from "../hooks/hooks"
-import axios from "axios"
+// import axios from "axios"
+import Search from "../components/Search";
+import FilterBox from "../components/FilterBox";
+import { useEffect, useState } from "react";
+
+import Fuse from 'fuse.js'
+import { Spinner } from "flowbite-react";
+
 
 /* eslint-disable react/prop-types */
 
 
+const HomeComponent = ({pageNumber, text}) => {
+    const { data : allEvents, error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events?sort=createdAt:desc&populate=*&pagination[pageSize]=2&pagination[page]=${pageNumber}`, fetcher, {revalidateOnMount : true, refreshWhenHidden : true, refreshInterval : 200});
+    const [filteredEvents, setFilteredEvents] = useState([])
+    useEffect(()=> {
+        if(text){
+            filter(text)
+        }
+    }, [text])
+
+    function filter(text){
+        const options = {includeScore: true, keys: ['attributes.name']}
+
+        const fuse = new Fuse(allEvents?.data, options)
+        if(text){
+            let result = fuse.search(text)
+            result = result.map(data => data?.item)
+            setFilteredEvents(result)
+        }
+        else setFilteredEvents([])
+    }
+
+    return(
+        <>
+            {
+                text ?
+                filteredEvents?.map(data => 
+                    data && <EventCard 
+                        key={data?.id} 
+                        title={data?.attributes?.name} 
+                        type={data?.attributes?.type} 
+                    //  url={import.meta.env.VITE_SERVER_URL + data.attributes.cover.data.attributes.url}
+                        url={data?.attributes?.cover?.data?.attributes?.url}
+                        style={"event"}
+                        like={Boolean(data?.attributes?.likedby?.data?.find(x => x.id == getUserFromSession()?.id))}
+                        afterClick={handleHeartClick}
+                        eventId={data?.id}
+                    />
+                )
+                :
+                allEvents?.data?.map(data => 
+                    data && <EventCard 
+                        key={data?.id} 
+                        title={data?.attributes?.name} 
+                        type={data?.attributes?.type} 
+                    //  url={import.meta.env.VITE_SERVER_URL + data.attributes.cover.data.attributes.url}
+                        url={data?.attributes?.cover?.data?.attributes?.url}
+                        style={"event"}
+                        like={Boolean(data?.attributes?.likedby?.data?.find(x => x.id == getUserFromSession()?.id))}
+                        afterClick={handleHeartClick}
+                        eventId={data?.id}
+                    />
+                )
+            }
+        </>
+    )
+}
+
+
+
 const Home = (props) => {
-    const { data : allData, error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + '/api/events?populate=*', fetcher);
+    const { data : allEvents, error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events?sort=createdAt:desc&populate=*&pagination[pageSize]=2`, fetcher, {revalidateOnMount : true});
+    const [total, setTotal] = useState([])
+    const [searchVal, setSearchVal] = useState('')
 
-  
+    useEffect(()=>{
+        if(allEvents?.meta){
+            let arr = []
+            
+            for(let i = 1; i <= allEvents.meta.pagination.pageCount; i++){
+                arr.push(i)
+            }
 
-    console.log(allData)
+            setTotal(arr)
+        } 
+    }, [allEvents])
+
+
+    function onSearchChange(e){
+        setSearchVal(e.target.value)
+    }
+    // console.log(allEvents)
   return (
     <div className='home' style={props.style}>
         <div className='home_section'>
@@ -25,36 +106,16 @@ const Home = (props) => {
                 <h3 className='section_head'>Home</h3>
                 <h4 className='section_subhead'>Discover Events</h4>
                 <div className='filters'>
-                    <span className='each_filter'><img src={location} className='filter_icon' alt='icon'/><span className='filter_text'>Location</span></span>
-                    <span className='each_filter'><img src={date} className='filter_icon' alt='icon'/><span className='filter_text'>Any date</span></span>
-                    <span className='each_filter'><span className='filter_text'>Top</span></span>
-                    <span className='each_filter'><span className='filter_text'>Following</span></span>
-                    <span className="search_box"><img src={search} className="search_icon" alt="icon"/><input type="text" className="search" placeholder="Search events"/></span>
+                    <FilterBox />
+                    <Search onChange={onSearchChange} value={searchVal}/>
                 </div>
             </div>
             <div className='home_section2'>
-                {
-                    allData?.data?.map(data => 
-                        <EventCard 
-                         key={data.id} 
-                         title={data.attributes.name} 
-                         type={data.attributes.type} 
-                        //  url={import.meta.env.VITE_SERVER_URL + data.attributes.cover.data.attributes.url}
-                         url={data.attributes.cover.data.attributes.url}
-                         style={"event"}
-                         like={Boolean(data.attributes.likedby.data.find(x => x.id == getUserFromSession()?.id))}
-                         afterClick={handleHeartClick}
-                         eventId={data.id}
-                        />
-                    )
-                }
-                {
-                   !isLoading && !allData && <p className="italic text-gray-300">No Events yet</p>
-                }
+               {
+                    total?.map(pageNum => <HomeComponent key={pageNum} text={searchVal} pageNumber={pageNum}/>)
+               }
             </div>
         </div>
-
-        {isLoading && <Loading isopen={true}/>}
     </div>
   )
 }

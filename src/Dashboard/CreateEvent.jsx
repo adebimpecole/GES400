@@ -1,12 +1,13 @@
 import "./CreateEvent.css"
 import upload from "../assets/upload.svg"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 /* eslint-disable react/prop-types */
 import Map from "../components/Map"
 import {Form, useActionData, useNavigate} from 'react-router-dom'
 import CreateEventSuccess from "./CreateEventSuccess"
 import Loading from "./Loading"
+import { Spinner } from "flowbite-react"
 
 
 const CreateEvent = (props) => {
@@ -77,7 +78,7 @@ const CreateEvent = (props) => {
                 </div>
                 {
                     !showEndInput ?
-                    <button onClick={(e)=> setShowEndInput(true)} className="px-0 mb-3 mt-1 bg-transparent date_time_txt">+ End Date and Time</button>
+                    <button onClick={()=> setShowEndInput(true)} className="px-0 mb-3 mt-1 bg-transparent date_time_txt">+ End Date and Time</button>
                     :
                     <>
                         <EndDateAndTime/>
@@ -106,7 +107,7 @@ const CreateEvent = (props) => {
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
                 </label >
-                <button type="submit" className="publish_event" >Publish Event {isCreated && 'holla'}</button>
+                <button type="submit" className="publish_event" onSubmit={() => console.log('yeah')}>Publish Event <Spinner /></button>
             </Form>
         </div>
     </div>

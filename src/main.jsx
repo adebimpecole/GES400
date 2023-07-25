@@ -16,7 +16,7 @@ import CreateEvent from './Dashboard/CreateEvent'
 import Manage from './Dashboard/Manage'
 import Profile from './Dashboard/Profile'
 import Tickets from './Dashboard/Tickets'
-import CreateEventSuccess from './Dashboard/CreateEventSuccess';
+import EventPage from './Dashboard/EventPage';
 import "./App.css"
 
 //actions
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       {
         path : '/dashboard',
         element : <Home />,
-        loader : homeLoader
+        // loader : homeLoader
       },
       {
         path : '/dashboard/create',
@@ -68,6 +68,10 @@ const router = createBrowserRouter([
       {
         path : '/dashboard/tickets',
         element: <Tickets />
+      },
+      {
+        path : '/dashboard/event/:eventId',
+        element: <EventPage />
       }
     ]
   },

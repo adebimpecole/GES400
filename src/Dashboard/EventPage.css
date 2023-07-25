@@ -1,0 +1,115 @@
+.EventPage h2 {
+  font-size: 35px;
+}
+.EventPage h4 {
+  font-family: Gilroy;
+  font-size: 20px;
+}
+.fleidImg {
+  min-width: 1201px;
+}
+.In-person_event {
+  min-width: 967px;
+}
+.Details {
+  color: var(--new-text-color, #133c55);
+  font-family: Gilroy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 10px;
+  background: #eef6fb;
+  min-width: 679px;
+  height: 575px;
+  padding: 20px;
+}
+.Details span {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+.Tags p {
+  display: inline-flex;
+  padding: 8px 20px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 10px;
+  background: #fff;
+}
+.About {
+  border-radius: 10px;
+  background: #eef6fb;
+  min-width: 679px;
+  height: 363px;
+  padding: 20px;
+  margin-top: 30px;
+}
+.About p {
+  min-width: 632px;
+  height: 111px;
+  color: var(--new-text-color, #133c55);
+  font-family: Gilroy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.About span {
+  display: inline-flex;
+  padding: 8px 20px 8px 10px;
+  align-items: flex-start;
+  gap: 10px;
+  align-items: center;
+}
+.Tickets {
+  border-radius: 10px;
+  background: #eef6fb;
+  min-width: 328px;
+  height: 610px;
+  padding: 20px;
+}
+.Tickets h5 {
+  color: var(--new-text-color, #133c55);
+  font-family: Gilroy;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  border-radius: 10px;
+  background: #deeef7;
+  padding: 8px 20px;
+}
+.Tickets button {
+  display: flex;
+  min-width: 287px;
+  padding: 8px 20px 8px 89px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 10px;
+  border-style: none;
+  background: #deeef7;
+  margin-top: 5px;
+}
+.Quantities {
+  min-width: 164px;
+  height: 188px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #deeef7;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.Quantities p {
+  font-family: Gilroy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+}
+.Quantities input {
+  border-style: none;
+  border-radius: 10px;
+}
+.In-person_event {
+  display: flex;
+  gap: 20px;
+}

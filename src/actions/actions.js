@@ -36,7 +36,7 @@ export async function createAction({request}) {
         formData.append("refId", res.data.data.id)
         formData.append("field", "cover")
 
-        // console.log(formData)
+        console.log(formData)
 
         const img = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/upload', formData, {
             headers:{
