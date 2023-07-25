@@ -2,9 +2,9 @@ import "./Home.css"
 
 import EventCard from "../components/EventCard"
 import useSWR from "swr";
-import useSWRInfinite from 'swr/infinite'
+// import useSWRInfinite from 'swr/infinite'
 import { fetcher, handleHeartClick } from "../actions/actions"
-import Loading from "./Loading"
+// import Loading from "./Loading"
 import { getUserFromSession } from "../hooks/hooks"
 // import axios from "axios"
 import Search from "../components/Search";
@@ -12,14 +12,14 @@ import FilterBox from "../components/FilterBox";
 import { useEffect, useState } from "react";
 
 import Fuse from 'fuse.js'
-import { Spinner } from "flowbite-react";
+// import { Spinner } from "flowbite-react";
 
 
 /* eslint-disable react/prop-types */
 
 
 const HomeComponent = ({pageNumber, text}) => {
-    const { data : allEvents, error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events?sort=createdAt:desc&populate=*&pagination[pageSize]=2&pagination[page]=${pageNumber}`, fetcher, {revalidateOnMount : true, refreshWhenHidden : true, refreshInterval : 200});
+    const { data : allEvents } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events?sort=createdAt:desc&populate=*&pagination[pageSize]=2&pagination[page]=${pageNumber}`, fetcher, {revalidateOnMount : true, refreshWhenHidden : true, refreshInterval : 200});
     const [filteredEvents, setFilteredEvents] = useState([])
     useEffect(()=> {
         if(text){
@@ -49,6 +49,7 @@ const HomeComponent = ({pageNumber, text}) => {
                         title={data?.attributes?.name} 
                         type={data?.attributes?.type} 
                     //  url={import.meta.env.VITE_SERVER_URL + data.attributes.cover.data.attributes.url}
+                        interested={data?.attributes?.likedby?.data?.length}
                         url={data?.attributes?.cover?.data?.attributes?.url}
                         style={"event"}
                         like={Boolean(data?.attributes?.likedby?.data?.find(x => x.id == getUserFromSession()?.id))}
@@ -63,6 +64,7 @@ const HomeComponent = ({pageNumber, text}) => {
                         title={data?.attributes?.name} 
                         type={data?.attributes?.type} 
                     //  url={import.meta.env.VITE_SERVER_URL + data.attributes.cover.data.attributes.url}
+                        interested={data?.attributes?.likedby?.data?.length}
                         url={data?.attributes?.cover?.data?.attributes?.url}
                         style={"event"}
                         like={Boolean(data?.attributes?.likedby?.data?.find(x => x.id == getUserFromSession()?.id))}
@@ -78,7 +80,7 @@ const HomeComponent = ({pageNumber, text}) => {
 
 
 const Home = (props) => {
-    const { data : allEvents, error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events?sort=createdAt:desc&populate=*&pagination[pageSize]=2`, fetcher, {revalidateOnMount : true});
+    const { data : allEvents } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events?sort=createdAt:desc&populate=*&pagination[pageSize]=2`, fetcher, {revalidateOnMount : true});
     const [total, setTotal] = useState([])
     const [searchVal, setSearchVal] = useState('')
 

@@ -17,9 +17,7 @@ const CreateEvent = (props) => {
 
     const [showEndInput, setShowEndInput] = useState(false)
     const [imgUrl, setImgUrl] = useState('')
-
-
-    
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     function EndDateAndTime(){
         return(
@@ -53,14 +51,14 @@ const CreateEvent = (props) => {
             <div className='home_section1'>
                 <h3 className='section_head'>Create Event</h3>
             </div>
-            <Form method="POST" className="event_creation" encType="multipart/form-data">
+            <Form method="POST" className="event_creation" encType="multipart/form-data" onSubmit={() => setIsSubmitting(true)}>
                 <div style={{backgroundImage : `url('${imgUrl}')`}} className="upload_picture bg-contain flex flex-col">
                     <img src={upload} className="upload " alt="icon"/>
                     <input type="file" name="files" onChange={showNewImage}/>
                 </div>
                 <label>
                     Event Name
-                    <input type="text" name="name" id="event-name"  className=" event-name name_input" placeholder="Enter event name" required/>
+                    <input type="text" name="name" id="event-name"  className="event-organizer name_input" placeholder="Enter event name" required/>
                 </label>
                 <label>
                     Organizer
@@ -107,7 +105,7 @@ const CreateEvent = (props) => {
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
                 </label >
-                <button type="submit" className="publish_event" onSubmit={() => console.log('yeah')}>Publish Event <Spinner /></button>
+                <button type="submit" className="publish_event">Publish Event {isSubmitting && <Spinner />}</button>
             </Form>
         </div>
     </div>

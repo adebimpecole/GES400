@@ -20,8 +20,9 @@ import EventPage from './Dashboard/EventPage';
 import "./App.css"
 
 //actions
-import {createAction, logInAction, signUpAction} from './actions/actions'
+import {createAction} from './actions/actions'
 
+import { logInAction, signUpAction } from './actions/authenticationActions'
 //loaders
 import { dashboardLoader, manageLoader, homeLoader } from './actions/loaders';
 
