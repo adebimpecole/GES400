@@ -24,7 +24,7 @@ import {createAction} from './actions/actions'
 
 import { logInAction, signUpAction } from './actions/authenticationActions'
 //loaders
-import { dashboardLoader, manageLoader, homeLoader } from './actions/loaders';
+import { dashboardLoader, manageLoader, eventLoader } from './actions/loaders';
 
 
 const router = createBrowserRouter([
@@ -72,7 +72,8 @@ const router = createBrowserRouter([
       },
       {
         path : '/dashboard/event/:eventId',
-        element: <EventPage />
+        element: <EventPage />,
+        loader: eventLoader
       }
     ]
   },

@@ -36,7 +36,8 @@ const FilterBox = ({array}) => {
             </datalist>
         </Dropdown>
     
-        <button className='each_filter'><img src={date} className='filter_icon' alt='icon'/><span className='filter_text'>Any date</span></button>
+        <input type="date"/>
+        {/* <button className='each_filter'><img src={date} className='filter_icon' alt='icon'/><span className='filter_text'>Any date</span></button> */}
         <span className='each_filter'><span className='filter_text'>Top</span></span>
         <span className='each_filter'><span className='filter_text'>Following</span></span>
     </>

@@ -86,8 +86,8 @@ const CreateEvent = (props) => {
                 <div className="end_date_time">
                     <div className="date_time">
                         <select className="dropdown_label inside_label" name="type" required>
-                            <option value="in-person">In-person</option>
-                            <option value="virtual">Virtual</option>
+                            <option value="In-person">In-person</option>
+                            <option value="Virtual">Virtual</option>
                         </select>
                     </div>
                  
