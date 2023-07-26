@@ -7,6 +7,12 @@ import useSWR from "swr";
 import { fetcher } from "../actions/actions";
 import { formatAMPM } from "../Utilities/utilis";
 // import { Spinner } from "flowbite-react";
+import clock from '../../public/Clock.png'
+import calender from '../../public/Calender.png'
+import union from '../../public/union.png'
+import location from '../../public/mapLocation.png'
+import tag from '../../public/Tag.png'
+
 
 function EventPage() {
   const eventId = useLoaderData()
@@ -41,26 +47,26 @@ function EventPage() {
             <div className="Details">
               <h3>Details</h3>
               <span>
-                <img src="/Public/Clock.png" alt="" />5 Hrs
+                <img src={clock} alt="clock  icon"/>5 Hrs
               </span>
               <br />
               <span>
-                <img src="/Public/Calender.png" alt="" />
+                <img src={calender} alt="calender icon"/>
                 {formatAMPM(new Date(event.start))} {event.end && ` - ${formatAMPM(new Date(event.end))}`}
               </span>
               <br />
               <span>
-                <img src="/Public/union.png" alt="" />
+                <img src={union} alt="users icon"/>
                 Event by {event.organizer}
               </span>
               <br />
               <span>
-                <img src="/Public/mapLocation.png" alt="" />
+                <img src={location} alt="location icon"/>
                 {event.location}
               </span>
               <br />
               <span>
-                <img src="/Public/Tag.png" alt="" />
+                <img src={tag} alt="tags icon"/>
                 Art & Photography
               </span>
               <h3>Description</h3>
