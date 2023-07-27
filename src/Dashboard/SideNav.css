@@ -6,6 +6,7 @@
     padding: 3% 0;
     box-sizing: border-box;
     position: fixed;
+    z-index: 100;
 }
 .side_navigation{
     padding-top: 20%;

@@ -1,9 +1,9 @@
-import {useState, useEffect, useRef, Suspense} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types';
 import { Spinner } from 'flowbite-react';
 import axios from 'axios'
-import locate from "../assets/location.svg"
-import { Tooltip } from 'flowbite-react';
+// import locate from "../assets/location.svg"
+// import { Tooltip } from 'flowbite-react';
 
 const Map = () => {
     const [searchTxt, setSearchTxt] = useState('')
@@ -11,7 +11,7 @@ const Map = () => {
     const [searching, setSearching] = useState(false)
     const [currentLocationChoosen, setCurrentLocationChoosen] = useState(false)
     const userPos = useRef({lat: '4.8472', lon: '6.9746'})
-    const [eventPos, setEventPos] = useState({lat: '', lng: ''})
+    const [eventPos, setEventPos] = useState({lat: '4.8472', lng: '6.9746'})
     const timeoutID = useRef('')
     const closeSuggestionBox = useRef(false)
     

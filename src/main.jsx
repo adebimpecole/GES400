@@ -16,14 +16,15 @@ import CreateEvent from './Dashboard/CreateEvent'
 import Manage from './Dashboard/Manage'
 import Profile from './Dashboard/Profile'
 import Tickets from './Dashboard/Tickets'
-import CreateEventSuccess from './Dashboard/CreateEventSuccess';
+import EventPage from './Dashboard/EventPage';
 import "./App.css"
 
 //actions
-import {createAction, logInAction, signUpAction} from './actions/actions'
+import {createAction} from './actions/actions'
 
+import { logInAction, signUpAction } from './actions/authenticationActions'
 //loaders
-import { dashboardLoader, manageLoader, homeLoader } from './actions/loaders';
+import { dashboardLoader, manageLoader, eventLoader } from './actions/loaders';
 
 
 const router = createBrowserRouter([
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
       {
         path : '/dashboard',
         element : <Home />,
-        loader : homeLoader
+        // loader : homeLoader
       },
       {
         path : '/dashboard/create',
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
       {
         path : '/dashboard/tickets',
         element: <Tickets />
+      },
+      {
+        path : '/dashboard/event/:eventId',
+        element: <EventPage />,
+        loader: eventLoader
       }
     ]
   },

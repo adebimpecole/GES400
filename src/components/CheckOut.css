@@ -1,0 +1,102 @@
+.container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 1031px;
+  height: 888px;
+  flex-shrink: 0;
+}
+.CheckOut {
+  filter: none !important;
+  background: #eef6fb;
+  width: 653px;
+  height: 888px;
+  flex-shrink: 0;
+  padding-left: 50px;
+}
+.CheckOut h3 {
+  padding-top: 27px;
+  text-align: center;
+}
+.CheckOut p,
+span {
+  padding-left: 15px;
+}
+.CheckOut button {
+  cursor: pointer;
+  border-radius: 4px;
+  background: #fff;
+  padding-left: 15px;
+  display: inline-flex;
+  padding: 22px 94px;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-style: none;
+}
+.Checkbox {
+  align-items: center;
+  display: flex;
+  border-radius: 50px;
+}
+.Form {
+  margin-top: 33px;
+  position: relative;
+}
+.Form input {
+  width: 278px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #fff;
+  padding-top: 5px;
+  padding-left: 5px;
+  margin: 20px;
+  border-style: none;
+  color: var(--inside-text, #81868a);
+  font-family: Gilroy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.CheckOut label {
+  color: #133c55;
+  font-family: Gilroy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: absolute;
+  transform: translateY(-100%);
+  margin-top: 20px;
+  margin-left: 20px;
+  transition: all 0.2s;
+  pointer-events: none;
+}
+.OrderSummary {
+  background-color: #fff;
+  width: 378px;
+  height: 888px;
+  flex-shrink: 0;
+}
+.OrderSummary p {
+  color: var(--new-text-color, #133c55);
+  font-family: Gilroy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  justify-content: space-between;
+}
+.OrderSummary span {
+  padding-right: 18px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 24px;
+}
+.OrderSummary h3 {
+  padding-left: 24px;
+}

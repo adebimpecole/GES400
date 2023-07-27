@@ -1,12 +1,13 @@
 import "./CreateEvent.css"
 import upload from "../assets/upload.svg"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 /* eslint-disable react/prop-types */
 import Map from "../components/Map"
 import {Form, useActionData, useNavigate} from 'react-router-dom'
 import CreateEventSuccess from "./CreateEventSuccess"
 import Loading from "./Loading"
+import { Spinner } from "flowbite-react"
 
 
 const CreateEvent = (props) => {
@@ -16,9 +17,7 @@ const CreateEvent = (props) => {
 
     const [showEndInput, setShowEndInput] = useState(false)
     const [imgUrl, setImgUrl] = useState('')
-
-
-    
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     function EndDateAndTime(){
         return(
@@ -52,14 +51,14 @@ const CreateEvent = (props) => {
             <div className='home_section1'>
                 <h3 className='section_head'>Create Event</h3>
             </div>
-            <Form method="POST" className="event_creation" encType="multipart/form-data">
+            <Form method="POST" className="event_creation" encType="multipart/form-data" onSubmit={() => setIsSubmitting(true)}>
                 <div style={{backgroundImage : `url('${imgUrl}')`}} className="upload_picture bg-contain flex flex-col">
                     <img src={upload} className="upload " alt="icon"/>
                     <input type="file" name="files" onChange={showNewImage}/>
                 </div>
                 <label>
                     Event Name
-                    <input type="text" name="name" id="event-name"  className=" event-name name_input" placeholder="Enter event name" required/>
+                    <input type="text" name="name" id="event-name"  className="event-organizer name_input" placeholder="Enter event name" required/>
                 </label>
                 <label>
                     Organizer
@@ -77,7 +76,7 @@ const CreateEvent = (props) => {
                 </div>
                 {
                     !showEndInput ?
-                    <button onClick={(e)=> setShowEndInput(true)} className="px-0 mb-3 mt-1 bg-transparent date_time_txt">+ End Date and Time</button>
+                    <button onClick={()=> setShowEndInput(true)} className="px-0 mb-3 mt-1 bg-transparent date_time_txt">+ End Date and Time</button>
                     :
                     <>
                         <EndDateAndTime/>
@@ -87,8 +86,8 @@ const CreateEvent = (props) => {
                 <div className="end_date_time">
                     <div className="date_time">
                         <select className="dropdown_label inside_label" name="type" required>
-                            <option value="in-person">In-person</option>
-                            <option value="virtual">Virtual</option>
+                            <option value="In-person">In-person</option>
+                            <option value="Virtual">Virtual</option>
                         </select>
                     </div>
                  
@@ -106,7 +105,7 @@ const CreateEvent = (props) => {
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
                 </label >
-                <button type="submit" className="publish_event" >Publish Event {isCreated && 'holla'}</button>
+                <button type="submit" className="publish_event">Publish Event {isSubmitting && <Spinner />}</button>
             </Form>
         </div>
     </div>

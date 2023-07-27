@@ -14,17 +14,18 @@ import Loading from "./Loading"
 const Manage = (props) => {
     const [createdEvents, setCreatedEvents] = useState([])
     const [InterestedEvents, setInterestedEvents] = useState([])
-    const { data, error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + '/api/events?populate=*', fetcher, { refreshInterval : 100 });
+    const { data, error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${getUserFromSession()?.id}?populate[createdevents][populate][0]=cover&populate[likes][populate][0]=cover&populate[createdevents][populate][1]=likedby&populate[likes][populate][1]=likedby`, fetcher, { refreshInterval : 100 });
 
     if(error) console.log(error)
-    if(data) console.log(data)
+    if(data) console.log(data?.likes)
     // const navigate = useNavigate();
 
     useEffect(()=> {
-        setCreatedEvents(data?.data?.filter(data => data?.attributes?.createdby?.data?.id == Number(getUserFromSession()?.id)))
-        setInterestedEvents(data?.data?.filter(data => data?.attributes?.likedby?.data?.find(data => data.id == Number(getUserFromSession()?.id))))
-
-    }, [data])
+        // setCreatedEvents(data?.data?.filter(data => data?.attributes?.createdby?.data?.id == Number(getUserFromSession()?.id)))
+        // setInterestedEvents(data?.data?.filter(data => data?.attributes?.likedby?.data?.find(data => data.id == Number(getUserFromSession()?.id))))
+        setCreatedEvents(data?.createdevents)
+        setInterestedEvents(data?.likes)
+    }, [data, InterestedEvents, createdEvents])
 
   return (
     <div style={props.style} className="manage">
@@ -39,14 +40,15 @@ const Manage = (props) => {
                         createdEvents?.map(event => 
                             <EventCard 
                                 key={event.id}
-                                title={event.attributes.name}
-                                type={event.attributes.type}
+                                title={event.name}
+                                type={event.type}
                                 // url={import.meta.env.VITE_SERVER_URL + event.attributes.cover.data.attributes.url}
-                                url={event?.attributes?.cover?.data?.attributes?.url}
+                                url={event?.cover?.url}
                                 style={"manage_event"}
-                                like={Boolean(event.attributes.likedby.data.find(x => x.id == getUserFromSession()?.id))}
+                                hideLikeIcon={true}
                                 afterClick={handleHeartClick}
                                 eventId={event.id}
+                                interested={event?.likedby?.length}
                             />)
                             
                     }
@@ -61,15 +63,16 @@ const Manage = (props) => {
                 {
                         InterestedEvents?.map(event => 
                             <EventCard 
-                                key={event.id}
-                                title={event.attributes.name}
-                                type={event.attributes.type}
+                                key={event?.id}
+                                title={event?.name}
+                                type={event?.type}
                                 // url={import.meta.env.VITE_SERVER_URL + event.attributes.cover.data.attributes.url}
-                                url={event?.attributes?.cover?.data?.attributes?.url}
+                                url={event?.cover?.url}
                                 style={"manage_event"}
-                                like={Boolean(event.attributes.likedby.data.find(x => x.id == getUserFromSession()?.id))}
+                                like={true}
                                 afterClick={handleHeartClick}
-                                eventId={event.id}
+                                eventId={event?.id}
+                                interested={event?.likedby?.length}
                             />)
                     }
                     {

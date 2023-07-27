@@ -60,3 +60,11 @@ export async function homeLoader(){
     return null
 }
 
+export async function eventLoader({params}){
+    const eventId = params?.eventId
+    
+    console.log(eventId)  
+    if(eventId) return eventId
+    return null
+}
+

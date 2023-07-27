@@ -1,0 +1,34 @@
+.CheckoutSuccess {
+  background-color: #fff;
+  display: block;
+  text-align: center;
+  width: 856px;
+  height: 698px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.CheckoutSuccess h2 {
+  color: var(--new-text-color, #133c55);
+  font-family: Gilroy;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.CheckoutSuccess p {
+  color: var(--new-text-color, #133c55);
+  font-family: Gilroy;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.CheckoutSuccess button {
+  border-style: none;
+  background-color: #eef6fb;
+  min-width: 100px;
+  padding: 10px;
+}

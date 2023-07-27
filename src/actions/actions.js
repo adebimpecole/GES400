@@ -1,6 +1,5 @@
 import axios from "axios";
-import { setUserToSession, getUserFromSession } from "../hooks/hooks";
-import { redirect } from "react-router-dom";
+import { getUserFromSession } from "../hooks/hooks";
 
 
 {/* <input type="text" name="ref" value="api::restaurant.restaurant" />
@@ -36,9 +35,9 @@ export async function createAction({request}) {
         formData.append("refId", res.data.data.id)
         formData.append("field", "cover")
 
-        // console.log(formData)
+        console.log(formData)
 
-        const img = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/upload', formData, {
+        await axios.post(import.meta.env.VITE_SERVER_URL + '/api/upload', formData, {
             headers:{
                 'Authorization' : 'Bearer ' + getUserFromSession().token
             }
@@ -53,37 +52,7 @@ export async function createAction({request}) {
     return null
 }
 
-export async function logInAction({request}){
-    const formData = await request.formData();
-    const updates = Object.fromEntries(formData);
 
-    try {
-        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/auth/local', updates)
-        const {jwt, user : {id , username}} = res.data
-        setUserToSession({token: jwt, id, username})
-        return redirect('/dashboard')
-    } catch (error) {
-        console.log(error)
-    }
-
-    return null
-}
-
-export async function signUpAction({request}){
-    const formData = await request.formData();
-    const updates = Object.fromEntries(formData);
-
-    try {
-        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/auth/local/register', updates)
-        const {jwt, user : {id , username}} = res.data
-        setUserToSession({token: jwt, id, username})
-        return redirect('/dashboard')
-    } catch (error) {
-        console.log(error)
-    }
-
-    return null
-}
 
 export const fetcher = (url) =>
     axios
@@ -92,14 +61,23 @@ export const fetcher = (url) =>
 
 export async function handleHeartClick(isLiked, eventID){
     isLiked = !isLiked //note to self: react value for this will be delayed b/c itll only be updated after setState
-    
+    console.log(typeof(getUserFromSession().id))
     try {
-        if(isLiked)
+        if(isLiked){
+            // axios.put(import.meta.env.VITE_SERVER_URL + `/api/users/${getUserFromSession().id}`, 
+            // {data : {likes : {connect : [eventID]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
+
             await axios.put(import.meta.env.VITE_SERVER_URL + `/api/events/${eventID}`, 
             {data : {likedby : {connect : [getUserFromSession()?.id]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
-        else
-        await axios.put(import.meta.env.VITE_SERVER_URL + `/api/events/${eventID}`, 
-        {data : {likedby : {disconnect : [getUserFromSession()?.id]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
+        }
+        else{
+            // axios.put(import.meta.env.VITE_SERVER_URL + `/api/users/${getUserFromSession().id}`, 
+            // {data : {likes : {disconnect : [eventID]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
+
+            await axios.put(import.meta.env.VITE_SERVER_URL + `/api/events/${eventID}`, 
+            {data : {likedby : {disconnect : [getUserFromSession()?.id]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
+        }
+        
 
         return true
     } catch (error) {
