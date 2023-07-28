@@ -43,6 +43,15 @@ const CreateEvent = (props) => {
         setIsLoading(true)
     }
 
+    const Pick = (event)=> {
+        if(event.currentTarget.classList.contains("pick")){
+            event.currentTarget.classList.remove('pick');
+        }
+        else{
+            event.currentTarget.classList.add('pick');
+        }
+    }
+
   return (
     <div style={props.style} className="create_event">
         {isCreated && <CreateEventSuccess isopen afterClose={afterClosePop}/>}
@@ -53,12 +62,12 @@ const CreateEvent = (props) => {
             </div>
             <Form method="POST" className="event_creation" encType="multipart/form-data" onSubmit={() => setIsSubmitting(true)}>
                 <div style={{backgroundImage : `url('${imgUrl}')`}} className="upload_picture bg-contain flex flex-col">
-                    <img src={upload} className="upload " alt="icon"/>
-                    <input type="file" name="files" onChange={showNewImage}/>
+                    <input type="file" name="files" id="files" onChange={showNewImage} required/>
+                    <label htmlFor="files"><img src={upload} className="upload_icon" alt="icon"/></label>
                 </div>
                 <label>
                     Event Name
-                    <input type="text" name="name" id="event-name"  className="event-organizer name_input" placeholder="Enter event name" required/>
+                    <input type="text" name="name" id="event-name"  className=" event-name name_input" placeholder="Enter event name" required/>
                 </label>
                 <label>
                     Organizer
@@ -67,11 +76,11 @@ const CreateEvent = (props) => {
                 <div className="start_date_time">
                     <div className="date_time">
                         <span className="date_time_head">Date</span>
-                        <input required name="start_date" className="block w-full date_detail" type="date"/>
+                        <input required name="start_date" className="block w-full date_detail" type="date" placeholder="DD/MM/YY"/>
                     </div>
                     <div className="date_time">
                         <span className="date_time_head">Time</span>
-                        <input required name="start_time" className="block w-full date_detail" type="time"/>
+                        <input required name="start_time" className="block w-full date_detail" type="time" placeholder="pick"/>
                     </div>
                 </div>
                 {
@@ -83,17 +92,11 @@ const CreateEvent = (props) => {
                         <button onClick={()=> setShowEndInput(false)} className="px-0 mb-3 mt-1 bg-transparent date_time_txt">- End Date and Time</button>
                     </>
                 }
-                <div className="end_date_time">
-                    <div className="date_time">
-                        <select className="dropdown_label inside_label" name="type" required>
-                            <option value="In-person">In-person</option>
-                            <option value="Virtual">Virtual</option>
-                        </select>
-                    </div>
-                 
-                    <div className="date_time">
-                        <input name="category" placeholder='Category' className='h-full w-full p-2 rounded-md category'/>
-                    </div>
+                <div className="date_time2">
+                    <select className="dropdown_label inside_label" name="type" required>
+                        <option value="In-person">In-person</option>
+                        <option value="Virtual">Virtual</option>
+                    </select>
                 </div>
                 <label>
                     Location
@@ -104,7 +107,47 @@ const CreateEvent = (props) => {
                 <label>
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
-                </label >
+                </label>
+                <div className="tag_div">
+                    <span className="tag_header">Tags</span>
+                    <ul className="tags">
+                        <li className="each_tag" onClick={Pick}>party</li>
+                        <li className="each_tag" onClick={Pick}>wedding</li>
+                        <li className="each_tag" onClick={Pick}>birthday</li>
+                        <li className="each_tag" onClick={Pick}>graduation</li>
+                        <li className="each_tag" onClick={Pick}>educational</li>
+                        <li className="each_tag" onClick={Pick}>school</li>
+                        <li className="each_tag" onClick={Pick}>music</li>
+                        <li className="each_tag" onClick={Pick}>food</li>
+                        <li className="each_tag" onClick={Pick}>concert</li>
+                        <li className="each_tag" onClick={Pick}>art</li>
+                        <li className="each_tag" onClick={Pick}>festival</li>
+                        <li className="each_tag" onClick={Pick}>sports</li>
+                        <li className="each_tag" onClick={Pick}>auction</li>
+                        <li className="each_tag" onClick={Pick}>tournament</li>
+                        <li className="each_tag" onClick={Pick}>parade</li>
+                        <li className="each_tag" onClick={Pick}>fair</li>
+                        <li className="each_tag" onClick={Pick}>debate</li>
+                        <li className="each_tag" onClick={Pick}>meeting</li>
+                        <li className="each_tag" onClick={Pick}>business</li>
+                        <li className="each_tag" onClick={Pick}>tech</li>
+                        <li className="each_tag" onClick={Pick}>carnival</li>
+                        <li className="each_tag" onClick={Pick}>exhibition</li>
+                        <li className="each_tag" onClick={Pick}>service</li>
+                        <li className="each_tag" onClick={Pick}>religious</li>
+                        <li className="each_tag" onClick={Pick}>fashion</li>
+                        <li className="each_tag" onClick={Pick}>environmental</li>
+                        <li className="each_tag" onClick={Pick}>championship</li>
+                        <li className="each_tag" onClick={Pick}>film</li>
+                        <li className="each_tag" onClick={Pick}>theater</li>
+                        <li className="each_tag" onClick={Pick}>launch</li>
+                        <li className="each_tag" onClick={Pick}>show</li>
+                        <li className="each_tag" onClick={Pick}>trade</li>
+                        <li className="each_tag" onClick={Pick}>product</li>
+                        <li className="each_tag" onClick={Pick}>activities</li>
+                        <li className="each_tag" onClick={Pick}>party</li>
+                    </ul>
+                </div>
                 <button type="submit" className="publish_event">Publish Event {isSubmitting && <Spinner />}</button>
             </Form>
         </div>
