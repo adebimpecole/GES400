@@ -7,11 +7,11 @@ import useSWR from "swr";
 import { fetcher } from "../actions/actions";
 import { formatAMPM } from "../Utilities/utilis";
 // import { Spinner } from "flowbite-react";
-import clock from '../../public/Clock.png'
-import calender from '../../public/Calender.png'
-import union from '../../public/union.png'
-import location from '../../public/mapLocation.png'
-import tag from '../../public/Tag.png'
+import clock from '../assets/public/Clock.png'
+import calender from '../assets/public/Calender.png'
+import union from '../assets/public/union.png'
+import location from '../assets/public//mapLocation.png'
+import tag from '../assets/public/Tag.png'
 
 
 function EventPage() {
