@@ -22,7 +22,13 @@ function Dropdown({text, icon, children}){
     )
 }
 
-const FilterBox = ({array}) => {
+const FilterBox = ({array, onFilterChange}) => {
+    
+
+    function handleChange(){
+
+    }
+
   return (
     <>
         <Dropdown text="Around You" icon={location}>
