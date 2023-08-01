@@ -1,6 +1,6 @@
 import "./Profile.css"
 import { getUserFromSession } from "../hooks/hooks"
-import prince from "../assets/prince.png"
+import prince from "../assets/bckgrnd.png"
 import back from "../assets/bckgrnd.png"
 import { GoPencil } from "react-icons/go";
 import { AiOutlineLink, AiOutlineInstagram } from "react-icons/ai";
