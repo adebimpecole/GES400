@@ -19,7 +19,11 @@
   gap: .5rem;
   border-radius: 0.25rem;
   background: #EEF6FB;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(70, 80, 114, 0.25);
+  cursor: pointer;
+}
+.ticket_details:hover{
+  background: rgba(179, 209, 227, 0.407)
 }
 .received_tickets{
   display: grid; 
@@ -89,5 +93,7 @@
   }
   .received_tickets{
     gap: 1rem;
+    grid-template-columns: 48% 48%;
+    padding: 2% 0 5% 0;
   }
 }
