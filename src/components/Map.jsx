@@ -141,7 +141,7 @@ const Map = () => {
     return (
   
         <div onMouseLeave={close} className='relative w-full flex justify-center gap-0 flex-col '>
-            <input onSubmit={(e)=> e.preventDefault()} name='location' onKeyDown={close} value={searchTxt} onFocus={getUserCurrentPos} placeholder='Search...' onChange={handleChange} className='p-4 rounded-md'/>
+            <input required onSubmit={(e)=> e.preventDefault()} name='location' onKeyDown={close} value={searchTxt} onFocus={getUserCurrentPos} placeholder='Search...' onChange={handleChange} className='p-4 rounded-md'/>
             {searching ? 
                 <Spinner className='absolute top-0 right-2 h-full' aria-label="Default status example" /> 
                 : 

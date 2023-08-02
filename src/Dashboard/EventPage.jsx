@@ -12,6 +12,7 @@ import calender from '../assets/public/Calender.png'
 import union from '../assets/public/union.png'
 import location from '../assets/public//mapLocation.png'
 import tag from '../assets/public/Tag.png'
+import ellipse from '../assets/public/ellipse-14.png'
 
 
 function EventPage() {
@@ -98,7 +99,7 @@ function EventPage() {
           <div className="About">
             <h2>About your Host</h2>
             <span>
-              <img src="/Public/ellipse-14.png" alt="" /> University of
+              <img src={ellipse} alt="" /> University of
               PortHarcourt
             </span>
             <p>

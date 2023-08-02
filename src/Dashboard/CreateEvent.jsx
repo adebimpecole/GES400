@@ -104,7 +104,7 @@ const CreateEvent = (props) => {
                     items={
                         [
                             'party', 'wedding', 'birthday', 'tech', 'graduation', 'educational', 'school',
-                            'concert', 'festival', 'sports', 'music', 'food', 'concert', 'art' 
+                            'concert', 'festival', 'sports', 'music', 'food', 'art' 
                         ]
                     }
                 />

@@ -8,27 +8,34 @@ const TagSelector = ({items}) => {
 
   const Pick = (event)=> {
     if(event.currentTarget.classList.contains("pick")){
-        // setTagText((text) => text += event.currentTarget.innerText)
-        event.currentTarget.classList.remove('pick');
+      removeText(event.currentTarget.innerText)
+      event.currentTarget.classList.remove('pick');
     }
     else{
-        setTagText(tagText => tagText.push(event.currentTarget.innerText))
-        console.log(event.currentTarget.innerText)
-        event.currentTarget.classList.add('pick');
+      addIext(event.currentTarget.innerText)
+      event.currentTarget.classList.add('pick');
     }
   }
 
+  function addIext(text){
+    setTagText([...tagText, text])
+  }
+
+  function removeText(text){
+    setTagText(tagText.filter(item => item != text))
+  }
+
   return (
-    <div className="tag_div">
+    <div className="tag_div relative">
     <span className="tag_header">Tags</span>
-    <ul className="tags">
+    <ul className="tags relative z-[3]">
       {
-        items && items.map((item, i)=> <li key={i} className="each_tag" onClick={Pick}>{item}</li>)
+        items && items.map((item, i)=> <li key={i}  className="each_tag" onClick={Pick}>{item}</li>)
       }
     </ul>
 
     {/* the part below is hidden from the user and will be for submitting the form */}
-    <input type="text" defaultValue={tagText}/>
+    <input required title="select at least a tag" className="absolute text-transparent bg-transparent  border-transparent top-0 h-[90%] w-full" name="category" type="text" defaultValue={tagText} />
 </div>
   )
 }
