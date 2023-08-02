@@ -77,7 +77,7 @@ function EventPage() {
               <h3>Tags</h3>
               <span className="Tags">
                 {
-                  event.category?.split(" ")?.map((tag, i) => <p key={i}>{tag}</p>)
+                  event.category?.split(",")?.map((tag, i) => <p key={i}>{tag}</p>)
                 }
               </span>
             </div>
