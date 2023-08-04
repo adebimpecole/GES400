@@ -3,13 +3,13 @@
   flex-direction: row;
   justify-content: flex-end;
   overflow-y: visible;
-  padding: 3% 5% 3% 5%;
+  padding: 3% 9% 3% 5%;
   height: fit-content;
-  /* background-color: red; */
 }
 .new_event_section {
   padding: 4% 5%;
   background: #035f9822;
+  width: 75%;
 }
 .upload {
   width: 5%;
@@ -36,7 +36,7 @@
   margin: 0;
   height: 2rem;
   border-radius: 0.25rem;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   letter-spacing: 0.04rem;
   font-family: "Questrial", sans-serif;
   background: #f8f9fa;
@@ -111,7 +111,7 @@ input::-ms-value{
 .date_time2 select {
   border: none;
   color: #3d5a80;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding: .5rem 1rem;
 }
 
@@ -124,10 +124,10 @@ input::-ms-value{
   color: #133c55;
 }
 .date_info1 {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
 .date_info2 {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #133c55;
 }
 .date_button {
@@ -152,7 +152,7 @@ input::-ms-value{
 .date_time_head,
 option {
   color: #133c55;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 400;
   padding: 1rem 0;
 }
@@ -179,21 +179,26 @@ textarea {
   margin-bottom: 1.5rem;
   padding: 0.5rem;
   outline: none;
-  font-size: 0.8rem;
+  font-size: 0.7rem!important;
   letter-spacing: 0.04rem;
   font-family: "Questrial", sans-serif;
 }
 .publish_event {
   padding: .7rem 2rem;
   width: fit-content;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-align: center;
   background: #f8f9fa;
   color: #133c55;
   font-weight: 700;
   cursor: pointer;
 }
-
+.publish_div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .category {
   padding: 2% 4%;
   border: none;
@@ -215,16 +220,51 @@ input[type=file]::-webkit-file-upload-button {
     width: 3rem;
     cursor: pointer;
 }
-
+.tag_div{
+  display: flex;
+  flex-direction: column;
+}
+.tags{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 0 2rem 0;
+}
+.tag_header{
+  padding-left: 0;
+  font-size: .8rem;/**/
+}
+.each_tag{
+  padding: .5rem 1rem;
+  border-radius: 50px;
+  font-size: .7rem;/**/
+  background: #3d5a802d;
+  width: fit-content;
+  cursor: pointer;
+  transition: .05s;
+}
+.each_tag:hover{
+  background: #3d5a80;
+  color: #f8f9fa;
+}
+.pick{
+  background: #133c55!important;
+  color: #f8f9fa!important;
+}
+.pick:hover{
+  background: #3d5a80!important;
+  color: #f8f9fa!important;
+}
 @media only screen and (max-width: 943px){
     .event_creation label input, .each_tag, .date_time2 select, .date_info1, textarea, .publish_event, .name_input, .category, .date_detail{
-        font-size: .7rem!important;
+        font-size: .6rem!important;
     }
     .date_info1{
-        font-size: .6rem;
+        font-size: .5rem;
     }
     .date_info2, .date_time_head, option, .event_creation label, .tag_header{
-        font-size: .8rem;
+        font-size: .7rem;
     }
     .inside_label, .date_detail{
         height: 2.5rem;
@@ -233,7 +273,7 @@ input[type=file]::-webkit-file-upload-button {
         height: 2.5rem!important;
     }
     .date_time_txt{
-        font-size: .9rem;
+        font-size: .8rem;
     }
     .publish_event{
         padding: .5rem 2rem;
@@ -251,16 +291,25 @@ input[type=file]::-webkit-file-upload-button {
       padding: .5rem 0 2rem 0;
       gap: .5rem;
     }
+    .create_event {
+      padding: 3% 7% 3% 5%;
+    }
+}
+@media only screen and (max-width: 768px){
+  .new_event_section {
+    padding: 4% 5%;
+    width: 85%;
+  }
 }
 @media only screen and (max-width: 568px){
     .event_creation label input, .each_tag, .date_time2 select, .date_info1, textarea, .publish_event, .name_input, .category, .date_detail{
-        font-size: .6rem!important;
+        font-size: .5rem!important;
     }
     .date_info1{
-        font-size: .5rem;
+        font-size: .4rem;
     }
     .date_info2, .date_time_head, option, .event_creation label, .tag_header{
-        font-size: .7rem;
+        font-size: .6rem;
     }
     .inside_label, .date_detail{
         height: 2.3rem;
@@ -269,7 +318,7 @@ input[type=file]::-webkit-file-upload-button {
         height: 2.3rem!important;
     }
     .date_time_txt{
-        font-size: .8rem;
+        font-size: .7rem;
     }
     .publish_event{
         padding: .8rem 2rem;
@@ -289,16 +338,20 @@ input[type=file]::-webkit-file-upload-button {
     .each_tag{
       padding: .3rem .8rem;
     }
+    .new_event_section {
+      padding: 4% 5%;
+      width: 90%;
+    }
 }
 @media only screen and (max-width: 376px){
     .event_creation label input, .each_tag, .date_time2 select, .date_info1, textarea, .publish_event, .name_input, .category, .date_detail{
-        font-size: .5rem!important;
+        font-size: .4rem!important;
     }
     .date_info1{
-        font-size: .4rem;
+        font-size: .3rem;
     }
     .date_info2, .date_time_head, option, .event_creation label, .tag_header{
-        font-size: .6rem;
+        font-size: .5rem;
     }
     .inside_label, .date_detail{
         height: 2rem;
@@ -307,7 +360,7 @@ input[type=file]::-webkit-file-upload-button {
         height: 2rem!important;
     }
     .date_time_txt{
-        font-size: .7rem;
+        font-size: .6rem;
         margin-bottom: 0;
     }
     .publish_event{

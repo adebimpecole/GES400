@@ -7,7 +7,7 @@
     overflow-y: visible;
 }
 .manage_subhead{
-    font-size: .95rem;
+    font-size: .9rem;
     padding-left: 0;
 }
 .manage_section2{
@@ -37,13 +37,22 @@
     display: flex;
     flex-direction: column;
 }
+.nothing{
+    font-size: .8rem;
+}
 @media only screen and (max-width: 568px){
     .manage_subhead{
-        font-size: .85rem;
+        font-size: .8rem;
+    }
+    .nothing{
+        font-size: .7rem;
     }
 }
 @media only screen and (max-width: 376px){
     .manage_subhead{
         font-size: .75rem;
+    }
+    .nothing{
+        font-size: .6rem;
     }
 }

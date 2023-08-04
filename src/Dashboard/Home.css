@@ -12,44 +12,56 @@
   }
   .section_head{
     color: #133c55;
-    font-size: 1.9rem;
+    font-size: 1.7rem;
     font-weight: 700;
     margin: 0;
     padding-bottom: .5rem;
   }
   .section_subhead{
     color: #133c55;
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     text-transform: capitalize;
     margin: 0;
+    padding: 0;
   }
   .each_filter{
     border-radius: 0.3rem;
     background: inherit;
     display: inline-flex;
-    padding: .3rem .9rem;
+    padding: .3rem .5rem;
     align-items: center;
     justify-content: center;
-    gap: .7rem;
+    gap: .5rem;
     color: #133c55;
     cursor: pointer;
-    font-size: .9rem;
+    font-size: .8rem;
     font-weight: 400;
+    width: fit-content;
+    border: 0;
+    height: 100%;
+  }
+  .each_filter:focus{
+    border: none;
+    outline: none;
+  }
+  .filter_text{
+    padding: 0;
   }
   .each_filter:hover{
     background: #035f9822;
   }
   .filter_icon{
-    width: 15%;
+    width: 10%;
     height: auto;
   }
   .filters{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: max-content max-content max-content max-content auto;
+    gap: .5rem;
     padding-top: .4rem;
+    height: 2.5rem;
   }
   .event{
     width: 100%;
@@ -76,26 +88,30 @@
   }
   .event_name{
     color: #133c55;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 700;
     margin: 0;
     letter-spacing: .04rem;
     cursor: pointer;
     text-transform: capitalize;
 }
+.event_name a{
+  font-weight: 700;
+}
 .event_name:hover{
     text-decoration: underline;
 }
 .event_booking{
-    font-size: 1rem;
+    font-size: .9rem;
     font-weight: 500;
     color: #133c55;
+    padding: 0;
   
   }
   .event_popularity{
-    font-size: .9rem;
+    font-size: .8rem;
     color: #133c55;
-  
+    padding: 0;
   }
   .interested_button{
     font-size: 1.1rem;
@@ -107,6 +123,9 @@
     width: 10%;
     height: auto;
   }
+  .search_div{
+    width: auto;
+  }
   .search{
     background: #F3F2F2;
     float: right;
@@ -115,58 +134,107 @@
     margin: 0;
     height: 100%;
     width: 80%;
+    padding: 0 .5rem;
   }
   .search::placeholder{
-    font-size: .9rem;
+    font-size: .75rem;
     color: var(--inside-text, #81868A);
   }
+  .search_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 100%;
+  }
   .search_box{
-    padding: .3rem .7rem;
-    width: 30%;
+    padding: .1rem .7rem;
+    width: 50%;
     background: #F3F2F2;
     border-radius: .3rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 23%;
+  }
+  .search_box input[type='text']{
+    box-shadow: none;
   }
   .search_icon{
-    width: 7%;
+    width: 6%;
   }
   .search:focus .search:active{
     border: none;
     outline: none;
   }
+  .search_date{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    height: 100%;
+    width: fit-content;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 0.3rem;
+    padding: .3rem .5rem;
+  }
+  .search_date:focus{
+    background: #035f9822;
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  .search_date :first-child{
+    width: fit-content;
+  }
+
+@media only screen and (max-width: 1143px){
+  .search_box{
+    width: 60%;
+  }
+}
   @media only screen and (max-width: 943px){
     .section_head{
-        font-size: 1.6rem;
-        font-weight: 700;
+        font-size: 1.4rem;
     }
-    .event_name{
-        font-size: 1rem;
-        letter-spacing: .02rem;
-    }
-    .event_booking{
+    .event_name, .section_subhead{
         font-size: .9rem;
     }
-    .event_popularity, .each_filter{
+    .event_booking{
         font-size: .8rem;
     }
+    .event_popularity, .each_filter, .search::placeholder{
+        font-size: .7rem;
+    }
     .interested_button{
-        font-size: 1rem;
+        font-size: .9rem;
+    }
+    .search_box{
+      width: 80%; 
+    }
+    .filters{
+      gap: .3rem;
+    }
+    .filter_icon{
+      width: 9%;
     }
   }
   @media only screen and (max-width: 768px){
     .home_section2{
         grid-template-columns: 45% 45%;
-        padding:3% 0;
+        padding: 3% 0;
     }
     .home_section{
-        width: 80%;
+        width: 90%;
         padding: 3% 5%;
     }
+    .search_box{
+      width: 95%;
+    }
+    .filter_icon{
+      width: 10%;
+    }
   }
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 668px){
     .home_section{
         width: 90%;
         padding: 3% 5%;
@@ -174,33 +242,56 @@
   }
   @media only screen and (max-width: 568px){
     .section_head{
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
     .event_booking{
-        font-size: .8rem;
+        font-size: .7rem;
     }
-    .event_popularity, .each_filter{
+    .event_popularity, .each_filter, .search::placeholder{
         font-size: .7rem;
     }
     .interested_button, .event_name{
-        font-size: .9rem;
+        font-size: .8rem;
     }
     .section_subhead{
-        font-size: 1rem;
+        font-size: .8rem;
     }
     .each_filter{
         padding: .2rem .5rem;
         gap: .4rem;
     }
-    .filters{
-        gap: .5rem;
-        padding-top: .3rem;
-    }
     .filter_icon{
-        width: 13%;
+        width: 9%;
     }
-    .interested_button{
-        width: 60%;
+    .filters{
+      grid-template-columns: max-content max-content max-content max-content;
+      grid-template-rows: 2rem 2rem;
+      height: 5.5rem;
+      padding-bottom: .5rem;
+    }
+    .search_div{
+      grid-column-start: 1;
+      grid-column-end: 5;
+    }
+    .search_box{
+      width: 100%;
+    }
+    .search_icon{
+      width: 4%;
+    }
+  }
+  @media only screen and (max-width: 468px){
+    .search_date{
+      display: none;
+    }
+    .search_icon{
+      width: 5%;
+    }
+    .filters{
+      grid-template-columns: max-content max-content max-content 5rem;
+      grid-template-rows: 1.8rem 1.8rem;
+      height: 5rem;
+      padding-bottom: .5rem;
     }
   }
   @media only screen and (max-width: 376px){
@@ -211,7 +302,7 @@
     .event_booking{
         font-size: .7rem;
     }
-    .event_popularity, .each_filter{
+    .event_popularity, .each_filter, .search::placeholder{
         font-size: .6rem;
     }
     .interested_button, .event_name{
@@ -230,5 +321,11 @@
     }
     .home_section{
         width: 88%;
+    }
+    .filters{
+      grid-template-columns: max-content max-content max-content auto;
+      grid-template-rows: 1.8rem 1.8rem;
+      height: 5rem;
+      padding-bottom: .5rem;
     }
   }
