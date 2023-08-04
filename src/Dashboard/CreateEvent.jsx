@@ -8,6 +8,7 @@ import {Form, useActionData, useNavigate} from 'react-router-dom'
 import CreateEventSuccess from "./CreateEventSuccess"
 import Loading from "./Loading"
 import { Spinner } from "flowbite-react"
+import TagSelector from "../components/TagSelector"
 
 
 const CreateEvent = (props) => {
@@ -53,12 +54,12 @@ const CreateEvent = (props) => {
             </div>
             <Form method="POST" className="event_creation" encType="multipart/form-data" onSubmit={() => setIsSubmitting(true)}>
                 <div style={{backgroundImage : `url('${imgUrl}')`}} className="upload_picture bg-contain flex flex-col">
-                    <img src={upload} className="upload " alt="icon"/>
-                    <input type="file" name="files" onChange={showNewImage}/>
+                    <input type="file" name="files" id="files" onChange={showNewImage} required/>
+                    <label htmlFor="files"><img src={upload} className="upload_icon" alt="icon"/></label>
                 </div>
                 <label>
                     Event Name
-                    <input type="text" name="name" id="event-name"  className="event-organizer name_input" placeholder="Enter event name" required/>
+                    <input type="text" name="name" id="event-name"  className=" event-name name_input" placeholder="Enter event name" required/>
                 </label>
                 <label>
                     Organizer
@@ -67,11 +68,11 @@ const CreateEvent = (props) => {
                 <div className="start_date_time">
                     <div className="date_time">
                         <span className="date_time_head">Date</span>
-                        <input required name="start_date" className="block w-full date_detail" type="date"/>
+                        <input required name="start_date" className="block w-full date_detail" type="date" placeholder="DD/MM/YY"/>
                     </div>
                     <div className="date_time">
                         <span className="date_time_head">Time</span>
-                        <input required name="start_time" className="block w-full date_detail" type="time"/>
+                        <input required name="start_time" className="block w-full date_detail" type="time" placeholder="pick"/>
                     </div>
                 </div>
                 {
@@ -83,17 +84,11 @@ const CreateEvent = (props) => {
                         <button onClick={()=> setShowEndInput(false)} className="px-0 mb-3 mt-1 bg-transparent date_time_txt">- End Date and Time</button>
                     </>
                 }
-                <div className="end_date_time">
-                    <div className="date_time">
-                        <select className="dropdown_label inside_label" name="type" required>
-                            <option value="In-person">In-person</option>
-                            <option value="Virtual">Virtual</option>
-                        </select>
-                    </div>
-                 
-                    <div className="date_time">
-                        <input name="category" placeholder='Category' className='h-full w-full p-2 rounded-md category'/>
-                    </div>
+                <div className="date_time2">
+                    <select className="dropdown_label inside_label" name="type" required>
+                        <option value="In-person">In-person</option>
+                        <option value="Virtual">Virtual</option>
+                    </select>
                 </div>
                 <label>
                     Location
@@ -104,7 +99,15 @@ const CreateEvent = (props) => {
                 <label>
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
-                </label >
+                </label>
+                <TagSelector 
+                    items={
+                        [
+                            'party', 'wedding', 'birthday', 'tech', 'graduation', 'educational', 'school',
+                            'concert', 'festival', 'sports', 'music', 'food', 'art' 
+                        ]
+                    }
+                />
                 <button type="submit" className="publish_event">Publish Event {isSubmitting && <Spinner />}</button>
             </Form>
         </div>

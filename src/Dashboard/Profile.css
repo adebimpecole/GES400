@@ -5,5 +5,129 @@
     flex-direction: row;
     justify-content: flex-end;
     overflow-y: visible;
-    font-size: 10rem;
+}
+.profile_section{
+    width: 82%;
+}
+.profile_section1{
+    display: grid;
+    grid-template-columns: 8% 7rem auto;
+    grid-template-rows: 10rem 4rem 3rem;
+}
+.back_picture{
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    height: 100%;
+    width: 100%;
+}
+.profile_picture_div{
+    border: 2px solid #133c55;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    border-radius: 100%;
+    overflow: hidden;
+
+}
+.profile_picture{
+    height: 100%;
+    width: 100%;
+}
+.profile_section2{
+    padding: 1% 8%;
+    display: flex;
+    flex-direction: column;
+}
+.person_name{
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.user_name{
+    color: #A8ACAE;
+    font-size: .9rem;
+    padding: 0;
+}
+.link_and_join{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: .5rem 0;
+}
+.website, .join_date, .edit_link{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: .5rem;
+    font-size: .9rem;
+    padding: 0;
+}
+.website, .edit_link, .socials{
+    color: #3770A9;
+}
+.website:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.socials{
+    width: 8%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    padding: .5rem 0 .6rem 0;
+}
+.socials svg{
+    cursor: pointer;
+}
+.date_icon, .link_icon, .pencil_icon{
+    font-size: 1.2rem;
+}
+.join_date{
+    color: var(--inside-text, #81868A);
+}
+.bio{
+    font-size: 1rem;
+}
+.edit_link:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1043px){
+    .socials{
+        width: 12%;
+        padding: .5rem 0 .8rem 0;
+    }
+}
+@media only screen and (max-width: 943px){
+    .profile_section1{
+        grid-template-columns: 8% 5.5rem auto;
+        grid-template-rows: 8rem 3.5rem 2rem;
+    }
+    .person_name{
+        font-size: 1.8rem;
+    }
+    .website, .join_date, .edit_link, .user_name{
+        font-size: .8rem;
+    }
+    .date_icon, .link_icon, .pencil_icon, .socials{
+        font-size: 1rem;
+    }
+    .bio{
+        font-size: .9rem;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .profile_section{
+        width: 90%;
+    }
+    .profile_section1{
+        grid-template-columns: 6% 5rem auto;
+        grid-template-rows: 7rem 3rem 2rem;
+    }
 }

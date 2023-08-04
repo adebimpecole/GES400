@@ -7,11 +7,12 @@ import useSWR from "swr";
 import { fetcher } from "../actions/actions";
 import { formatAMPM } from "../Utilities/utilis";
 // import { Spinner } from "flowbite-react";
-import clock from '../../public/Clock.png'
-import calender from '../../public/Calender.png'
-import union from '../../public/union.png'
-import location from '../../public/mapLocation.png'
-import tag from '../../public/Tag.png'
+import clock from '../assets/public/Clock.png'
+import calender from '../assets/public/Calender.png'
+import union from '../assets/public/union.png'
+import location from '../assets/public//mapLocation.png'
+import tag from '../assets/public/Tag.png'
+import ellipse from '../assets/public/ellipse-14.png'
 
 
 function EventPage() {
@@ -76,7 +77,7 @@ function EventPage() {
               <h3>Tags</h3>
               <span className="Tags">
                 {
-                  event.category?.split(" ")?.map((tag, i) => <p key={i}>{tag}</p>)
+                  event.category?.split(",")?.map((tag, i) => <p key={i}>{tag}</p>)
                 }
               </span>
             </div>
@@ -98,7 +99,7 @@ function EventPage() {
           <div className="About">
             <h2>About your Host</h2>
             <span>
-              <img src="/Public/ellipse-14.png" alt="" /> University of
+              <img src={ellipse} alt="" /> University of
               PortHarcourt
             </span>
             <p>

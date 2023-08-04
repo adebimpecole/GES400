@@ -98,7 +98,7 @@
     }
     .side_navigation{
         padding-top: 50%;
-        height: 60%;
+        height: 70%;
     }
 }
 @media only screen and (max-width: 568px){
@@ -109,12 +109,12 @@
 }
 @media only screen and (max-width: 468px){
     .navigation_icon{
-        width: 28%;
+        width: 33%;
     }
 }
 @media only screen and (max-width: 376px){
     .navigation_icon{
-        width: 30%;
+        width: 35%;
     }
     .active{
         border-left: 3px solid #343A40;

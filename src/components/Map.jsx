@@ -141,11 +141,11 @@ const Map = () => {
     return (
   
         <div onMouseLeave={close} className='relative w-full flex justify-center gap-0 flex-col '>
-            <input onSubmit={(e)=> e.preventDefault()} name='location' onKeyDown={close} value={searchTxt} onFocus={getUserCurrentPos} placeholder='Search...' onChange={handleChange} className='p-4 rounded-md'/>
+            <input required onSubmit={(e)=> e.preventDefault()} name='location' onKeyDown={close} value={searchTxt} onFocus={getUserCurrentPos} placeholder='Search...' onChange={handleChange} className='p-4 rounded-md'/>
             {searching ? 
                 <Spinner className='absolute top-0 right-2 h-full' aria-label="Default status example" /> 
                 : 
-                <div onClick={chooseCurrentLocation} className={`bg-transparent absolute top-2 bottom-2 right-2 w-6 bg-contain bg-center bg-no-repeat bg-[url("/location.svg")] hover:cursor-pointer  ${currentLocationChoosen ? 'bg-teal-200' : null}`}></div>
+                <div onClick={chooseCurrentLocation} className={`bg-transparent absolute top-2 bottom-2 right-2 w-6 bg-contain bg-center bg-no-repeat bg-[url("/assets/location.svg")] hover:cursor-pointer  ${currentLocationChoosen ? 'bg-teal-200' : null}`}></div>
             }
             <div className='bg-white w-full absolute top-[30px] shadow-xl rounded-b-md [&>*:nth-child(even)]:border-y-[1px] [&>*:nth-child(even)]:border-y-gray-300'>
                 {
