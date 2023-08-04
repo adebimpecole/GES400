@@ -1,8 +1,6 @@
 # GES400 - Event management system
 This is an event management system designed to make the planning, promoting, and execution of various events simpler and more effective. These events can range from small gatherings and conferences to large-scale festivals and corporate functions. This system's main goal is to improve both the overall experience for event organizers and participants while also simplifying the entire event lifecycle. 
 
-By automating tasks, streamlining registration and ticketing, centralizing communication, improving data management, streamlining payment and financial processes, offering real-time reporting and analytics, facilitating event promotion, and ensuring event scalability, the system is designed to address issues that may arise during event organization.
-
 ## Table of contents
 
 - [GES400 - Event management system](#ges400---event-management-system)
