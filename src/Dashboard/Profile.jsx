@@ -35,9 +35,9 @@ const Profile = () => {
     <div className='profile'>
       <div className='profile_section'>
         <div className='profile_section1'>
-            <img className='back_picture' alt="pic" src={user?.profile[0]?.url}/>
+            <img className='back_picture' alt="pic" src={prince}/>
             <div className="profile_picture_div">
-              <img className='profile_picture' alt='pic' src={user?.profile[1]?.url}/>
+              <img className='profile_picture' alt='pic' src={prince}/>
             </div>
         </div>
         <div className='profile_section2'>
@@ -64,8 +64,8 @@ const Profile = () => {
       {user && <EditProfile 
         isOpen={isModalOpen} 
         onClose={closeModal} 
-        profileUrl={user?.profile[0]?.url}
-        coverUrl={user?.profile[1]?.url}
+        profileUrl={prince}
+        coverUrl={prince}
         username={user.username}
       />}
     </div>
