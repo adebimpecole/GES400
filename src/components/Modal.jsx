@@ -3,6 +3,9 @@ import CheckOut from "./CheckOut";
 import CheckoutSuccess from './CheckoutSuccess'
 import './Modal.css'
 
+/* eslint-disable react/prop-types */
+
+
 const Modal = ({isOpen, onClose}) => {
 
   const [switchModal, setSwitchModal] = useState(true)

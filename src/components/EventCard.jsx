@@ -1,4 +1,3 @@
-import heart from "../assets/heart.svg"
 import "./EventCard.css"
 import { useState } from 'react'
 import { Spinner } from "flowbite-react"
@@ -28,7 +27,7 @@ const EventCard = ({title, type = 'In-person', url, hideLikeIcon, style, like, a
                 <img src={url} className='event_img' alt='image'/>
                 { !hideLikeIcon && ( 
                         islike?
-                        <p className='heart_icon' >💜</p>
+                        <p className='heart_icon' >❤️</p>
                         :
                         <p className='heart_icon' >🤍</p>
                     )
@@ -36,7 +35,7 @@ const EventCard = ({title, type = 'In-person', url, hideLikeIcon, style, like, a
                 }
             </div>
             <div className='event_info'>
-                <h5 className='event_name'><Link to={`/dashboard/event/${eventId}`}>{title}</Link></h5>
+                <h2 className='event_name'><Link to={`/dashboard/event/${eventId}`}>{title}</Link></h2>
                 <span className='event_booking'>{type}</span>
                 <span className='event_popularity'>{interested} Interested . 1.5k Going</span>
             </div>

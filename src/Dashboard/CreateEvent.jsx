@@ -104,11 +104,13 @@ const CreateEvent = (props) => {
                     items={
                         [
                             'party', 'wedding', 'birthday', 'tech', 'graduation', 'educational', 'school',
-                            'concert', 'festival', 'sports', 'music', 'food', 'art' 
+                            'concert', 'festival', 'sports', 'tournament', 'music', 'food', 'art', 'fashion', 'religious', 'film', 'launch', 'product'
                         ]
                     }
                 />
-                <button type="submit" className="publish_event">Publish Event {isSubmitting && <Spinner />}</button>
+                <div className="publish_div">
+                    <button type="submit" className="publish_event">Publish Event {isSubmitting && <Spinner />}</button>
+                </div>
             </Form>
         </div>
     </div>
