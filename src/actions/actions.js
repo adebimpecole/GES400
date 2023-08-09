@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { formToJSON } from "axios";
 import { getUserFromSession } from "../hooks/hooks";
 
 
@@ -9,7 +9,6 @@ import { getUserFromSession } from "../hooks/hooks";
 
 export async function createAction({request}) {
     const formData = await request.formData();
-    
     const updates = Object.fromEntries(formData);
     console.log(updates)
 
@@ -50,6 +49,38 @@ export async function createAction({request}) {
     return null
 }
 
+export async function updateUserAction({request}){
+    const formData = await request.formData();
+
+    //updating formData to submit and link image to event created above using id
+    // formData.append("ref", "api::event.event")
+    // formData.append("refId", getUserFromSession()?.id)
+    // formData.append("field", "cover")
+    const data = {};
+    const formData2 = new FormData();
+    formData2.append("files", formData.get("profile"), "profile")
+    formData2.append("files", formData.get("cover"), "cover")
+
+    data["username"] = formData.get("username")
+    formData2.append("data", JSON.stringify(data))
+
+    const updates = Object.fromEntries(formData2);
+
+    console.log(updates)
+
+    await axios.put(import.meta.env.VITE_SERVER_URL + `/api/users/${getUserFromSession().id}?populate=*`, formData2, {
+        headers:{
+            'Authorization' : 'Bearer ' + getUserFromSession().token
+        }
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+
+
+
+    return null
+}
+
 
 
 export const fetcher = (url) =>
@@ -62,16 +93,10 @@ export async function handleHeartClick(isLiked, eventID){
     console.log(typeof(getUserFromSession().id))
     try {
         if(isLiked){
-            // axios.put(import.meta.env.VITE_SERVER_URL + `/api/users/${getUserFromSession().id}`, 
-            // {data : {likes : {connect : [eventID]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
-
             await axios.put(import.meta.env.VITE_SERVER_URL + `/api/events/${eventID}`, 
             {data : {likedby : {connect : [getUserFromSession()?.id]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
         }
         else{
-            // axios.put(import.meta.env.VITE_SERVER_URL + `/api/users/${getUserFromSession().id}`, 
-            // {data : {likes : {disconnect : [eventID]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
-
             await axios.put(import.meta.env.VITE_SERVER_URL + `/api/events/${eventID}`, 
             {data : {likedby : {disconnect : [getUserFromSession()?.id]} }}, { headers: { Authorization: "Bearer " + getUserFromSession()?.token } })
         }

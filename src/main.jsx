@@ -20,7 +20,7 @@ import EventPage from './Dashboard/EventPage';
 import "./App.css"
 
 //actions
-import {createAction} from './actions/actions'
+import {createAction, updateUserAction} from './actions/actions'
 
 import { logInAction, signUpAction } from './actions/authenticationActions'
 //loaders
@@ -64,7 +64,8 @@ const router = createBrowserRouter([
       },
       {
         path : '/dashboard/profile',
-        element : <Profile />
+        element : <Profile />,
+        action: updateUserAction
       },
       {
         path : '/dashboard/tickets',

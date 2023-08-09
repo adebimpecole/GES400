@@ -21,7 +21,7 @@ const SignUp = () => {
       <div className="signup">
         <div className="signup_block relative">
             <h2 className="signup_header">Create an account</h2>
-            <Form method="POST" className="signup_form">
+            <Form method="POST" className="signup_form" encType="multipart/form-data">
                 <label>
                     Name
                     <input type="text" name="username" id="name"  className="name" required/>
