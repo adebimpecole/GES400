@@ -39,21 +39,24 @@
   font-size: 0.7rem;
   letter-spacing: 0.04rem;
   font-family: "Questrial", sans-serif;
-  background: #f8f9fa;
+  background: #fff;
   border-bottom: 0;
 }
 .event_creation label input::-webkit-input-placeholder, .date_detail::-webkit-input-placeholder {
   /* Edge */
   color: #8096b2;
+  font-size: 0.7rem;
 }
 
 .event_creation label input:-ms-input-placeholder, .date_detail::-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #8096b2;
+  font-size: 0.7rem;
 }
 
 .event_creation label input::placeholder, .date_detail::placeholder {
   color: #8096b2;
+  font-size: 0.7rem;
 }
 .plus {
   width: 8%;
