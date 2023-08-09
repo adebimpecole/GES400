@@ -1,34 +1,93 @@
 .CheckoutSuccess {
+  width: 32rem;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 17%;
+  padding: 1rem;
   background-color: #fff;
-  display: block;
+}
+.close_div{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.close_img{
+  width: 3.5%;
+  cursor: pointer;
+}
+.CheckoutSuccess_header, .CheckoutSuccess_subheader{
+  font-weight: 600;
+}
+.CheckoutSuccess_header{
+  font-size: 1.3rem;
+}
+.CheckoutSuccess_subheader{
+  font-size: 1.35rem;
+}
+.CheckoutSuccess_text{
+  font-size: .9rem;
   text-align: center;
-  width: 856px;
-  height: 698px;
-  flex-shrink: 0;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding: .1rem 0 1rem 0;
+
 }
-.CheckoutSuccess h2 {
-  color: var(--new-text-color, #133c55);
-  font-family: Gilroy;
-  font-size: 35px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.success_img{
+  width: 70%;
 }
-.CheckoutSuccess p {
-  color: var(--new-text-color, #133c55);
-  font-family: Gilroy;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+@media only screen and (max-width: 943px){
+  .CheckoutSuccess {
+    width: 28rem;
+  }
+  .CheckoutSuccess_header{
+    font-size: 1.2rem;
+  }
+  .CheckoutSuccess_subheader{
+    font-size: 1.25rem;
+  }
+  .CheckoutSuccess_text{
+    font-size: .8rem;
+  }
 }
-.CheckoutSuccess button {
-  border-style: none;
-  background-color: #eef6fb;
-  min-width: 100px;
-  padding: 10px;
+@media only screen and (max-width: 768px){
+  .CheckoutSuccess {
+    margin-left: 10%;
+  }
+}
+@media only screen and (max-width: 568px){
+  .CheckoutSuccess {
+    width: 23rem;
+    margin-left: 7%;
+  }
+  .CheckoutSuccess_header{
+    font-size: 1.1rem;
+  }
+  .CheckoutSuccess_subheader{
+    font-size: 1.15rem;
+  }
+  .CheckoutSuccess_text{
+    font-size: .7rem;
+  }
+}
+@media only screen and (max-width: 468px){
+  .CheckoutSuccess {
+    width: 18rem;
+    margin-left: 7%;
+  }
+}
+@media only screen and (max-width: 376px){
+  .CheckoutSuccess {
+    width: 15rem;
+  }
+  .CheckoutSuccess_header{
+    font-size: 1rem;
+  }
+  .CheckoutSuccess_subheader{
+    font-size: 1rem;
+  }
+  .CheckoutSuccess_text{
+    font-size: .6rem;
+  }
 }
