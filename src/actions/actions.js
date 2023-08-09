@@ -10,8 +10,8 @@ import { getUserFromSession } from "../hooks/hooks";
 export async function createAction({request}) {
     const formData = await request.formData();
     
-    console.log(formData)
     const updates = Object.fromEntries(formData);
+    console.log(updates)
 
     const startDate = new Date(updates.start_date + ' ' + updates.start_time);
     if(updates.stop_time && updates.stop_date){
@@ -24,7 +24,7 @@ export async function createAction({request}) {
     updates.createdby.connect = [Number(getUserFromSession()?.id)]
     
     try {
-        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/events?populate=*', {data : updates}, {
+        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/events', {data : updates}, {
             headers:{
                 'Authorization' : 'Bearer ' + getUserFromSession().token
             }
@@ -34,8 +34,6 @@ export async function createAction({request}) {
         formData.append("ref", "api::event.event")
         formData.append("refId", res.data.data.id)
         formData.append("field", "cover")
-
-        console.log(formData)
 
         await axios.post(import.meta.env.VITE_SERVER_URL + '/api/upload', formData, {
             headers:{

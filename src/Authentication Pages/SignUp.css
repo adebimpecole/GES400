@@ -133,6 +133,9 @@ hr {
   height: auto;
   width: 11%;
 }
+.or_div{
+  padding: 0;
+}
 
 @media only screen and (max-width: 1143px) {
   .signup_block {

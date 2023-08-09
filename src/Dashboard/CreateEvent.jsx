@@ -8,6 +8,7 @@ import {Form, useActionData, useNavigate} from 'react-router-dom'
 import CreateEventSuccess from "./CreateEventSuccess"
 import Loading from "./Loading"
 import { Spinner } from "flowbite-react"
+import TagSelector from "../components/TagSelector"
 
 
 const CreateEvent = (props) => {
@@ -41,15 +42,6 @@ const CreateEvent = (props) => {
     function afterClosePop(){
         navigate('/dashboard/manage')
         setIsLoading(true)
-    }
-
-    const Pick = (event)=> {
-        if(event.currentTarget.classList.contains("pick")){
-            event.currentTarget.classList.remove('pick');
-        }
-        else{
-            event.currentTarget.classList.add('pick');
-        }
     }
 
   return (
@@ -108,47 +100,17 @@ const CreateEvent = (props) => {
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
                 </label>
-                <div className="tag_div">
-                    <span className="tag_header">Tags</span>
-                    <ul className="tags">
-                        <li className="each_tag" onClick={Pick}>party</li>
-                        <li className="each_tag" onClick={Pick}>wedding</li>
-                        <li className="each_tag" onClick={Pick}>birthday</li>
-                        <li className="each_tag" onClick={Pick}>graduation</li>
-                        <li className="each_tag" onClick={Pick}>educational</li>
-                        <li className="each_tag" onClick={Pick}>school</li>
-                        <li className="each_tag" onClick={Pick}>music</li>
-                        <li className="each_tag" onClick={Pick}>food</li>
-                        <li className="each_tag" onClick={Pick}>concert</li>
-                        <li className="each_tag" onClick={Pick}>art</li>
-                        <li className="each_tag" onClick={Pick}>festival</li>
-                        <li className="each_tag" onClick={Pick}>sports</li>
-                        <li className="each_tag" onClick={Pick}>auction</li>
-                        <li className="each_tag" onClick={Pick}>tournament</li>
-                        <li className="each_tag" onClick={Pick}>parade</li>
-                        <li className="each_tag" onClick={Pick}>fair</li>
-                        <li className="each_tag" onClick={Pick}>debate</li>
-                        <li className="each_tag" onClick={Pick}>meeting</li>
-                        <li className="each_tag" onClick={Pick}>business</li>
-                        <li className="each_tag" onClick={Pick}>tech</li>
-                        <li className="each_tag" onClick={Pick}>carnival</li>
-                        <li className="each_tag" onClick={Pick}>exhibition</li>
-                        <li className="each_tag" onClick={Pick}>service</li>
-                        <li className="each_tag" onClick={Pick}>religious</li>
-                        <li className="each_tag" onClick={Pick}>fashion</li>
-                        <li className="each_tag" onClick={Pick}>environmental</li>
-                        <li className="each_tag" onClick={Pick}>championship</li>
-                        <li className="each_tag" onClick={Pick}>film</li>
-                        <li className="each_tag" onClick={Pick}>theater</li>
-                        <li className="each_tag" onClick={Pick}>launch</li>
-                        <li className="each_tag" onClick={Pick}>show</li>
-                        <li className="each_tag" onClick={Pick}>trade</li>
-                        <li className="each_tag" onClick={Pick}>product</li>
-                        <li className="each_tag" onClick={Pick}>activities</li>
-                        <li className="each_tag" onClick={Pick}>party</li>
-                    </ul>
+                <TagSelector 
+                    items={
+                        [
+                            'party', 'wedding', 'birthday', 'tech', 'graduation', 'educational', 'school',
+                            'concert', 'festival', 'sports', 'tournament', 'music', 'food', 'art', 'fashion', 'religious', 'film', 'launch', 'product'
+                        ]
+                    }
+                />
+                <div className="publish_div">
+                    <button type="submit" className="publish_event">Publish Event {isSubmitting && <Spinner />}</button>
                 </div>
-                <button type="submit" className="publish_event">Publish Event {isSubmitting && <Spinner />}</button>
             </Form>
         </div>
     </div>

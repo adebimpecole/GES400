@@ -1,102 +1,327 @@
+
 .container {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
   display: flex;
-  width: 1031px;
-  height: 888px;
-  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
 }
 .CheckOut {
-  filter: none !important;
-  background: #eef6fb;
-  width: 653px;
-  height: 888px;
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin-left: 17%;
+  width: 70%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
   flex-shrink: 0;
-  padding-left: 50px;
+
 }
-.CheckOut h3 {
-  padding-top: 27px;
-  text-align: center;
+.check_out{
+  height: 100%;
+  width: 60%;
+  background: #EEF6FB;
+  padding: 2rem;
+  box-sizing: border-box;
 }
-.CheckOut p,
-span {
-  padding-left: 15px;
+.FirstName, .other_input{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.checkout_form label{
+  width: 48%;
+  font-size: .8rem;
+  margin-bottom: 1rem;
+}
+.checkbox_head, .agree{
+  font-size: .8rem;
+  padding-bottom: .5rem;
+}
+.Checkbox{
+  font-size: .7rem;
+}
+.checkout_form label input{
+  height: 2.5rem;
+  font-size: .7rem;
+}
+.checkout_form{
+  gap: 1rem;
+  padding-top: .5rem;
+}
+.Checkbox input, .agree input{
+  border: 1px solid #133c55;
+  height: .8rem;
+  width: .8rem;
+  cursor: pointer;
+}
+.Checkbox {
+  align-items: baseline;
+  gap: .5rem;
+  display: flex;
+}
+.agree{
+  padding: 3rem 0 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: .5rem;
+}
+.agree input{
+}
+.checkout_buttons{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
 .CheckOut button {
   cursor: pointer;
   border-radius: 4px;
   background: #fff;
-  padding-left: 15px;
   display: inline-flex;
-  padding: 22px 94px;
+  width: 45%;
+  padding: 1rem 0;
   justify-content: center;
   align-items: center;
-  margin: 10px;
   border-style: none;
+  font-size: .8rem;
+  font-weight: 600;
+  box-sizing: content-box;
 }
-.Checkbox {
-  align-items: center;
-  display: flex;
-  border-radius: 50px;
+.CheckOut button:hover{
+  color: #fff;
+  background: #3d5a80;
 }
-.Form {
-  margin-top: 33px;
-  position: relative;
+.checkout_name{
+  font-size: 1.5rem;
+  padding: 0 0 1.5rem 0;
+  text-align: center;
 }
-.Form input {
-  width: 278px;
-  height: 70px;
-  flex-shrink: 0;
-  border-radius: 4px;
-  background: #fff;
-  padding-top: 5px;
-  padding-left: 5px;
-  margin: 20px;
-  border-style: none;
-  color: var(--inside-text, #81868a);
-  font-family: Gilroy;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-.CheckOut label {
-  color: #133c55;
-  font-family: Gilroy;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  position: absolute;
-  transform: translateY(-100%);
-  margin-top: 20px;
-  margin-left: 20px;
-  transition: all 0.2s;
-  pointer-events: none;
+.checkout_head{
+  font-size: 1.1rem;
 }
 .OrderSummary {
-  background-color: #fff;
-  width: 378px;
-  height: 888px;
-  flex-shrink: 0;
+  width: 40%;
+  height: 100%;
+  font-size: .8rem;
 }
-.OrderSummary p {
-  color: var(--new-text-color, #133c55);
-  font-family: Gilroy;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  justify-content: space-between;
+.summary_image{
+  width: 100%;
+  height: 25%;
+  margin-bottom: 1.5rem;
 }
-.OrderSummary span {
-  padding-right: 18px;
+.summary_head, .total_summary{
+  font-weight: 600;
+  padding: 0 1rem;
+}
+.summary_details{
   display: flex;
+  width: 100%;
+  flex-direction: row;
   justify-content: space-between;
-  padding-left: 24px;
+  padding: .5rem 1rem;
 }
-.OrderSummary h3 {
-  padding-left: 24px;
+.total_summary{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: .5rem 1rem;
+}
+
+@media only screen and (max-width: 1043px){
+  .CheckOut {
+    background-color: white;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+  }
+  .check_out{
+    padding: 1rem 2rem;
+  }
+}
+@media only screen and (max-width: 943px){
+  .checkout_form label, .checkbox_head, .agree, .CheckOut button, .OrderSummary{
+    font-size: .7rem;
+  }
+  .Checkbox{
+    font-size: .6rem;
+  }
+  .checkout_form label input{
+    height: 2rem;
+  }
+  .CheckOut button {
+    padding: .8rem 0;
+  }
+  .summary_image{
+    height: 20%;
+  }
+  .checkout_name{
+    font-size: 1.3rem;
+    padding: 0 0 1rem 0;
+  }
+  .CheckOut {
+    width: 70%;
+  }
+  .checkout_head{
+    font-size: .9rem;
+  }
+}
+@media only screen and (max-width: 768px){
+  .CheckOut {
+    width: 90%;
+    margin-left: 10%;
+  }
+  .check_out{
+    padding: 1rem;
+  }
+}
+@media only screen and (max-width: 668px){
+  .CheckOut {
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+@media only screen and (max-width: 568px){
+  .checkout_form label, .checkbox_head, .agree, .CheckOut button, .OrderSummary{
+    font-size: .6rem;
+  }
+  .Checkbox{
+    font-size: .5rem;
+  }
+  .checkout_form label input{
+    height: 2rem;
+  }
+  .CheckOut button {
+    padding: .8rem 0;
+  }
+  .checkout_name{
+    font-size: 1.2rem;
+    padding: 0 0 1rem 0;
+  }
+  .checkout_head{
+    font-size: .8rem;
+  }
+  .checkout_buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .CheckOut{
+    height: 70%;
+    flex-direction: column-reverse;
+  }
+  .check_out, .OrderSummary{
+    width: 100%;
+  }
+  .OrderSummary{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 20% 20% 20% 20% auto;
+    height: 6rem;
+  }
+  .summary_image{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 6;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+  }
+  .summary_head{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding-top: .5rem;
+  }
+  .summary_details{
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+  }
+  .total_summary{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+  .container{
+    height: fit-content;
+  }
+  .check_out{
+    padding: 1rem;
+    height: auto;
+  }
+  .CheckOut button {
+    width: 100%;
+  }
+  .FirstName, .other_input{
+    flex-direction: row;
+    gap: .5rem;
+  }
+  .checkout_form label{
+    width: 48%;
+    margin-bottom: .5rem;
+  }
+  .agree {
+    padding: 2rem 0 0 0;
+    align-items: center;
+  }
+  .checkout_buttons {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+@media only screen and (max-width: 376px){
+  .checkout_form label, .checkbox_head, .agree, .CheckOut button, .OrderSummary{
+    font-size: .5rem;
+  }
+  .Checkbox{
+    font-size: .4rem;
+  }
+  .checkout_form label input{
+    height: 1.5rem;
+  }
+  .CheckOut button {
+    padding: .6rem 0;
+  }
+  .checkout_name{
+    font-size: .9rem;
+    padding: 0 0 .5rem 0;
+  }
+  .checkout_head{
+    font-size: .7rem;
+  }
+  .checkout_form label{
+    width: 100%;
+    margin-bottom: .5rem;
+    gap: .2rem;
+  }
+  .CheckOut{
+    height: 70%;
+    flex-direction: column-reverse;
+  }
+  .check_out, .OrderSummary{
+    width: 100%;
+  }
+  .agree {
+    padding: 1rem 0 0 0;
+  }
+  .checkout_buttons {
+    flex-direction: row;
+    gap: .5rem;
+  }
 }
