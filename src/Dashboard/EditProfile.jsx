@@ -3,24 +3,38 @@ import plus1 from "../assets/plus1.svg"
 import plus2 from "../assets/plus2.svg"
 import prince from "../assets/prince.png"
 import back from "../assets/bckgrnd.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form } from "react-router-dom"
+import { Spinner } from "flowbite-react"
 
-const EditProfile = ({isOpen, onClose, coverUrl, profileUrl, username}) => {
-    const [cover, setCover] = useState(coverUrl)
-    const [profile, setProfile] = useState(profileUrl)
+const EditProfile = ({isOpen, onClose, username, twitter, instagram, facebook, website, bio, phone, loading}) => {
+    const [cover, setCover] = useState(prince)
+    const [profile, setProfile] = useState(prince)
+    const [didPictureChange, setDidPictureChange] = useState({cover : false, profile : false})
+    const [formSubmitted, setFormSubmitted] = useState(false)
+
+    useEffect(()=>{
+        if(!isOpen) setFormSubmitted(false)
+    }, [isOpen])
 
 
     function showCoverImage(e){
+        setDidPictureChange({...didPictureChange, cover : true})
         setCover(URL.createObjectURL(e.target.files[0]))
     }
 
     function showProfileImage(e){
+        setDidPictureChange({...didPictureChange, profile : true})
         setProfile(URL.createObjectURL(e.target.files[0]))
     }
 
+    function afterFormSubmit(){
+        setDidPictureChange({cover : false, profile : false})
+        setFormSubmitted(true)
+    }
+
   return (<>
-    {isOpen && <Form method="POST" encType="multipart/form-data" className='edit_profile_page'>
+    {isOpen && <Form method="POST" encType="multipart/form-data" className='edit_profile_page' onSubmit={afterFormSubmit}>
         <div className="overlay" onClick={onClose}>
             <div className="edit_profile_section" onClick={(e) => e.stopPropagation()}>
                 <div className='eprofile_section1'>
@@ -46,35 +60,40 @@ const EditProfile = ({isOpen, onClose, coverUrl, profileUrl, username}) => {
                         </label>
                         <label>
                             Phone number
-                            <input type="tel" name="phone" id="phone_number"  className="profile_input" placeholder="Tell attendees who's organizing the event" />
+                            <input defaultValue={phone} type="tel" name="phone" id="phone_number"  className="profile_input" placeholder="Your mobile number" />
                         </label>
                         <label>
                             Bio
-                            <textarea type="text" name="bio_input" id="bio_input"  className="bio_input" placeholder="Tell attendees who's organizing the event" />
+                            <textarea defaultValue={bio} type="text" name="bio" id="bio_input"  className="bio_input" placeholder="Tell attendees who's organizing the event" />
                         </label>
                     </div>
                     <div className="profile_form2">
                     <label>
                             Website
-                            <input type="url" name="website" id="website"  className="website_url" placeholder="Enter url"/>
+                            <input defaultValue={website} type="url" name="website" id="website"  className="website_url" placeholder="Enter url"/>
                         </label>
                         <label>
                             Facebook
-                            <input type="url" name="facebook" id="facebook"  className="facebook_url" placeholder="Enter url"/>
+                            <input defaultValue={facebook} type="url" name="facebook" id="facebook"  className="facebook_url" placeholder="Enter url"/>
                         </label>
                         <label>
                             Twitter
-                            <input type="url" name="twitter" id="twitter"  className="twitter_url" placeholder="Enter url"/>
+                            <input defaultValue={twitter} type="url" name="twitter" id="twitter"  className="twitter_url" placeholder="Enter url"/>
                         </label>
                         <label>
                             Instagram
-                            <input type="url" name="instagram" id="instagram"  className="instagram_url" placeholder="Enter url"/>
+                            <input defaultValue={instagram} type="url" name="instagram" id="instagram"  className="instagram_url" placeholder="Enter url"/>
                         </label>
                     </div>
                 </div>
-                <div className="update_div"><button className='update_button'>Update</button></div>
+
+                <input className="hidden" readOnly type="checkbox" checked={didPictureChange.cover} name="is_cover_choosen"/>
+                <input className="hidden" readOnly type="checkbox" checked={didPictureChange.profile} name="is_profile_choosen"/>
+                <div className="update_div"><button className='bg-white px-2'>Update {formSubmitted && <Spinner className="ml-2" size="sm"/>}</button></div>
             </div>
         </div>
+
+        
     </Form>
     }
     </>

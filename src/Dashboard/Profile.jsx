@@ -1,7 +1,7 @@
 import "./Profile.css"
 import { getUserFromSession } from "../hooks/hooks"
 import prince from "../assets/bckgrnd.png"
-import back from "../assets/bckgrnd.png"
+// import back from "../assets/bckgrnd.png"
 import { GoPencil } from "react-icons/go";
 import { AiOutlineLink, AiOutlineInstagram } from "react-icons/ai";
 import { LiaFacebookSquare, LiaCalendarAlt } from "react-icons/lia";
@@ -9,14 +9,28 @@ import { FiTwitter } from "react-icons/fi";
 import EditProfile from "./EditProfile";
 import useSWR from "swr";
 import { fetcher } from "../actions/actions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { formatAMPM } from "../Utilities/utilis";
+import Loading from "./Loading";
+import { useActionData } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 
 const Profile = () => {
+  const [user, setUser] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { data : user } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${getUserFromSession().id}?populate=*`, fetcher);
+  const { data : User, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${getUserFromSession().id}?populate=*`, fetcher);
 
+  const updatedUser = useActionData()
+
+  useEffect(()=>{
+    setUser(User)
+  }, [User])
+
+  useEffect(()=>{
+    if(updatedUser) setUser(updatedUser.data?.data)
+    setIsModalOpen(false)
+  }, [updatedUser])
 
   const EditFunction = () => {
     // alert("clicked")
@@ -32,43 +46,49 @@ const Profile = () => {
     console.log(user)
   }
   return (
+    <>{ isLoading ? <Loading isopen={true}/> :
     <div className='profile'>
       <div className='profile_section'>
         <div className='profile_section1'>
-            <img className='back_picture' alt="pic" src={prince}/>
+            <img className='back_picture' alt="pic" src={user?.cover?.url || prince}/>
             <div className="profile_picture_div">
-              <img className='profile_picture' alt='pic' src={prince}/>
+              <img className='profile_picture' alt='pic' src={user?.profile?.url || prince}/>
             </div>
         </div>
         <div className='profile_section2'>
-          <h2 className='person_name'>{getUserFromSession()?.username}</h2>
-          <span className='user_name'>@{getUserFromSession()?.username}</span>
+          <h2 className='person_name'>{user?.username}</h2>
+          <span className='user_name'>@{user?.username}</span>
           <div className='link_and_join'>
-              <span className='website'><AiOutlineLink className='link_icon'/>www.jordanhughes.com</span>
-              <span className='join_date'><LiaCalendarAlt className='date_icon'/>Joined June 2023</span>
+              <a className='website' href={user?.website || '#'}><AiOutlineLink className='link_icon'/>{user?.website || (<span>www.your<span className="text-black">personal</span>website.domain</span>)}</a>
+              <span className='join_date'><LiaCalendarAlt className='date_icon'/>joined {user?.createdAt ? formatAMPM(new Date(user.createdAt)) : '...'}</span>
           </div>
           <div className='bio'>
-              A passionate event enthusiast with an unquenchable thirst for creating memorable experiences. With a keen eye for detail and a flair for creativity, Jordan Hughes has developed a reputation as a skilled event planner and curator.
+              {user?.bio || 'Your Bio goes here'}
           </div>
           <div className='socials'>
-            <LiaFacebookSquare/>
-            <AiOutlineInstagram/>
-            <FiTwitter/>
+            <a href={user?.facebook || '#facebook link goes here'}><LiaFacebookSquare/></a>
+            <a href={user?.instagram || '#instagram link goes here'}><AiOutlineInstagram/></a>
+            <a href={user?.twitter || '#twitter link goes here'}><FiTwitter/></a>
           </div>
-          {user && <div className='edit_link' onClick={EditFunction}>
+           <div className='edit_link' onClick={EditFunction}>
               <GoPencil className="pencil_icon"/>
               <span className='mini_edit_link' >Edit Profile</span>
-          </div>}
+          </div>
         </div>
       </div>
-      {user && <EditProfile 
+      <EditProfile 
         isOpen={isModalOpen} 
-        onClose={closeModal} 
-        profileUrl={prince}
-        coverUrl={prince}
-        username={user.username}
-      />}
-    </div>
+        onClose={closeModal}
+        username={user?.username}
+        bio={user?.bio}
+        facebook={user?.facebook}
+        twitter={user?.twitter}
+        instagram={user?.instagram}
+        website={user?.website}
+        phone={user?.phone}
+      />
+    </div>}
+    </>
   )
 }
 

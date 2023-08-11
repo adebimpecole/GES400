@@ -52,33 +52,26 @@ export async function createAction({request}) {
 export async function updateUserAction({request}){
     const formData = await request.formData();
 
-    //updating formData to submit and link image to event created above using id
-    // formData.append("ref", "api::event.event")
-    // formData.append("refId", getUserFromSession()?.id)
-    // formData.append("field", "cover")
-    const data = {};
-    const formData2 = new FormData();
-    formData2.append("files", formData.get("profile"), "profile")
-    formData2.append("files", formData.get("cover"), "cover")
+    let updates = Object.fromEntries(formData);
 
-    data["username"] = formData.get("username")
-    formData2.append("data", JSON.stringify(data))
+    if(!updates.is_cover_choosen) formData.delete("cover")
+    if(!updates.is_profile_choosen) formData.delete("profile")
 
-    const updates = Object.fromEntries(formData2);
-
+    updates = Object.fromEntries(formData);
     console.log(updates)
 
-    await axios.put(import.meta.env.VITE_SERVER_URL + `/api/users/${getUserFromSession().id}?populate=*`, formData2, {
-        headers:{
-            'Authorization' : 'Bearer ' + getUserFromSession().token
-        }
-    })
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+    try {
+        let returnedUser =  await axios.post(import.meta.env.VITE_SERVER_URL + `/api/users-permissions/bob`, formData, {
+            headers:{
+                'Authorization' : 'Bearer ' + getUserFromSession().token
+            }
+        })
 
-
-
-    return null
+        return returnedUser
+    } catch (error) {
+        console.log(error)
+        return null
+    }
 }
 
 
