@@ -17,6 +17,7 @@ import Manage from './Dashboard/Manage'
 import Profile from './Dashboard/Profile'
 import Tickets from './Dashboard/Tickets'
 import EventPage from './Dashboard/EventPage';
+import EventAnalytics from './Dashboard/EventAnalytics'
 import "./App.css"
 
 //actions
@@ -24,7 +25,7 @@ import {createAction, updateUserAction} from './actions/actions'
 
 import { logInAction, signUpAction } from './actions/authenticationActions'
 //loaders
-import { dashboardLoader, manageLoader, eventLoader } from './actions/loaders';
+import { dashboardLoader, manageLoader, eventLoader, analyticsLoader } from './actions/loaders';
 
 
 const router = createBrowserRouter([
@@ -75,6 +76,11 @@ const router = createBrowserRouter([
         path : '/dashboard/event/:eventId',
         element: <EventPage />,
         loader: eventLoader
+      },
+      {
+        path : '/dashboard/analytics/:eventId',
+        element: <EventAnalytics />,
+        loader : eventLoader
       }
     ]
   },

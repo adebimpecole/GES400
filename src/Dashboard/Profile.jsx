@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { formatAMPM } from "../Utilities/utilis";
 import Loading from "./Loading";
 import { useActionData } from "react-router-dom";
+import { Spinner } from "flowbite-react";
 
 /* eslint-disable react/prop-types */
 
@@ -53,6 +54,7 @@ const Profile = () => {
             <img className='back_picture' alt="pic" src={user?.cover?.url || prince}/>
             <div className="profile_picture_div">
               <img className='profile_picture' alt='pic' src={user?.profile?.url || prince}/>
+              <Spinner size="md"/>
             </div>
         </div>
         <div className='profile_section2'>

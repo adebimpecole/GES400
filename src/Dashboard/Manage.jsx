@@ -4,6 +4,7 @@ import heart from "../assets/heart.svg"
 import { getUserFromSession } from "../hooks/hooks"
 import { useState, useEffect } from "react"
 import EventCard from "../components/EventCard"
+import AnalyticCard from "../components/AnalyticCard"
 import useSWR from 'swr'
 import { fetcher, handleHeartClick } from "../actions/actions"
 import Loading from "./Loading"
@@ -38,7 +39,7 @@ const Manage = (props) => {
                 <div className="scroll_div">
                     {
                         createdEvents?.map(event => 
-                            <EventCard 
+                            <AnalyticCard
                                 key={event.id}
                                 title={event.name}
                                 type={event.type}

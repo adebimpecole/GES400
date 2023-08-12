@@ -1,12 +1,28 @@
 import { useState } from 'react';
-import Piechart from "../components/PieChart"
+import Piechart from "../components/Piechart"
 import "./EventAnalytics.css"
+import { useLoaderData } from 'react-router-dom';
+import useSWR from 'swr';
+import { fetcher } from '../actions/actions';
+import { useEffect } from 'react';
+import { formatAMPM } from '../Utilities/utilis';
 
 const EventAnalytics = () => {
     const [chartKey, setChartKey] = useState(0);
+    const eventId = useLoaderData()
+    const [event, setEvent] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby`, fetcher, { refreshInterval : 100 });
+  
+    useEffect(()=>{
+      if(data?.data?.attributes) setEvent(data.data.attributes)
+    }, [data])
+  
+    if(event) console.log(event)
+    if(isLoading) console.log(isLoading)
 
   const renderChart = () => {
-    setChartKey(chartKey + 1);
+    setChartKey(chartKey + 3);
   };
   renderChart;
 
@@ -15,8 +31,8 @@ const EventAnalytics = () => {
         <div className='home_section event_analytics_section'>
             <div className='event_analytics_section1'>
                 <h3 className='section_head'>Event Analytics</h3>
-                <span className="event_analytics_name">U2018 CSC Champions League 2023</span>
-                <span className="event_analytics_date">13 July, 2023</span>
+                <span className="event_analytics_name">{event?.name}</span>
+                <span className="event_analytics_date">{formatAMPM(new Date(event?.end || event?.start))}</span>
             </div>
             <div className="event_analytics_info">
                 <span className="event_analytics_subhead">Event Info</span>

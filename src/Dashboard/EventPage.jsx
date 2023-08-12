@@ -16,7 +16,8 @@ import ellipse from '../assets/public/ellipse-14.png'
 import { AiOutlineFacebook, AiOutlineInstagram } from "react-icons/ai";
 import { BsGlobe } from "react-icons/bs";
 import { FiTwitter } from "react-icons/fi";
-import bck from "../assets/bckgrnd.png"
+// import bck from "../assets/bckgrnd.png"
+import { getUserFromSession } from "../hooks/hooks";
 
 
 
@@ -27,6 +28,9 @@ function EventPage() {
   const [event, setEvent] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby`, fetcher, { refreshInterval : 100 });
+  const { data:user , usererror, userIsLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${getUserFromSession().id}?populate=*`, fetcher, { refreshInterval : 100 });
+
+  if(user) console.log('user here', user)
 
   useEffect(()=>{
     if(data?.data?.attributes) setEvent(data.data.attributes)
@@ -79,7 +83,8 @@ function EventPage() {
                   </span>
                   <span>
                     <img src={tag} alt="tags icon"/>
-                    Art & Photography
+                    {event.category?.split(',')[0]}
+                    {event.category?.split(',')[1] && ' & ' + event.category?.split(',')[1]}
                   </span>
                 </div>
                 
@@ -124,25 +129,23 @@ function EventPage() {
                 </div>
                 <button onClick={() => setIsModalOpen(true)} className="checkout_button">Checkout</button>
               </div>
-              <div className="About">
+              {user && <div className="About">
                 <h2 className="details_head">About your Host</h2>
                 <span className="about_location">
-                  <img src={ellipse} alt="" /> University of
-                  PortHarcourt
+                  <img src={user.profile.url} alt="" className="w-[50px] object-cover rounded-full aspect-square"/>
+                  {user?.username}
                 </span>
                 <p className="about_description">
-                  Richard Sprengeler will discuss his latest B&W architectural project
-                  at Cementland. This talk will include the history & mystery of
-                  Cementland and will review the work created and ... See more
+                  {user?.bio}
                 </p>
-                <h3 className="details_subhead">Has hosted 25 events on Primavera</h3>
+                <h3 className="details_subhead"> Has hosted {user?.createdevents?.length == 1 ? user?.createdevents?.length + ' event' : user?.createdevents?.length + 'events'}  on Primavera</h3>
                 <span className="about_socials">
-                  <AiOutlineFacebook className="social_icon1"/>
-                  <AiOutlineInstagram className="social_icon1"/>
-                  <FiTwitter className="social_icon2"/>
-                  <BsGlobe className="social_icon2"/>
+                  <a href={user?.facebook || '#facebook link goes here'}><AiOutlineFacebook className="social_icon1"/></a>
+                  <a href={user?.instagram || '#instagram link goes here'}><AiOutlineInstagram className="social_icon1"/></a>
+                  <a href={user?.twitter || '#twitter link goes here'}><FiTwitter className="social_icon2"/></a>
+                  <a href={user?.website || '#website link goes here'}><BsGlobe className="social_icon2"/></a>
                 </span>
-              </div>
+              </div>}
             </div>
           </div>
         </>
