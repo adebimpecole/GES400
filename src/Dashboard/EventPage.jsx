@@ -18,6 +18,8 @@ import { BsGlobe } from "react-icons/bs";
 import { FiTwitter } from "react-icons/fi";
 // import bck from "../assets/bckgrnd.png"
 import { getUserFromSession } from "../hooks/hooks";
+import {Helmet} from "react-helmet";
+import { Spinner } from "flowbite-react";
 
 
 
@@ -30,24 +32,44 @@ function EventPage() {
   const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby`, fetcher, { refreshInterval : 100 });
   const { data:user , usererror, userIsLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${getUserFromSession().id}?populate=*`, fetcher, { refreshInterval : 100 });
 
-  if(user) console.log('user here', user)
 
   useEffect(()=>{
     if(data?.data?.attributes) setEvent(data.data.attributes)
   }, [data])
 
-  if(event) console.log(event)
   if(isLoading) console.log(isLoading)
+
   const Slide = () => {
 
   }
+
+  function payWithPaystack(e) {
+    e.preventDefault();
+  
+    let handler = PaystackPop.setup({
+      key: 'pk_test_6c3ee31919315e74bb8f076a2789144c567526ff', // Replace with your public key
+      email: 'ovifeanyichukwu@gmail.com',
+      amount: 100 * 100, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+      // label: "Optional string that replaces customer email"
+      onClose: function(){
+        alert('Window closed.');
+      },
+      callback: function(response){
+        // let message = 'Payment complete! Reference: ' + response.reference;
+        // alert(message);
+        console.log(response)
+      }
+    });
+  
+    handler.openIframe();
+  }
+
   return (
     <div className='event_page'>
-      {/* {<div className="absolute top-0 right-0 left-0 h-screen flex justify-center items-center">
+      {isLoading && <div className="absolute top-0 right-0 left-0 h-screen flex justify-center items-center">
         <Spinner size='xl'
-          style={{backgroundImage: url(event?.cover?.data?.attributes?.url)}
         />
-      </div>} */}
+      </div>}
       <div className='event_page_section'>
         {event &&
           <>
@@ -127,7 +149,7 @@ function EventPage() {
                   <p className="details_subhead">Amount</p>
                   <input type="number" name="" id="" className="quantity_field"/>
                 </div>
-                <button onClick={() => setIsModalOpen(true)} className="checkout_button">Checkout</button>
+                <button onClick={(e) => {/*setIsModalOpen(true);*/ payWithPaystack(e)}} className="checkout_button">Checkout</button>
               </div>
               {user && <div className="About">
                 <h2 className="details_head">About your Host</h2>
