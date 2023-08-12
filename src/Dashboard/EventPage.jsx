@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./EventPage.css";
 import Modal from "../components/Modal";
 import CheckOut from "../components/CheckOut";
-import { useLoaderData } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
 import useSWR from "swr";
 import { fetcher } from "../actions/actions";
 import { formatAMPM } from "../Utilities/utilis";
@@ -18,7 +18,6 @@ import { BsGlobe } from "react-icons/bs";
 import { FiTwitter } from "react-icons/fi";
 // import bck from "../assets/bckgrnd.png"
 import { getUserFromSession } from "../hooks/hooks";
-import {Helmet} from "react-helmet";
 import { Spinner } from "flowbite-react";
 
 
@@ -29,8 +28,8 @@ function EventPage() {
   const eventId = useLoaderData()
   const [event, setEvent] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby`, fetcher, { refreshInterval : 100 });
-  const { data:user , usererror, userIsLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${getUserFromSession().id}?populate=*`, fetcher, { refreshInterval : 100 });
+  const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby&populate[2]=createdby.profile`, fetcher, { refreshInterval : 100 });
+  const { data:user , usererror, userIsLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${data?.data?.attributes?.createdby?.data?.id}?populate=*`, fetcher, { refreshInterval : 100 });
 
 
   useEffect(()=>{
@@ -43,6 +42,8 @@ function EventPage() {
 
   }
 
+  if(data) console.log(data) 
+  if(user) console.log(user)
   function payWithPaystack(e) {
     e.preventDefault();
   
@@ -143,22 +144,24 @@ function EventPage() {
                   <span className="next_button">&lt;</span> 
                 </div>
                 
+                <Form method="POST">
                 <div className="Quantities">
                   <p className="details_subhead">Quantity</p>
                   <input type="number" name="" id="" min="1" max="5" className="quantity_field"/>
                   <p className="details_subhead">Amount</p>
                   <input type="number" name="" id="" className="quantity_field"/>
                 </div>
-                <button onClick={(e) => {/*setIsModalOpen(true);*/ payWithPaystack(e)}} className="checkout_button">Checkout</button>
+                <button className="checkout_button">Checkout</button>
+                </Form>
               </div>
-              {user && <div className="About">
+             {user ? <div className="About">
                 <h2 className="details_head">About your Host</h2>
                 <span className="about_location">
-                  <img src={user.profile.url} alt="" className="w-[50px] object-cover rounded-full aspect-square"/>
+                  <img src={user?.profile?.url || ellipse} alt="" className="w-[50px] object-cover rounded-full aspect-square"/>
                   {user?.username}
                 </span>
                 <p className="about_description">
-                  {user?.bio}
+                  {user?.bio || 'No Bio Yet'}
                 </p>
                 <h3 className="details_subhead"> Has hosted {user?.createdevents?.length == 1 ? user?.createdevents?.length + ' event' : user?.createdevents?.length + 'events'}  on Primavera</h3>
                 <span className="about_socials">
@@ -167,7 +170,7 @@ function EventPage() {
                   <a href={user?.twitter || '#twitter link goes here'}><FiTwitter className="social_icon2"/></a>
                   <a href={user?.website || '#website link goes here'}><BsGlobe className="social_icon2"/></a>
                 </span>
-              </div>}
+              </div> : <Spinner size="md"/>}
             </div>
           </div>
         </>

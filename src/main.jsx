@@ -21,7 +21,7 @@ import EventAnalytics from './Dashboard/EventAnalytics'
 import "./App.css"
 
 //actions
-import {createAction, updateUserAction} from './actions/actions'
+import {createAction, updateUserAction, checkoutAction} from './actions/actions'
 
 import { logInAction, signUpAction } from './actions/authenticationActions'
 //loaders
@@ -75,7 +75,8 @@ const router = createBrowserRouter([
       {
         path : '/dashboard/event/:eventId',
         element: <EventPage />,
-        loader: eventLoader
+        loader: eventLoader,
+        action : checkoutAction
       },
       {
         path : '/dashboard/analytics/:eventId',

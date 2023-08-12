@@ -100,3 +100,38 @@ export async function handleHeartClick(isLiked, eventID){
         return false
     }
 }
+
+export async function checkoutAction(){
+    await payWithPaystack()
+
+    console.log('here')
+    return null
+    // return null
+}
+
+async function payWithPaystack() {
+
+
+    return new Promise(function(resolve, reject) {    
+        let handler = PaystackPop.setup({
+            key: 'pk_test_6c3ee31919315e74bb8f076a2789144c567526ff', // Replace with your public key
+            email: 'ovifeanyichukwu@gmail.com',
+            amount: 100 * 100, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+            // label: "Optional string that replaces customer email"
+            onClose: function(){
+              alert('Window closed.');
+              reject()
+            },
+            callback: function(response){
+              // let message = 'Payment complete! Reference: ' + response.reference;
+              // alert(message);
+              resolve(response)
+            }
+          });
+        
+          handler.openIframe();
+    });
+
+  }
+
+  
