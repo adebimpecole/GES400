@@ -104,7 +104,8 @@ export async function handleHeartClick(isLiked, eventID){
 export async function checkoutAction(){
     await payWithPaystack()
 
-    console.log('here')
+    
+
     return null
     // return null
 }

@@ -24,7 +24,7 @@ const EventCard = ({title, type = 'In-person', url, hideLikeIcon, style, like, a
         <div className={style}>
             <div className='picture_div' onClick={switchLike}>
                 {isLoading && <Spinner className='absolute top-2 left-2' size='md'/>} 
-                <img src={url} className='event_img' alt='image'/>
+                <img src={url} className='event_img object-cover object-top' alt='image'/>
                 { !hideLikeIcon && ( 
                         islike?
                         <p className='heart_icon' >❤️</p>
