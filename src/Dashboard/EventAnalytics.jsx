@@ -6,12 +6,16 @@ import useSWR from 'swr';
 import { fetcher } from '../actions/actions';
 import { useEffect } from 'react';
 import { formatAMPM } from '../Utilities/utilis';
+import { Spinner } from 'flowbite-react';
+import axios from 'axios';
+import { getUserFromSession } from '../hooks/hooks';
 
 const EventAnalytics = () => {
     const [chartKey, setChartKey] = useState(0);
     const eventId = useLoaderData()
     const [event, setEvent] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLiveStatusLoading, setIsLiveStatusLoading] = useState(false)
     const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby`, fetcher, { refreshInterval : 100 });
   
     useEffect(()=>{
@@ -26,8 +30,29 @@ const EventAnalytics = () => {
   };
   renderChart;
 
+  async function updateEventLiveStatus(){
+    if(!isLiveStatusLoading){ //if a request is not currentlly being processed
+        if(eventId){ //if eventID is present
+            setIsLiveStatusLoading(true)
+            await axios.put(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}`, {data : {live : !event.live}}, {
+                headers:{
+                    'Authorization' : 'Bearer ' + getUserFromSession()?.token
+                }
+            })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
+            setIsLiveStatusLoading(false)
+        }
+
+    }
+  }
+
   return (
     <div className="event_analytics">
+        {isLoading ? <div className="absolute top-0 right-0 left-0 h-screen flex justify-center items-center">
+        <Spinner size='xl'
+        />
+      </div> :
         <div className='home_section event_analytics_section'>
             <div className='event_analytics_section1'>
                 <h3 className='section_head'>Event Analytics</h3>
@@ -38,11 +63,12 @@ const EventAnalytics = () => {
                 <span className="event_analytics_subhead">Event Info</span>
                 <div className="event_analytics_subdiv">
                     <div className="event_visibility">
-                        <div className="event_visibility_sub">
+                        <div onClick={updateEventLiveStatus} className={event?.live ? `event_visibility_sub active relative` : `event_visibility_sub relative`}>
                             <span className="event_visibility_name">Live</span>
                             <div className="event_visibility_info">
-                                Your event is live on Primavera.
+                                {event?.live ? 'Your event is live on Primavera.' : 'Click to make your Event Live'}
                             </div>
+                            {isLiveStatusLoading && <Spinner size="xs" className='absolute top-1 right-1'/>}
                         </div> 
                         <div className="event_visibility_sub">
                             <span className="event_visibility_name">Public</span>
@@ -75,6 +101,7 @@ const EventAnalytics = () => {
                 </div>
             </div>
         </div>
+        }
     </div>
   )
 }

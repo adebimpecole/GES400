@@ -18,7 +18,7 @@ const Manage = (props) => {
     const { data, error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${getUserFromSession()?.id}?populate[createdevents][populate][0]=cover&populate[likes][populate][0]=cover&populate[createdevents][populate][1]=likedby&populate[likes][populate][1]=likedby`, fetcher, { refreshInterval : 100 });
 
     if(error) console.log(error)
-    if(data) console.log(data?.likes)
+    if(data) console.log(data)
     // const navigate = useNavigate();
 
     useEffect(()=> {
@@ -62,7 +62,7 @@ const Manage = (props) => {
             <div className='manage_section2'>
                 <div className="scroll_div">
                 {
-                        InterestedEvents?.map(event => 
+                        InterestedEvents?.map(event =>  event.live == true || event?.createdby &&
                             <EventCard 
                                 key={event?.id}
                                 title={event?.name}
