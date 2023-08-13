@@ -1,0 +1,524 @@
+.landing_page{
+}
+.first_section{
+    background-image: url(../assets/wedding.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 40rem;
+    width: 100%;
+}
+.first_overlay{
+    width: 100%;
+    height: 100%;
+    background-color: #00001096;
+    padding: 3% 5%;
+
+}
+
+.first_section_container{
+    width: 55%;
+    height: 100%;
+    padding: 10% 5%;
+}
+.page_header{
+    font-size: 3rem;
+    font-weight: 700;
+    padding-bottom: 2rem;
+    color: #98C1D9;
+    font-style: normal;
+    line-height: normal;
+    text-transform: capitalize;
+}
+.first_buttons{
+    display: flex;
+    flex-direction: row;
+}
+.first_button1{
+    background: #98C1D9;
+    color: #133C55;
+    font-weight: 700;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    font-size: .9rem;
+    cursor: pointer;
+}
+.first_button1:hover{
+    background: #133C55;
+    color: #98C1D9;
+    text-decoration: none;
+}
+.first_button_text{
+    color: #98C1D9;
+    font-weight: 700;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    cursor: pointer;
+    width: fit-content;
+}
+.first_button_text:hover{
+    text-decoration: underline;
+}
+.second_section{
+    background: #fff;
+    padding: 5% 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.second_section_container{
+    width: 45%;
+}
+.second_header{
+    font-weight: 700;
+    font-size: 2.3rem;
+}
+.first_text{
+    font-size: .9rem;
+}
+.third_section{
+    display: flex;
+    flex-direction: column;
+    padding: 3% 5%;
+    align-items: center;
+    gap: 2rem;
+}
+.third_sub_section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.third_sub1{
+    background: #F0F5FA;
+    width: 32%;
+    border-radius: 0.25rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.third_head{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.third_text{
+    font-size: .9rem;
+    padding: .5rem 0;
+}
+.third_illustration{
+    width: 70%;
+}
+.payment_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.payment_sub_section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.payment_card:nth-child(1){
+    border: 3px solid #D9D9D9;
+    padding: .8rem 1rem;
+    height: 80%;
+    border-radius: 15px;
+    margin-right: 1rem;
+}
+.payment_card:nth-child(4){
+    border: 3px solid #D9D9D9;
+    padding: .4rem 1.2rem;
+    height: 30%;
+    border-radius: 15px;
+    margin-left: 1rem;
+}
+.fourth_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F0F5FA;
+    padding: 3% 5%;
+    gap: 2rem;
+}
+.fourth_grid{
+    height: 30rem;
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-template-columns: 45% 45%;
+    overflow: hidden;
+    gap: 1rem;
+    width: 70%;
+}
+.image_grid1{
+    width: 100%;
+    height: 100%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.image_grid2{
+    width: 100%;
+    height: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    overflow: hidden;
+}
+.image_grid3{
+    width: 100%;
+    height: 100%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+.fifth_section{
+    
+    background-image: url(../assets/laptop.jpeg);
+    height: 30rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.fifth_div{
+    padding: 3% 10%;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to right, #D1E0F0, #D1E0F0, transparent);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+.sixth_section{
+    height: 10rem;
+    padding: 3% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sixth_style{
+    width: 70%;
+    text-align: center;
+}
+.differ{
+    color: #98C1D9;
+}
+.seventh_section{
+    background-image: url(../assets/look.jpeg);
+    background-size: 50%;
+}
+.seventh_div{
+    background-image: linear-gradient(to right, #8CC3E3, #8CC3E3, transparent);
+}
+.seventh_button1{
+    background: #F0F5FA;
+    color: #98C1D9;
+}
+.eighth_section{
+    background: #133C55;
+    display: flex;
+    flex-direction: column;
+    padding: 3% 5%;
+    align-items: center;
+    height: 25rem;
+    gap: 1rem;
+}
+.eight_style{
+    color: #D1E2F3;
+    width: 50%;
+    text-align: center;
+}
+.real_logo{
+    font-size: 2.7rem;
+}
+.logo_socials{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+.home_socials{
+    display: flex;
+    flex-direction: row; 
+    width: 60%;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.home_socials:nth-child(-n+3){
+    color: #93B8DC;
+    font-size: 3.5rem;
+    cursor: pointer;
+}
+.down{
+    align-items: center;
+    justify-content: center;
+}
+.down .first_button1:hover{
+    background: #62aeda;
+    color: #133C55;
+}
+@media only screen and (max-width: 943px){
+    .first_section{
+        height: 30rem;
+    }
+    .page_header{
+        font-size: 2.5rem;
+    }
+    .first_button1, .first_button_text, .first_text{
+        font-size: .8rem;
+    }
+    .first_section_container{
+        width: 75%;
+        padding: 0 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 70%;
+    }
+    .second_section{
+        height: fit-content;
+        gap: 2rem;
+    }
+    .second_section_container{
+        width: 60%;
+    }
+    .second_header{
+        font-size: 2rem;
+    }
+    .second_pic{
+        width: 45%;
+    }
+    .third_section{
+        gap: 1.5rem;
+    }
+    .third_sub1{
+        padding: 1.5rem;
+    }
+    .third_head{
+        font-size: 1.1rem;
+    }
+    .payment_text{
+        font-weight: .9rem;
+    }
+    .payment_card{
+        width: 40%;
+    }
+    .fourth_section{
+        padding: 3% 5% 5% 5%;
+        gap: 1.5rem;
+    }
+    .fourth_grid{
+        height: 25rem;
+        width: 85%;
+    }
+    .fifth_section{
+        height: 25rem;
+    }
+    .fifth_div{
+        padding: 0% 5%;
+    }
+    .sixth_style{
+        width: 80%;
+    }
+    .seventh_section{
+        background-size: 55%;
+    }
+    .eighth_section{
+        height: fit-content;
+    }
+    .eight_style{
+        width: 60%;
+    }
+    .real_logo{
+        font-size: 2.3rem;
+    }
+    .logo_socials{
+        margin-top: 2.5rem;
+    }
+    .home_socials{
+        display: flex;
+        flex-direction: row; 
+        width: 60%;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+    .home_socials:nth-child(-n+3){
+        color: #93B8DC;
+        font-size: 3rem;
+    }
+}
+@media only screen and (max-width: 768px){
+    .first_section_container{
+        width: 100%;
+    }
+    .sixth_style{
+        width: 100%;
+    }
+    .width_header{
+        width: 50%;
+    }
+    .eight_style{
+        width: 90%;
+    }
+    .fourth_grid{
+        width: 100%;
+        grid-template-columns: 50% 50%;
+        height: 23rem;
+    }
+    .fourth_style{
+        text-align: center;
+    }
+    .third_sub_section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+    .third_sub1{
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+    .payment_sub_section{
+        height: 5rem;
+    }
+    .payment_card{
+        height: 100%;
+    }
+    .payment_card:nth-child(1) {
+        border: 2.5px solid #D9D9D9;
+        padding: .8rem 1rem;
+        box-sizing: border-box;
+        height: 65%;
+    }
+    .payment_card:nth-child(4) {
+        border: 2.5px solid #D9D9D9;
+        padding: .4rem 1.1rem;
+        height: 65%;
+    }
+    .fifth_section, .seventh_section{
+        height: 18rem;
+    }
+    .ges_logo{
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 568px){
+    .first_section{
+        height: 25rem;
+    }
+    .page_header{
+        font-size: 2rem;
+    }
+    .first_button1, .first_button_text, .first_text{
+        font-size: .7rem;
+    }
+    .second_header{
+        font-size: 1.6rem;
+    }
+    .third_head{
+        font-size: .9rem;
+    }
+    .payment_text{
+        font-weight: .8rem;
+    }
+    .real_logo{
+        font-size: 2rem;
+    }
+    .home_socials:nth-child(-n+3){
+        font-size: 2.5rem;
+    }
+    .second_section{
+        flex-direction: column;
+    }
+    .second_pic, .second_section_container{
+        width: 90%;
+        align-items: center;
+    }
+    .fifth_section, .sixth_section, .fourth_section{
+        display: none;
+    }
+    .first_section_container{
+        padding: 0;
+    }
+    .second_section{
+        padding: 3%;
+    }
+    .eighth_section{
+        padding: 5% 3%;
+    }
+    .payment_sub_section{
+        height: 3rem;
+    }
+    .payment_card{
+        height: 100%;
+    }
+    .payment_card:nth-child(1) {
+        border: 2px solid #D9D9D9;
+        padding: .3rem .7rem;
+        box-sizing: border-box;
+        width: 20%;
+        height: 70%;
+        border-radius: 8px;
+
+    }
+    .payment_card:nth-child(4) {
+        border: 1.8px solid #D9D9D9;
+        padding: .4rem .1rem;
+        height: 70%;
+        width: 25%;
+        border-radius: 8px;
+    }
+    .third_sub1{
+        flex-direction: column;
+    }
+    .first_buttons{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
+}
+@media only screen and (max-width: 376px){
+    .first_section{
+        height: 18rem;
+    }
+    .first_section_container{
+        height: 95%;
+        padding-top: 10%;
+        justify-content: center;
+    }
+    .page_header{
+        font-size: 1.5rem;
+    }
+    .first_button1, .first_button_text, .first_text{
+        font-size: .6rem;
+    }
+    .second_header{
+        font-size: 1rem;
+    }
+    .third_head{
+        font-size: .8rem;
+    }
+    .payment_text{
+        font-weight: .7rem;
+    }
+    .real_logo{
+        font-size: 2rem;
+    }
+    .home_socials:nth-child(-n+3){
+        font-size: 2.5rem;
+    }
+    .payment_section{
+        display: none;
+    }
+}
