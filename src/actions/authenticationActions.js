@@ -1,6 +1,7 @@
 import axios from "axios";
-import { setUserToSession } from "../hooks/hooks";
+import { getUserFromSession, setUserToSession } from "../hooks/hooks";
 import { redirect } from "react-router-dom";
+import prince from '../assets/prince.png'
 
 export async function logInAction({request}){
     const formData = await request.formData();
@@ -19,12 +20,16 @@ export async function logInAction({request}){
 }
 
 export async function signUpAction({request}){
+    // const profileImg = new File(prince)
     const formData = await request.formData();
-    const updates = Object.fromEntries(formData);
 
     try {
-        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/auth/local/register', updates)
+        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/auth/local/register', formData)
         const {jwt, user : {id , username}} = res.data
+        if(!id){
+            return 'Something went wrong'
+        }
+        
         setUserToSession({token: jwt, id, username})
         return redirect('/dashboard')
     } catch (error) {

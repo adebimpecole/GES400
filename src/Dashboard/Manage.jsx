@@ -4,6 +4,7 @@ import heart from "../assets/heart.svg"
 import { getUserFromSession } from "../hooks/hooks"
 import { useState, useEffect } from "react"
 import EventCard from "../components/EventCard"
+import AnalyticCard from "../components/AnalyticCard"
 import useSWR from 'swr'
 import { fetcher, handleHeartClick } from "../actions/actions"
 import Loading from "./Loading"
@@ -38,7 +39,7 @@ const Manage = (props) => {
                 <div className="scroll_div">
                     {
                         createdEvents?.map(event => 
-                            <EventCard 
+                            <AnalyticCard
                                 key={event.id}
                                 title={event.name}
                                 type={event.type}
@@ -53,7 +54,7 @@ const Manage = (props) => {
                             
                     }
                     {
-                        createdEvents?.length < 1 ?  <p className="italic text-gray-300">you haven't created any events yet</p> : null
+                        createdEvents?.length < 1 ?  <p className="italic text-gray-300 nothing">you haven't created any events yet</p> : null
                     }
                 </div>
             </div>
@@ -76,14 +77,14 @@ const Manage = (props) => {
                             />)
                     }
                     {
-                        InterestedEvents?.length < 1 ?  <p className="italic text-gray-300">you have not liked any events yet</p> : null
+                        InterestedEvents?.length < 1 ?  <p className="italic text-gray-300 nothing">you have not liked any events yet</p> : null
                     }
                 </div>
             </div>
             <h4 className='section_subhead manage_subhead'>Paid Events</h4>
             <div className='manage_section2'>
                 <div className="scroll_div">
-                    <p className="italic text-gray-300">Have not paid or registered for any events yet</p>
+                    <p className="italic text-gray-300 nothing">Have not paid or registered for any events yet</p>
                 </div>
             </div>
         </div>

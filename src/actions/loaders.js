@@ -68,3 +68,11 @@ export async function eventLoader({params}){
     return null
 }
 
+export async function analyticsLoader({params}){
+    const eventId = params?.eventId
+    
+    console.log(eventId)  
+    if(eventId) return eventId
+    return null
+}
+

@@ -1,9 +1,9 @@
 .picture_div{
     display: grid;
-    grid-template-columns: 80% 15%;
-    grid-template-rows: 1rem 10rem;
+    grid-template-columns: 85% 15%;
+    grid-template-rows: 3rem 8rem;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: stretch;
     overflow: hidden;
     position: relative;
 }
@@ -20,7 +20,15 @@
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    padding: .8rem;
     color: #f9f5f5;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media only screen and (max-width: 468px){
+    .picture_div{
+      grid-template-columns: 80% 20%;
+      grid-template-rows: 3rem 5rem;
+  }
 }

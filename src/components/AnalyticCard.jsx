@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Spinner } from "flowbite-react"
 import { Link } from "react-router-dom"
 
-const EventCard = ({title, type = 'In-person', url, hideLikeIcon, style, like, afterClick, eventId, interested}) => {
+const AnalyticCard = ({title, type, url, hideLikeIcon, style, like, afterClick, eventId, interested}) => {
     const [islike, setIsLike] = useState(like)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -35,7 +35,7 @@ const EventCard = ({title, type = 'In-person', url, hideLikeIcon, style, like, a
                 }
             </div>
             <div className='event_info'>
-                <h2 className='event_name'><Link to={`/dashboard/event/${eventId}`}>{title}</Link></h2>
+                <h2 className='event_name'><Link to={`/dashboard/analytics/${eventId}`}>{title}</Link></h2>
                 <span className='event_booking'>{type}</span>
                 <span className='event_popularity'>{interested} Interested . 1.5k Going</span>
             </div>
@@ -45,4 +45,4 @@ const EventCard = ({title, type = 'In-person', url, hideLikeIcon, style, like, a
 
 
 
-export default EventCard
+export default AnalyticCard
