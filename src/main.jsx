@@ -18,6 +18,7 @@ import Profile from './Dashboard/Profile'
 import Tickets from './Dashboard/Tickets'
 import EventPage from './Dashboard/EventPage';
 import LandingPage from './Landing Page/LandingPage';
+import EventAnalytics from './Dashboard/EventAnalytics'
 import "./App.css"
 
 //actions
