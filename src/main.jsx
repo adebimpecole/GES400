@@ -17,7 +17,7 @@ import Manage from './Dashboard/Manage'
 import Profile from './Dashboard/Profile'
 import Tickets from './Dashboard/Tickets'
 import EventPage from './Dashboard/EventPage';
-import EventAnalytics from './Dashboard/EventAnalytics'
+import LandingPage from './Landing Page/LandingPage';
 import "./App.css"
 
 //actions
@@ -31,7 +31,7 @@ import { dashboardLoader, manageLoader, eventLoader, analyticsLoader } from './a
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Landing Page</div>,
+    element: <LandingPage/>,
   },
   {
     path: '/login',

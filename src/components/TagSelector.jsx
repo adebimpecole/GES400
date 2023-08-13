@@ -27,7 +27,7 @@ const TagSelector = ({items}) => {
 
   return (
     <div className="tag_div relative">
-    <span className="tag_header">Tags</span>
+    <span className="date_time_head tag_head">Tags</span>
     <ul className="tags relative z-[3]">
       {
         items && items.map((item, i)=> <li key={i}  className="each_tag" onClick={Pick}>{item}</li>)

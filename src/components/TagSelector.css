@@ -9,9 +9,8 @@
   flex-wrap: wrap;
   padding: 1rem 0 2rem 0;
 }
-.tag_header{
-  padding-left: 0;
-  font-size: .9rem;
+.tag_head{
+  padding: 0;
 }
 .each_tag{
   padding: .5rem 1rem;
