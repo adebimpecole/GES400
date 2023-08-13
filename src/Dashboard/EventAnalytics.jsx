@@ -74,6 +74,34 @@ const EventAnalytics = () => {
                     </div>
                 </div>
             </div>
+            <table>
+                <span className="event_analytics_subhead">Registered Attendees</span>
+                <tr>
+                    <th className='first_one'>Full name</th>
+                    <th>Ticket type</th>
+                    <th>Ticket ID</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td className='first_one'>Okpara Joel Omehoma</td>
+                    <td>Regular</td>
+                    <td>7</td>
+                    <td>#5000</td>
+                </tr>
+                <tr>
+                    <td className='first_one'>Mary Cole Adebimpe</td>
+                    <td>VIP</td>
+                    <td>10</td>
+                    <td>#10000</td>
+                </tr>
+                <tr>
+                    <td className='first_one'>Victor Ogbonnah</td>
+                    <td>VIP</td>
+                    <td>9</td>
+                    <td>#10000</td>
+                </tr>
+                <span className='space'>.</span>
+            </table>
         </div>
     </div>
   )

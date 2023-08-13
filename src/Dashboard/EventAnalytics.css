@@ -26,7 +26,7 @@
 .event_analytics_section{
     display: grid;
     grid-template-columns: 48% 48%;
-    grid-template-rows: 20% auto;
+    grid-template-rows: 20% auto fit-content;
     gap: 1rem;
 }
 .event_analytics_info, .event_analytics_tickets{
@@ -101,11 +101,43 @@
     font-size: .9rem;
     font-weight: 700;
 }
+table{
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    box-sizing: content-box!important;
+
+}
+th{
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    color: #81868A;
+    padding-top: .5rem;
+}
+.space{
+    color: #fff;
+    font-size: 3rem;
+}
+td{
+    font-size: .9rem;
+    font-weight: 700;
+    height: 2rem;
+}
+table:last-child{
+    padding-bottom: 2rem;
+}
+tr:nth-child(odd){
+    background: #EEF6FB;
+}
+.first_one{
+    padding-left: 1rem;
+}
 @media only screen and (max-width: 943px){
-    .event_analytics_name, .event_analytics_subhead, .pie_sub_details_head{
+    .event_analytics_name, .event_analytics_subhead, .pie_sub_details_head, th{
         font-size: .9rem;
     }
-    .event_analytics_date, .pie_sub_details_detss, .pie_chart_details2, .event_visibility{
+    .event_analytics_date, .pie_sub_details_detss, .pie_chart_details2, .event_visibility, td{
         font-size: .8rem;
     }
 }
@@ -130,18 +162,18 @@
     }
 }
 @media only screen and (max-width: 568px){
-    .event_analytics_name, .event_analytics_subhead, .pie_sub_details_head{
+    .event_analytics_name, .event_analytics_subhead, .pie_sub_details_head, th{
         font-size: .8rem;
     }
-    .event_analytics_date, .pie_sub_details_detss, .pie_chart_details2, .event_visibility{
+    .event_analytics_date, .pie_sub_details_detss, .pie_chart_details2, .event_visibility, td{
         font-size: .7rem;
     }
 }
 @media only screen and (max-width: 376px){
-    .event_analytics_name, .event_analytics_subhead, .pie_sub_details_head{
+    .event_analytics_name, .event_analytics_subhead, .pie_sub_details_head, th{
         font-size: .7rem;
     }
-    .event_analytics_date, .pie_sub_details_detss, .pie_chart_details2, .event_visibility{
+    .event_analytics_date, .pie_sub_details_detss, .pie_chart_details2, .event_visibility, td{
         font-size: .6rem;
     }
     .event_visibility{
