@@ -1,15 +1,23 @@
 import "./CheckoutSuccess.css";
 import success from "../assets/done-rafiki-1.png"
 import close from "../assets/icon-close.svg"
+import { useNavigate } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 
 const CheckoutSuccess = ({ onClose }) => {
+  const navigate = useNavigate();
+
+  function Close(){
+    onClose()
+    navigate('/dashboard/tickets')
+  }
+
   return (
     <div className="CheckoutSuccess-container">
       <div className="CheckoutSuccess">
       <div className="close_div">
-        <img className="close_img" src={close} alt="close" onClick={onClose}/>
+        <img className="close_img" src={close} alt="close" onClick={Close}/>
       </div>
         <h2 className="CheckoutSuccess_header">Checkout</h2>
         <img src={success} alt="" className="success_img"/>

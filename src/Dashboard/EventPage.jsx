@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./EventPage.css";
 import Modal from "../components/Modal";
-import CheckOut from "../components/CheckOut";
-import { Form, useLoaderData } from "react-router-dom";
+// import CheckOut from "../components/CheckOut";
+import { useLoaderData} from "react-router-dom";
 import useSWR from "swr";
 import { fetcher } from "../actions/actions";
 import { formatAMPM } from "../Utilities/utilis";
@@ -17,7 +17,6 @@ import { AiOutlineFacebook, AiOutlineInstagram } from "react-icons/ai";
 import { BsGlobe } from "react-icons/bs";
 import { FiTwitter } from "react-icons/fi";
 // import bck from "../assets/bckgrnd.png"
-import { getUserFromSession } from "../hooks/hooks";
 import { Spinner } from "flowbite-react";
 
 
@@ -29,14 +28,11 @@ function EventPage() {
   const [event, setEvent] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby&populate[2]=createdby.profile`, fetcher, { refreshInterval : 100 });
-  const { data:user , usererror, userIsLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${data?.data?.attributes?.createdby?.data?.id}?populate=*`, fetcher, { refreshInterval : 100 });
-
-
+  const { data:user } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${data?.data?.attributes?.createdby?.data?.id}?populate=*`, fetcher, { refreshInterval : 100 });
+  
   useEffect(()=>{
     if(data?.data?.attributes) setEvent(data.data.attributes)
   }, [data])
-
-  if(isLoading) console.log(isLoading)
 
   const Slide = () => {
 
@@ -44,26 +40,26 @@ function EventPage() {
 
   if(data) console.log(data) 
   if(user) console.log(user)
-  function payWithPaystack(e) {
-    e.preventDefault();
+  // function payWithPaystack(e) {
+  //   e.preventDefault();
   
-    let handler = PaystackPop.setup({
-      key: 'pk_test_6c3ee31919315e74bb8f076a2789144c567526ff', // Replace with your public key
-      email: 'ovifeanyichukwu@gmail.com',
-      amount: 100 * 100, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-      // label: "Optional string that replaces customer email"
-      onClose: function(){
-        alert('Window closed.');
-      },
-      callback: function(response){
-        // let message = 'Payment complete! Reference: ' + response.reference;
-        // alert(message);
-        console.log(response)
-      }
-    });
+  //   let handler = PaystackPop.setup({
+  //     key: 'pk_test_6c3ee31919315e74bb8f076a2789144c567526ff', // Replace with your public key
+  //     email: 'ovifeanyichukwu@gmail.com',
+  //     amount: 100 * 100, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+  //     // label: "Optional string that replaces customer email"
+  //     onClose: function(){
+  //       alert('Window closed.');
+  //     },
+  //     callback: function(response){
+  //       // let message = 'Payment complete! Reference: ' + response.reference;
+  //       // alert(message);
+  //       console.log(response)
+  //     }
+  //   });
   
-    handler.openIframe();
-  }
+  //   handler.openIframe();
+  // }
 
   return (
     <div className='event_page'>
@@ -82,8 +78,8 @@ function EventPage() {
           </div>
           <div className='event_page_section2'>
             <div className="event_page_header">
-              <h2 className="single_event_name">{event.name}</h2>
-              <h4 className="single_event_name2">In-person event</h4>
+              <h2 className="single_event_name">{event?.name}</h2>
+              <h4 className="single_event_name2">{event?.type}</h4>
             </div>
             <div className="In-person_event">
               <div className="Details">
@@ -144,15 +140,15 @@ function EventPage() {
                   <span className="next_button">&lt;</span> 
                 </div>
                 
-                <Form method="POST">
-                <div className="Quantities">
+                
+                {/* <div className="Quantities">
                   <p className="details_subhead">Quantity</p>
                   <input type="number" name="" id="" min="1" max="5" className="quantity_field"/>
                   <p className="details_subhead">Amount</p>
                   <input type="number" name="" id="" className="quantity_field"/>
-                </div>
-                <button className="checkout_button">Checkout</button>
-                </Form>
+                </div> */}
+                <button onClick={() => setIsModalOpen(true)} className="checkout_button">Checkout</button>
+            
               </div>
              {user ? <div className="About">
                 <h2 className="details_head">About your Host</h2>
@@ -180,7 +176,7 @@ function EventPage() {
         }
       </div>
       {/* {isModalOpen && <CheckOut setIsModalOpen={setIsModalOpen} />} */}
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {event && <Modal eventPrice="100" eventID={data?.data?.id} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 }

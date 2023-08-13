@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Spinner } from "flowbite-react"
 import { Link } from "react-router-dom"
 
-const AnalyticCard = ({title, type = 'In-person', url, hideLikeIcon, style, like, afterClick, eventId, interested}) => {
+const AnalyticCard = ({title, type, url, hideLikeIcon, style, like, afterClick, eventId, interested}) => {
     const [islike, setIsLike] = useState(like)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -24,7 +24,7 @@ const AnalyticCard = ({title, type = 'In-person', url, hideLikeIcon, style, like
         <div className={style}>
             <div className='picture_div' onClick={switchLike}>
                 {isLoading && <Spinner className='absolute top-2 left-2' size='md'/>} 
-                <img src={url} className='event_img' alt='image'/>
+                <img src={url} className='event_img object-cover object-top' alt='image'/>
                 { !hideLikeIcon && ( 
                         islike?
                         <p className='heart_icon' >❤️</p>

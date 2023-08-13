@@ -61,7 +61,9 @@ export async function updateUserAction({request}){
     console.log(updates)
 
     try {
-        let returnedUser =  await axios.post(import.meta.env.VITE_SERVER_URL + `/api/users-permissions/bob`, formData, {
+        let returnedUser =  await axios.post(import.meta.env.VITE_SERVER_URL + `/api/users-permissions/bob`, 
+        formData, 
+        {
             headers:{
                 'Authorization' : 'Bearer ' + getUserFromSession().token
             }
@@ -101,18 +103,36 @@ export async function handleHeartClick(isLiked, eventID){
     }
 }
 
-export async function checkoutAction(){
-    await payWithPaystack()
+export async function checkoutAction({request}){
+    try{
+        const formData = await request.formData();
+        let updates = Object.fromEntries(formData);
 
-    
+        //updating the submitted form with the user id and event id for relationship
+        updates.event = {connect : [updates.eventID]}
+        updates.user = {connect : [getUserFromSession()?.id]}
+        delete updates.eventID
+        // console.log(updates)
+        //simulate payment and get response from paystack
+        //note to self: we might as well use the transcation code as the ticket identifier
+        const response = await payWithPaystack()
+        
+        // creating ticket after payment is successfull
+        if(response)
+        await axios.post(import.meta.env.VITE_SERVER_URL + `/api/tickets`, {data : updates}, {headers: { Authorization: "Bearer " + getUserFromSession()?.token }})
 
-    return null
+        return true
+    }catch(e){
+        console.log(e)
+        return null
+    }
+
     // return null
 }
 
+
+
 async function payWithPaystack() {
-
-
     return new Promise(function(resolve, reject) {    
         let handler = PaystackPop.setup({
             key: 'pk_test_6c3ee31919315e74bb8f076a2789144c567526ff', // Replace with your public key
@@ -120,8 +140,8 @@ async function payWithPaystack() {
             amount: 100 * 100, // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
             // label: "Optional string that replaces customer email"
             onClose: function(){
-              alert('Window closed.');
               reject()
+
             },
             callback: function(response){
               // let message = 'Payment complete! Reference: ' + response.reference;
