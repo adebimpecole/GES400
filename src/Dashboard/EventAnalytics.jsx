@@ -63,12 +63,14 @@ const EventAnalytics = () => {
                 <span className="event_analytics_subhead">Event Info</span>
                 <div className="event_analytics_subdiv">
                     <div className="event_visibility">
-                        <div onClick={updateEventLiveStatus} className={event?.live ? `event_visibility_sub active relative` : `event_visibility_sub relative`}>
+                        <div onClick={updateEventLiveStatus} className={`event_visibility_sub relative`}>
                             <span className="event_visibility_name">Live</span>
                             <div className="event_visibility_info">
                                 {event?.live ? 'Your event is live on Primavera.' : 'Click to make your Event Live'}
                             </div>
                             {isLiveStatusLoading && <Spinner size="xs" className='absolute top-1 right-1'/>}
+                            {!isLiveStatusLoading && !event?.live && <p className='inline-block absolute top-1 right-1'>🔴</p>}
+                            {!isLiveStatusLoading && event?.live && <p className='inline-block absolute top-1 right-1'>🟢</p>}
                         </div> 
                         <div className="event_visibility_sub">
                             <span className="event_visibility_name">Public</span>

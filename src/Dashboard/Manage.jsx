@@ -62,7 +62,7 @@ const Manage = (props) => {
             <div className='manage_section2'>
                 <div className="scroll_div">
                 {
-                        InterestedEvents?.map(event =>  event.live == true || event?.createdby &&
+                        InterestedEvents?.map(event =>  event.live == true &&
                             <EventCard 
                                 key={event?.id}
                                 title={event?.name}
