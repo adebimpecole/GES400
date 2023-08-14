@@ -100,6 +100,18 @@ const CreateEvent = (props) => {
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
                 </label>
+                <div className="checkbox_div">
+                    <p className="date_time_head radio_head">Mode of Entry</p>
+                    <span className="Checkbox">
+                        <input type="radio" name="ticket" id="" />
+                        Ticket only
+                    </span>
+                    <span className="Checkbox">
+                        <input type="radio" name="ticket" id="" />
+                        Free
+                    </span>
+                    
+                </div>
                 <TagSelector 
                     items={
                         [

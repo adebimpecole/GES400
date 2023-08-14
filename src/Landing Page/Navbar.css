@@ -3,6 +3,10 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    box-sizing: border-box;
+    height: fit-content;
+    background-color: transparent;
+    align-items: center;
 }
 .nav{
     width: 100%;
@@ -10,9 +14,130 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin: 0;
     padding: 0;
+    font-size: .8rem;
+    gap: 2rem;
+    font-weight: 700;
+    color: #98C1D9;
+}
+.sub_link{
+    font-weight: 700;
+}
+.tab:hover{
+    text-decoration: none;
+}
+.nav2{
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: .8rem;
+    font-weight: 700;
+    color: #98C1D9;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 12rem;
+    height: 100%;
+    scroll-behavior: no-scroll;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    background: #133C55;
+    padding: 2rem 1rem;
 }
 .realnav{
     width: 40%;
+}
+.nav_logo{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.sub_nav_button{
+    background: #98C1D9;
+    color: #133C55;
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+.sub_nav_button:hover{
+    background: #133C55;
+    color: #93B8DC;
+}
+.ges{
+    height: 60%;
+    width: 15%;
+}
+.bar, .x{
+    display: none;
+    color: #98C1D9;
+    cursor: pointer;
+}
+.open{
+    display: flex;
+}
+.closes{
+    display: none;
+}
+@media only screen and (max-width: 943px){
+    .nav, .nav2{
+        font-size: .7rem;
+    }
+    .nav_logo{
+        font-size: 1.3rem;
+    }
+}
+@media only screen and (max-width: 768px){
+    .nav_logo{
+        display: block;
+    }
+}
+@media only screen and (max-width: 568px){
+    .nav_logo{
+        font-size: 1.1rem;
+    }
+    .navbar{
+        height: 3rem;
+    }
+    .nav{
+        display: none;
+    }
+    .nav2{
+        font-size: .6rem;
+        padding: 1rem;
+        width: 11rem;
+    }
+    .bar, .x{
+        display: flex;
+        font-size: 1.5rem;
+    }
+    .close_span{
+        width: 100%;
+        display: flex;
+        align-items: right;
+        justify-content: right;
+    }
+    .sub_nav_button:hover{
+        background: #93B8DC;
+        color: #133C55;
+    }
+}
+@media only screen and (max-width: 376px){
+    .nav_logo{
+        font-size: .9rem;
+    }
+    .navbar{
+        height: fit-content;
+    }
+    .bar, .x{
+        font-size: 1rem;
+    }
+    .nav2{
+        width: 10rem;
+        font-size: .5rem;
+    }
 }

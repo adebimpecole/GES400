@@ -6,6 +6,8 @@ import add from "../assets/new.svg"
 import "./SideNav.css"
 import { Link } from "react-router-dom";
 import { useState } from "react"
+import exit from "../assets/exit.svg"
+import logo from "../assets/geslogo.svg"
 
 
 /* eslint-disable react/prop-types */
@@ -20,7 +22,11 @@ const SideNav = (props) => {
 
   return (
     <div className="sidenav">
-        <h3 className='company_name side_name'>Primavera</h3>
+        <h3 className='company_name side_name'>
+          {/* <span className="side_name1">Easy<span className="different">Events</span></span> */}
+          <img src={logo} alt="logo" className="logos"/>
+          <span className="side_name2">E<span className="different">E</span></span>
+        </h3>
         <ul className='side_navigation'>
             <li className={'navigate our_home ' + `${current == 0? 'active' : null}`} onClick={() => setCurrent(0)}>
               <Link to="./" className='link  '>
@@ -45,6 +51,11 @@ const SideNav = (props) => {
             <li className={'navigate our_new_event ' + `${current == 4? 'active' : null}`} onClick={() => setCurrent(4)}>
               <Link to="./create" className='link'>
                 <img src={add} alt='icon' className='navigation_icon'/><span className='navigation_text'>Create event</span>
+              </Link>
+            </li>
+            <li className={'navigate our_new_event ' + `${current == 5? 'active' : null}`} onClick={() => setCurrent(4)}>
+              <Link to="/" className='link'>
+                <img src={exit} alt='icon' className='navigation_icon'/><span className='navigation_text'> Log out</span>
               </Link>
             </li>
 
