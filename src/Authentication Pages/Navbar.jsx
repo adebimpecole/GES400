@@ -1,9 +1,11 @@
 import "./Navbar.css"
+import ges from "../assets/geslogo.svg"
+
 
 const Navbar = () => {
   return (
     <div className='authentication_navbar'>
-        <h3 className='company_name'>Primavera</h3>
+        <img src={ges} alt="logo" className="log_logo"/>
     </div>
   )
 }

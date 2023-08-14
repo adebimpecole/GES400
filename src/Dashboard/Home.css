@@ -225,7 +225,7 @@
     }
     .home_section{
         width: 90%;
-        padding: 3% 5%;
+        padding: 5% 5%;
     }
     .search_box{
       width: 95%;
@@ -235,10 +235,7 @@
     }
   }
   @media only screen and (max-width: 668px){
-    .home_section{
-        width: 90%;
-        padding: 3% 5%;
-    }
+    
   }
   @media only screen and (max-width: 568px){
     .section_head{
@@ -279,6 +276,10 @@
     .search_icon{
       width: 4%;
     }
+    .home_section{
+      width: 90%;
+      padding: 6% 5%;
+  }
   }
   @media only screen and (max-width: 468px){
     .search_date{

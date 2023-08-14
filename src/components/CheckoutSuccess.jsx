@@ -1,5 +1,5 @@
 import "./CheckoutSuccess.css";
-import success from "../assets/done-rafiki-1.png"
+import success from "../assets/illustration.svg"
 import close from "../assets/icon-close.svg"
 import { useNavigate } from "react-router-dom";
 

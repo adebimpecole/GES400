@@ -9,6 +9,7 @@ import CreateEventSuccess from "./CreateEventSuccess"
 import Loading from "./Loading"
 import { Spinner } from "flowbite-react"
 import TagSelector from "../components/TagSelector"
+import {MdCancel} from 'react-icons/md'
 
 
 const CreateEvent = (props) => {
@@ -19,6 +20,10 @@ const CreateEvent = (props) => {
     const [showEndInput, setShowEndInput] = useState(false)
     const [imgUrl, setImgUrl] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
+
+    //Ticket logic starts here
+    const [showTicketSection, setShowTicketSection] = useState(false)
+    const [numOfTickets, setNumOfTickets] = useState([])
 
     function EndDateAndTime(){
         return(
@@ -43,6 +48,45 @@ const CreateEvent = (props) => {
         navigate('/dashboard/manage')
         setIsLoading(true)
     }
+
+    function showTicketSec(){
+        setShowTicketSection(true)
+    }
+
+    function hideTicketSection(){
+        setShowTicketSection(false)
+    }
+
+    function increaseNumOfTickets(){
+        setNumOfTickets([...numOfTickets, 1])
+    }
+
+    function decreaseNumOfTickets(){
+        let newcoll = numOfTickets
+        newcoll.pop()
+
+        setNumOfTickets([...newcoll])
+    }
+
+    function TicketTypeAndPrice({index}){
+        const [showCancelBtn, setShowCancelBtn] = useState(false)
+
+        return(
+            <div className="start_date_time relative" onMouseOver={() => setShowCancelBtn(true)} onMouseLeave={() => setShowCancelBtn(false)} onClick={() => setShowCancelBtn(true)}>
+                <div className="date_time">
+                    <span className="date_time_head">Ticket Name</span>
+                    <input required name={"tt_" + index} className="block w-full date_detail" type="text" placeholder=""/>
+                </div>
+                <div className="date_time">
+                    <span className="date_time_head">Ticket Price</span>
+                    <input required name={"tp_" + index} className="block w-full date_detail" type="number" placeholder=""/>
+                </div>
+                {showCancelBtn && <MdCancel onClick={decreaseNumOfTickets} className="absolute right-1"/>}
+            </div>
+        )
+    }
+
+    
 
   return (
     <div style={props.style} className="create_event">
@@ -100,6 +144,26 @@ const CreateEvent = (props) => {
                     Description
                     <textarea type="text" name="description" id="event-description"  className="event-description" required/>
                 </label>
+                <div className="checkbox_div">
+                    <p className="date_time_head radio_head">Mode of Entry</p>
+                    <span className="Checkbox">
+                        <input type="radio" name="ticket" id="" onChange={showTicketSec}/>
+                        Ticket only
+                    </span>
+                    <span className="Checkbox">
+                        <input type="radio" name="ticket" id="" onClick={hideTicketSection}/>
+                        Free
+                    </span>
+                    
+                    {showTicketSection &&
+                        <>
+                        {
+                            numOfTickets.map((item, i) => <TicketTypeAndPrice index={i}  key={i}/>)
+                        }
+                        <button type="button" onClick={() => increaseNumOfTickets()} className="px-0 mb-3 mt-1 bg-transparent date_time_txt">+ Add Ticket Type and Price</button>
+                        </>
+                    }
+                </div>
                 <TagSelector 
                     items={
                         [
