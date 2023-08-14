@@ -34,7 +34,8 @@ const EventAnalytics = () => {
     if(!isLiveStatusLoading){ //if a request is not currentlly being processed
         if(eventId){ //if eventID is present
             setIsLiveStatusLoading(true)
-            await axios.put(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}`, {data : {live : !event.live}}, {
+            let newVal = !event.live
+            await axios.put(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}`, {data : {live : newVal}}, {
                 headers:{
                     'Authorization' : 'Bearer ' + getUserFromSession()?.token
                 }
