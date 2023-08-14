@@ -16,10 +16,13 @@ const EventAnalytics = () => {
     const [event, setEvent] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLiveStatusLoading, setIsLiveStatusLoading] = useState(false)
-    const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby`, fetcher, { refreshInterval : 100 });
+    const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby&populate[2]=tickets`, fetcher, { refreshInterval : 100 });
+    const [tickets, setTickets] = useState([])
   
     useEffect(()=>{
       if(data?.data?.attributes) setEvent(data.data.attributes)
+      if(data?.data?.attributes?.tickets?.data) setTickets(data.data.attributes.tickets.data)
+
     }, [data])
   
     if(event) console.log(event)
@@ -50,11 +53,11 @@ const EventAnalytics = () => {
 
   return (
     <div className="event_analytics">
-        {isLoading ? <div className="absolute top-0 right-0 left-0 h-screen flex justify-center items-center">
+        {isLoading && <div className="absolute top-0 right-0 left-0 h-screen flex justify-center items-center">
         <Spinner size='xl'
         />
-      </div> :
-        <div className='home_section event_analytics_section'>
+      </div>} 
+        {event && <div className='home_section event_analytics_section'>
             <div className='event_analytics_section1'>
                 <h3 className='section_head'>Event Analytics</h3>
                 <span className="event_analytics_name">{event?.name}</span>
@@ -111,28 +114,19 @@ const EventAnalytics = () => {
                     <th>Ticket ID</th>
                     <th>Price</th>
                 </tr>
-                <tr>
-                    <td className='first_one'>Okpara Joel Omehoma</td>
-                    <td>Regular</td>
-                    <td>7</td>
-                    <td>#5000</td>
-                </tr>
-                <tr>
-                    <td className='first_one'>Mary Cole Adebimpe</td>
-                    <td>VIP</td>
-                    <td>10</td>
-                    <td>#10000</td>
-                </tr>
-                <tr>
-                    <td className='first_one'>Victor Ogbonnah</td>
-                    <td>VIP</td>
-                    <td>9</td>
-                    <td>#10000</td>
-                </tr>
-                <span className='space'>.</span>
-            </table>
-        </div>
-        }
+                {
+                    tickets.map((ticket, i) => 
+                    <tr key={i}>
+                        <td className='first_one'>{ticket?.attributes?.firstName} {ticket?.attributes?.lastName}</td>
+                        <td>{ticket?.attributes?.type || 'Regular'}</td>
+                        <td>{ticket?.id}</td>
+                        <td>#{ticket?.attributes?.price || ''}</td>
+                    </tr>
+                    )
+                }
+                {/* <span className='space'>.</span> */}
+            </table> 
+        </div>}
     </div>
   )
 }

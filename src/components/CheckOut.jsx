@@ -9,7 +9,7 @@ import { Spinner } from "flowbite-react";
 /* eslint-disable react/prop-types */
 
 
-const CheckOut = ({ onClose, setSwitchModal, eventID, eventPrice }) => {
+const CheckOut = ({ onClose, setSwitchModal, eventID, ticketPrice, ticketType }) => {
 
   const action = useActionData()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -51,7 +51,15 @@ const CheckOut = ({ onClose, setSwitchModal, eventID, eventPrice }) => {
                     type="text"
                     name="price"
                     id=""
-                    defaultValue={eventPrice}
+                    defaultValue={ticketPrice}
+                    placeholder="Enter your first name"
+                    className="hidden"
+                  />
+                  <input
+                    type="text"
+                    name="type"
+                    id=""
+                    defaultValue={ticketType}
                     placeholder="Enter your first name"
                     className="hidden"
                   />
@@ -108,7 +116,7 @@ const CheckOut = ({ onClose, setSwitchModal, eventID, eventPrice }) => {
             <span className="summary_details">
               <p>1x Regular Ticket</p>
               <span>
-                <p>{'#' + eventPrice}</p>
+                <p>{'#' + ticketPrice}</p>
               </span>
             </span>
             {/* <span className="summary_details">
@@ -120,7 +128,7 @@ const CheckOut = ({ onClose, setSwitchModal, eventID, eventPrice }) => {
             <span className="total_summary">
               <h3>Total</h3>
               <span>
-                <h3>{'#' + eventPrice}</h3>
+                <h3>{'#' + ticketPrice}</h3>
               </span>
             </span>
           </div>

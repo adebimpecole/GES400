@@ -29,17 +29,23 @@ function EventPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data , error, isLoading } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events/${eventId}?populate[0]=cover&populate[1]=createdby&populate[2]=createdby.profile`, fetcher, { refreshInterval : 100 });
   const { data:user } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/users/${data?.data?.attributes?.createdby?.data?.id}?populate=*`, fetcher, { refreshInterval : 100 });
+
+  //ticket logic
+  const [currentTicketIndex, setCurrTicketIndex] = useState(0)
+  const [tickets, setTickets] = useState(null)
   
   useEffect(()=>{
     if(data?.data?.attributes) setEvent(data.data.attributes)
+    setTickets(data?.data?.attributes?.tickettypes)
+    console.log(data?.data?.attributes?.tickettypes)
   }, [data])
 
   const Slide = () => {
 
   }
 
-  if(data) console.log(data) 
-  if(user) console.log(user)
+  // if(data) console.log(data) 
+  // if(user) console.log(user)
   // function payWithPaystack(e) {
   //   e.preventDefault();
   
@@ -60,6 +66,16 @@ function EventPage() {
   
   //   handler.openIframe();
   // }
+
+  function increaseCurrentTicketIndex(){
+    if(currentTicketIndex != tickets.length - 1)
+      setCurrTicketIndex(currentTicketIndex + 1)
+  }
+
+  function decreaseCurrentTicketIndex(){
+    if(currentTicketIndex != 0)
+      setCurrTicketIndex(currentTicketIndex - 1)
+  }
 
   return (
     <div className='event_page'>
@@ -119,26 +135,21 @@ function EventPage() {
                 </span>
               </div>
               <div className="Tickets">
+                {tickets?.length > 0 && 
+                <>
                 <h3 className="details_head">Tickets</h3>
                 <p className="single_event_name2">Type</p>
                 <div className="ticket_types">
-                  <span className="next_button" onClick={Slide}>&gt;</span>
+                  <span className="next_button" onClick={increaseCurrentTicketIndex}>&gt;</span>
                   <div className="the_tickets">
                     <div className="each_ticket showing">
-                      <span className="ticket_type_name">VIP</span>
-                      <span className="ticket_type_price">₦10,000</span>
-                    </div>
-                    <div className="each_ticket">
-                      <span className="ticket_type_name">Regular</span>
-                      <span className="ticket_type_price">₦5,000</span>
-                    </div>
-                    <div className="each_ticket">
-                      <span className="ticket_type_name">Student</span>
-                      <span className="ticket_type_price">₦2,500</span>
+                      <span className="ticket_type_name">{tickets[currentTicketIndex]?.tt}</span>
+                      <span className="ticket_type_price">{tickets[currentTicketIndex]?.tp}</span>
                     </div>
                   </div>
-                  <span className="next_button">&lt;</span> 
+                  <span className="next_button" onClick={decreaseCurrentTicketIndex}>&lt;</span> 
                 </div>
+                </>}
                 
                 
                 {/* <div className="Quantities">
@@ -176,7 +187,7 @@ function EventPage() {
         }
       </div>
       {/* {isModalOpen && <CheckOut setIsModalOpen={setIsModalOpen} />} */}
-      {event && <Modal eventPrice="100" eventID={data?.data?.id} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
+      {event && <Modal ticketPrice={tickets[currentTicketIndex]?.tp || '100'} ticketType={tickets[currentTicketIndex]?.tt || 'classic'} eventID={data?.data?.id} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 }
