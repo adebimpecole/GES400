@@ -19,7 +19,7 @@ import Fuse from 'fuse.js'
 
 
 const HomeComponent = ({pageNumber, text}) => {
-    const { data : allEvents } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events?sort=createdAt:desc&populate=*&filters[live]=true&pagination[pageSize]=25&pagination[page]=${pageNumber}`, fetcher, {revalidateOnMount : true, refreshWhenHidden : true, refreshInterval : 200});
+    const { data : allEvents } = useSWR(import.meta.env.VITE_SERVER_URL  + `/api/events?sort=createdAt:desc&populate=*&pagination[pageSize]=25&pagination[page]=${pageNumber}`, fetcher, {revalidateOnMount : true, refreshWhenHidden : true, refreshInterval : 200});
     const [filteredEvents, setFilteredEvents] = useState([])
     useEffect(()=> {
         if(text){
@@ -44,7 +44,7 @@ const HomeComponent = ({pageNumber, text}) => {
             {
                 text ?
                 filteredEvents?.map(data => 
-                    data && <EventCard 
+                    data && data?.attributes?.live == true && <EventCard 
                         key={data?.id} 
                         title={data?.attributes?.name} 
                         type={data?.attributes?.type} 
@@ -60,7 +60,7 @@ const HomeComponent = ({pageNumber, text}) => {
                 )
                 :
                 allEvents?.data?.map(data => 
-                    data && <EventCard 
+                    data && data?.attributes?.live == true && <EventCard 
                         key={data?.id} 
                         title={data?.attributes?.name} 
                         type={data?.attributes?.type} 

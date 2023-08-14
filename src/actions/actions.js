@@ -1,11 +1,54 @@
 import axios, { formToJSON } from "axios";
 import { getUserFromSession } from "../hooks/hooks";
+// import { redirect } from "react-router";
 
 
 {/* <input type="text" name="ref" value="api::restaurant.restaurant" />
 <input type="text" name="refId" value="5c126648c7415f0c0ef1bccd" />
 <input type="text" name="field" value="cover" />
 <input type="file" name="cover" className=""/> */}
+
+// export async function createAction({request}) {
+//     const formData = await request.formData();
+//     const updates = Object.fromEntries(formData);
+//     console.log(updates)
+
+//     const startDate = new Date(updates.start_date + ' ' + updates.start_time);
+//     if(updates.stop_time && updates.stop_date){
+//         let stopDate = new Date(updates.stop_date + ' ' + updates.stop_time)
+//         updates.end = stopDate.toISOString()
+//     }
+
+//     updates.createdby =  { "connect" : [getUserFromSession().id]} //attaching id of user who created event
+//     updates.start = startDate.toISOString() //setting start date to form acceptable by strapi server
+//     updates.createdby.connect = [Number(getUserFromSession()?.id)]
+    
+//     try {
+//         const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/events', {data : updates}, {
+//             headers:{
+//                 'Authorization' : 'Bearer ' + getUserFromSession().token
+//             }
+//         })
+
+//         //updating formData to submit and link image to event created above using id
+//         formData.append("ref", "api::event.event")
+//         formData.append("refId", res.data.data.id)
+//         formData.append("field", "cover")
+
+//         await axios.post(import.meta.env.VITE_SERVER_URL + '/api/upload', formData, {
+//             headers:{
+//                 'Authorization' : 'Bearer ' + getUserFromSession().token
+//             }
+//         })
+
+//         // return redirect('/dashboard/manage')
+//         return true
+//     } catch (error) {
+//         console.log(error)
+//     }
+
+//     return null
+// }
 
 export async function createAction({request}) {
     const formData = await request.formData();
@@ -21,26 +64,42 @@ export async function createAction({request}) {
     updates.createdby =  { "connect" : [getUserFromSession().id]} //attaching id of user who created event
     updates.start = startDate.toISOString() //setting start date to form acceptable by strapi server
     updates.createdby.connect = [Number(getUserFromSession()?.id)]
-    
+    updates.tickettypes = []
+
+    //massive code bruh, I deserve a pat on the back!!
+    for (const [key, value] of Object.entries(updates)) {
+        if(key.startsWith("tp") || key.startsWith("tt")){
+            let index = key.split("_")[1]
+
+            if(updates.tickettypes[index]){
+                updates.tickettypes[index][key.split("_")[0]] = value
+            }
+            else{
+                updates.tickettypes[index] = {}
+                updates.tickettypes[index][key.split("_")[0]] = value
+            }
+            delete(updates[key])
+        }
+    }
+      
+    let data = {}
+    let formData2 = new FormData()
+
+    formData2.append("files.cover", formData.get("files"))
+    delete(updates.files)
+    formData2.append("data", JSON.stringify(updates))
+    const updates2 = Object.fromEntries(formData2);
+
+    console.log(updates2)
+
     try {
-        const res = await axios.post(import.meta.env.VITE_SERVER_URL + '/api/events', {data : updates}, {
+        await axios.post(import.meta.env.VITE_SERVER_URL + '/api/events', formData2, {
             headers:{
                 'Authorization' : 'Bearer ' + getUserFromSession().token
             }
         })
 
-        //updating formData to submit and link image to event created above using id
-        formData.append("ref", "api::event.event")
-        formData.append("refId", res.data.data.id)
-        formData.append("field", "cover")
-
-        await axios.post(import.meta.env.VITE_SERVER_URL + '/api/upload', formData, {
-            headers:{
-                'Authorization' : 'Bearer ' + getUserFromSession().token
-            }
-        })
-
-        // return redirect('/dashboard/manage')
+    
         return true
     } catch (error) {
         console.log(error)
@@ -48,6 +107,9 @@ export async function createAction({request}) {
 
     return null
 }
+
+
+
 
 export async function updateUserAction({request}){
     const formData = await request.formData();
