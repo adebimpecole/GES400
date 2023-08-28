@@ -89,7 +89,7 @@ This project is built using the following technologies:
 
 - React
 - Strapi
-- Fuse.js
+- Cloudinary
 - CSS Modules
 
 
